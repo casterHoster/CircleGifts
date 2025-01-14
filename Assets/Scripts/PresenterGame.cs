@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -36,5 +37,10 @@ public class PresenterGame : MonoBehaviour
             _buttons[i % Lines.Size, i / Lines.Size] = 
                 GameObject.Find($"Button ({i})").GetComponent<Button>();
 
+    }
+
+    private int GetNumber(string name)
+    {
+        Regex regex = new Regex("\\((\\d+\\))");
     }
 }
