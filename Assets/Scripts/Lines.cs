@@ -1,11 +1,13 @@
 
 public delegate void ShowCell(float x, float y, float gift);
 
-public class Union
+public class Lines
 {
+    public const int Size = 5;
+
     private ShowCell _cell;
 
-    public Union(ShowCell cell)
+    public Lines(ShowCell cell)
     {
         _cell = cell;
     }
