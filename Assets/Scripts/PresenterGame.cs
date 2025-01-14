@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PresenterGame : MonoBehaviour
@@ -21,13 +22,19 @@ public class PresenterGame : MonoBehaviour
     
     }
 
+    public void Click()
+    {
+
+        Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+    }
+
     private void InitButtons()
     {
         _buttons = new Button[Lines.Size, Lines.Size];
 
         for (int i = 0; i < Lines.Size * Lines.Size; i++)
             _buttons[i % Lines.Size, i / Lines.Size] = 
-                GameObject.Find($"Gift {i}").GetComponent<Button>();
+                GameObject.Find($"Button ({i})").GetComponent<Button>();
 
     }
 }
