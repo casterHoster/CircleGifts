@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] private Transform _boardTransform;
+    [SerializeField] private RectTransform _boardTransform;
     [SerializeField] private Cell _cellPrefab;
 
     private void Start()
@@ -15,14 +15,17 @@ public class Board : MonoBehaviour
             for (int y = 0; y < Config.BoardHeight; y++)
             {
                 var cell = Instantiate(_cellPrefab, _boardTransform);
-                cell.Transform.position = GetBoardPosition(new Point(x, y));
+                cell.rectTransform.anchoredPosition = GetBoardPosition(new Point(x, y));
             }
         }
     }
 
     private Vector2 GetBoardPosition(Point point)
     {
-        return new Vector2(Config.PieceSize / 2 + Config.PieceSize * point.X,
-            -Config.PieceSize / 2 - Config.PieceSize * point.Y);
+        float width = _boardTransform.rect.width;
+        float height = _boardTransform.rect.height;
+
+        return new Vector2((-width / Config.IndentX + Config.PieceSize * point.X),
+            height / Config.IndentY - Config.PieceSize * point.Y);
     }
 }
