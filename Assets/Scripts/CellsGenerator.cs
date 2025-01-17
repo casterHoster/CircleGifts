@@ -13,14 +13,22 @@ public class CellsGenerator : MonoBehaviour
     [SerializeField] private float _indentY = 2.5f;
     [SerializeField] private int _spacingCells = 4;
 
+    public event Action<Cell> Instantiated;
+
+    public List<Cell> AvailableCells { get; private set; }
+
     public void Initial()
     {
+        AvailableCells = new List<Cell>();
+
         for (int x = 0; x < _horizontalCellsCount; x++)
         {
             for (int y = 0; y < _verticalCellsCount; y++)
             {
                 var cell = _cellFabric.InstantCell(_boardTransform);
                 cell.RectTransform.anchoredPosition = GetPositionOnBoard(x,y);
+                AvailableCells.Add(cell);
+                Instantiated?.Invoke(cell);
             }
         }
     }

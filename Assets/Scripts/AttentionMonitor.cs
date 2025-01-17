@@ -1,30 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttentionMonitor : MonoBehaviour
 {
-    private bool _isHovered;
-    private bool _isPressed;
-    private bool _isRealesed;
+    public event Action IsHovered;
+    public event Action IsUnhovered;
+    public event Action IsPressed;
+    public event Action IsRealized;
+
 
     private void OnMouseEnter()
     {
-        _isHovered = true;
+        IsHovered?.Invoke();
     }
 
     private void OnMouseExit()
     {
-        _isHovered = false;
+        IsUnhovered?.Invoke();
     }
 
     private void OnMouseDrag()
     {
-        _isPressed = true;
+        IsPressed?.Invoke();
     }
 
     private void OnMouseUp()
     {
-        _isRealesed = true;
+        IsRealized?.Invoke();
     }
 }
