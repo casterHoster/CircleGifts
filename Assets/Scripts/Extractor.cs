@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class Extractor : MonoBehaviour
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _markedCells;
     private bool _isPressed;
+
+    public event Action TryedAddHovered;
 
     private void Awake()
     {
@@ -47,9 +50,11 @@ public class Extractor : MonoBehaviour
     {
         if (_isPressed)
         {
-            if (SeeSomeNeighbours())
+            if (SearchNeighbours(gameObject))
                 _markedCells.Add(gameObject.GetComponent<Cell>());
         }
+
+        TryedAddHovered?.Invoke();
     }
 
     private void ExtractCells()
@@ -66,12 +71,16 @@ public class Extractor : MonoBehaviour
         _isPressed = false;
     }
 
-    private bool SeeSomeNeighbours()
+    private bool SearchNeighbours(GameObject gameObject)
     {
-        foreach (Cell cell in _cellOperator.NeighboursCells)
+        var cell = gameObject.GetComponent<Cell>();
+
+        foreach (Cell neighbourCell in _cellOperator.NeighboursCells)
         {
-            if (_markedCells[_markedCells.Count - 1].Value == cell.Value)
+            if (cell == neighbourCell && _markedCells[_markedCells.Count - 1].Value == cell.Value)
             {
+                Debug.Log(_markedCells[_markedCells.Count - 1].Value);
+                Debug.Log(neighbourCell.Value);
                 return true;
             }
         }
