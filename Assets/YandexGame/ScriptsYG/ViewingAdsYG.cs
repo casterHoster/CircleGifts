@@ -133,14 +133,14 @@ namespace YG
             if (pause)
             {
                 if (!eventSystem)
-                    eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
+                    eventSystem = UnityEngine.GameObject.FindAnyObjectByType<EventSystem>();
                 if (eventSystem)
                     eventSystem.enabled = false;
             }
             else
             {
                 if (!eventSystem)
-                    eventSystem = GameObject.FindAnyObjectByType<EventSystem>();
+                    eventSystem = UnityEngine.GameObject.FindAnyObjectByType<EventSystem>();
                 if (eventSystem)
                     eventSystem.enabled = true;
             }

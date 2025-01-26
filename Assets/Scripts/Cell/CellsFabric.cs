@@ -23,7 +23,7 @@ public class CellsFabric : MonoBehaviour
 
     public Cell InstantCell(RectTransform boardTransform)
     {
-        var cell = Instantiate(_cellPrefab, boardTransform);
+        var cell = Instantiate(_cellPrefab, boardTransform); 
         Characterize(cell, GetRandomCharacteristic());
         return cell;
     }

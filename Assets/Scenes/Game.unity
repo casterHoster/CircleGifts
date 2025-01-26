@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellsGenerator: {fileID: 183545757}
-  _cellOperator: {fileID: 1774804530}
+  _searcher: {fileID: 1774804530}
 --- !u!4 &280937292
 Transform:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 1774804531}
   - component: {fileID: 1774804530}
   m_Layer: 0
-  m_Name: CellOperator
+  m_Name: NeighbourSearcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

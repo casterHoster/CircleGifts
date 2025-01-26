@@ -17,7 +17,7 @@ namespace YG.Insides
         }
 
         Vector2 scrollPosition = Vector2.zero;
-        List<GameObject> objectsTranlate = new List<GameObject>();
+        List<UnityEngine.GameObject> objectsTranlate = new List<UnityEngine.GameObject>();
 
         private void OnGUI()
         {
@@ -37,7 +37,7 @@ namespace YG.Insides
 
             if (GUILayout.Button("Add selected"))
             {
-                foreach (GameObject obj in Selection.gameObjects)
+                foreach (UnityEngine.GameObject obj in Selection.gameObjects)
                 {
                     if (obj.GetComponent<LanguageYG>())
                     {
@@ -54,7 +54,7 @@ namespace YG.Insides
 
             if (GUILayout.Button("Remove selected"))
             {
-                foreach (GameObject obj in Selection.gameObjects)
+                foreach (UnityEngine.GameObject obj in Selection.gameObjects)
                 {
                     objectsTranlate.Remove(obj);
                 }
@@ -199,7 +199,7 @@ namespace YG.Insides
 
             for (int i = 0; i < objectsTranlate.Count; i++)
             {
-                objectsTranlate[i] = (GameObject)EditorGUILayout.ObjectField($"{i + 1}. {objectsTranlate[i].name}", objectsTranlate[i], typeof(GameObject), false);
+                objectsTranlate[i] = (UnityEngine.GameObject)EditorGUILayout.ObjectField($"{i + 1}. {objectsTranlate[i].name}", objectsTranlate[i], typeof(UnityEngine.GameObject), false);
             }
 
             if (objectsTranlate.Count > 10 && position.height < objectsTranlate.Count * 20.6f + 150)

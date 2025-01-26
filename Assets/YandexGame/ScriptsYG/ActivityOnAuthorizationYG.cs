@@ -6,7 +6,7 @@ namespace YG
 {
     public class ActivityOnAuthorizationYG : MonoBehaviour
     {
-        public GameObject activityObjAuth;
+        public UnityEngine.GameObject activityObjAuth;
 
         [Serializable]
         public class Events

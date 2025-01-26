@@ -20,7 +20,7 @@ namespace YG.Insides
 
             int countSelectObj = 0;
 
-            foreach (GameObject obj in Selection.gameObjects)
+            foreach (UnityEngine.GameObject obj in Selection.gameObjects)
             {
                 countSelectObj++;
                 LanguageYG langYG = obj.GetComponent<LanguageYG>();

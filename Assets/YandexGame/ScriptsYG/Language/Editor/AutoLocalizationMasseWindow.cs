@@ -18,11 +18,11 @@ namespace YG.Insides
         }
 
         Vector2 scrollPosition = Vector2.zero;
-        List<GameObject> objectsTranlate = new List<GameObject>();
+        List<UnityEngine.GameObject> objectsTranlate = new List<UnityEngine.GameObject>();
 
         private void OnGUI()
         {
-            if (GameObject.FindAnyObjectByType<YandexGame>().infoYG.translateMethod == InfoYG.TranslateMethod.AutoLocalization)
+            if (UnityEngine.GameObject.FindAnyObjectByType<YandexGame>().infoYG.translateMethod == InfoYG.TranslateMethod.AutoLocalization)
             {
                 GUILayout.Space(10);
 
@@ -60,7 +60,7 @@ namespace YG.Insides
 
                 if (GUILayout.Button("Add selected from list", GUILayout.Height(22)))
                 {
-                    foreach (GameObject obj in Selection.gameObjects)
+                    foreach (UnityEngine.GameObject obj in Selection.gameObjects)
                     {
                         if (obj.GetComponent<Text>()
 #if YG_TEXT_MESH_PRO
@@ -81,7 +81,7 @@ namespace YG.Insides
 
                 if (GUILayout.Button("Remove selected from list", GUILayout.Height(22)))
                 {
-                    foreach (GameObject obj in Selection.gameObjects)
+                    foreach (UnityEngine.GameObject obj in Selection.gameObjects)
                     {
                         objectsTranlate.Remove(obj);
                     }
@@ -103,7 +103,7 @@ namespace YG.Insides
 
                     if (GUILayout.Button("TRANSLATE", GUILayout.Height(30)))
                     {
-                        foreach (GameObject obj in objectsTranlate)
+                        foreach (UnityEngine.GameObject obj in objectsTranlate)
                         {
                             LanguageYG scrAL = obj.GetComponent<LanguageYG>();
 
@@ -120,7 +120,7 @@ namespace YG.Insides
 
                     if (GUILayout.Button("Remove component LanguageYG", GUILayout.Height(22)))
                     {
-                        foreach (GameObject obj in objectsTranlate)
+                        foreach (UnityEngine.GameObject obj in objectsTranlate)
                         {
                             LanguageYG scrAL = obj.GetComponent<LanguageYG>();
 
@@ -131,7 +131,7 @@ namespace YG.Insides
 
                     if (GUILayout.Button("Reserialize LanguageYG components", GUILayout.Height(22)))
                     {
-                        foreach (GameObject obj in objectsTranlate)
+                        foreach (UnityEngine.GameObject obj in objectsTranlate)
                         {
                             LanguageYG scrAL = obj.GetComponent<LanguageYG>();
 
@@ -151,7 +151,7 @@ namespace YG.Insides
 
                 for (int i = 0; i < objectsTranlate.Count; i++)
                 {
-                    objectsTranlate[i] = (GameObject)EditorGUILayout.ObjectField($"{i + 1}. {objectsTranlate[i].name}", objectsTranlate[i], typeof(GameObject), false);
+                    objectsTranlate[i] = (UnityEngine.GameObject)EditorGUILayout.ObjectField($"{i + 1}. {objectsTranlate[i].name}", objectsTranlate[i], typeof(UnityEngine.GameObject), false);
                 }
 
                 if (objectsTranlate.Count > 10 && position.height < objectsTranlate.Count * 20.6f + 190)

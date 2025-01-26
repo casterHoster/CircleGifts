@@ -95,12 +95,12 @@ namespace YG
 
         public void AuthCheckButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._RequestAuth();
+            UnityEngine.GameObject.FindAnyObjectByType<YandexGame>()._RequestAuth();
         }
 
         public void AuthDialogButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._OpenAuthDialog();
+            UnityEngine.GameObject.FindAnyObjectByType<YandexGame>()._OpenAuthDialog();
         }
 
         public void FullAdButton()
@@ -139,7 +139,7 @@ namespace YG
 
         public void RedefineLangButton()
         {
-            GameObject.FindAnyObjectByType<YandexGame>()._LanguageRequest();
+            UnityEngine.GameObject.FindAnyObjectByType<YandexGame>()._LanguageRequest();
         }
 
         public void SwitchLanguage(Text text)

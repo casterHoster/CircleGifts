@@ -9,7 +9,7 @@ namespace YG.Insides
         public static void InsertPrefab()
         {
             string fileLocation = "Assets/YandexGame/Prefabs/YandexGame.prefab";
-            GameObject prefab = AssetDatabase.LoadAssetAtPath(fileLocation, typeof(GameObject)) as GameObject;
+            UnityEngine.GameObject prefab = AssetDatabase.LoadAssetAtPath(fileLocation, typeof(UnityEngine.GameObject)) as UnityEngine.GameObject;
 
             if (prefab == null)
                 Debug.LogError("Yandex Game prefab not found! It should be located along the way: Assets/YandexGame/Prefabs/YandexGame.prefab\n(en) Yandexgame prefab not found! It should be located along the path: Assets/YandexGame/Prefabs/YandexGame.prefab");

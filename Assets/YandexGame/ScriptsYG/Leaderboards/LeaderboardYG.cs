@@ -38,7 +38,7 @@ namespace YG
         [SerializeField, ConditionallyVisible(nameof(advanced)), Tooltip("Родительский объект для спавна в нём объектов 'playerDataPrefab'")]
         private Transform rootSpawnPlayersData;
         [ConditionallyVisible(nameof(advanced)), Tooltip("Префаб отображаемых данных игрока (объект со компонентом LBPlayerDataYG)")]
-        public GameObject playerDataPrefab;
+        public UnityEngine.GameObject playerDataPrefab;
 
         public enum PlayerPhoto
         { NonePhoto, Small, Medium, Large };
@@ -120,7 +120,7 @@ namespace YG
                     if (lbData.entries == "no data")
                     {
                         players = new LBPlayerDataYG[1];
-                        GameObject playerObj = Instantiate(playerDataPrefab, rootSpawnPlayersData);
+                        UnityEngine.GameObject playerObj = Instantiate(playerDataPrefab, rootSpawnPlayersData);
 
                         players[0] = playerObj.GetComponent<LBPlayerDataYG>();
                         players[0].data.name = noData;
@@ -158,7 +158,7 @@ namespace YG
             players = new LBPlayerDataYG[lb.players.Length];
             for (int i = 0; i < players.Length; i++)
             {
-                GameObject playerObj = Instantiate(playerDataPrefab, rootSpawnPlayersData);
+                UnityEngine.GameObject playerObj = Instantiate(playerDataPrefab, rootSpawnPlayersData);
 
                 players[i] = playerObj.GetComponent<LBPlayerDataYG>();
 

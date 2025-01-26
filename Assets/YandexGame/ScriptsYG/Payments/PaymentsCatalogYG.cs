@@ -14,7 +14,7 @@ namespace YG
         [SerializeField, ConditionallyVisible(nameof(spawnPurchases)), Tooltip("Родительский объект для спавна в нём покупок")]
         private Transform rootSpawnPurchases;
         [SerializeField, ConditionallyVisible(nameof(spawnPurchases)), Tooltip("Префаб покупки (объект со компонентом PurchaseYG)")]
-        private GameObject purchasePrefab;
+        private UnityEngine.GameObject purchasePrefab;
         public enum UpdateListMethod { OnEnable, Start, DoNotUpdate };
         [Tooltip("Когда следует обновлять список покупок?\nStart - Обновлять в методе Start.\nOnEnable - Обновлять при каждой активации объекта (в методе OnEnable)\nDoNotUpdate - Не обновлять.")]
         public UpdateListMethod updateListMethod;
@@ -76,7 +76,7 @@ namespace YG
             purchases = new PurchaseYG[YandexGame.purchases.Length];
             for (int i = 0; i < YandexGame.purchases.Length; i++)
             {
-                GameObject purchaseObj = Instantiate(purchasePrefab, rootSpawnPurchases);
+                UnityEngine.GameObject purchaseObj = Instantiate(purchasePrefab, rootSpawnPurchases);
 
                 purchases[i] = purchaseObj.GetComponent<PurchaseYG>();
                 purchases[i].data = YandexGame.purchases[i];
