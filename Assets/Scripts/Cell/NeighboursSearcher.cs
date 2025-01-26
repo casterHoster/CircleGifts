@@ -34,7 +34,7 @@ public class NeighboursSearcher : MonoBehaviour
         _attentionMonitor.IsUnhovered += ClearNeighbourList;
     }
 
-    private void FindNeighbourCells(UnityEngine.GameObject gameObject)
+    private void FindNeighbourCells(GameObject gameObject)
     {
             var collider2d = gameObject.GetComponent<BoxCollider2D>();
             collider2d.enabled = false;

@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dad37c404873af47b90f9943a978954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellPrefab: {fileID: -8927489271694268958, guid: de2b0e69afdf444479d5edabed1d6f50, type: 3}
+  _cellPrefab: {fileID: -1353289559298319798, guid: 10a81f9cbca5628489e99a252f1a3f72, type: 3}
   _giftCharacteristics:
   - {fileID: 11400000, guid: 39b41bacd688ab34a9270d459017ebb8, type: 2}
   - {fileID: 11400000, guid: f348b62d0e6269f4194058d3c74560b4, type: 2}
@@ -540,7 +540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellsGenerator: {fileID: 183545757}
-  _extractor: {fileID: 280937291}
 --- !u!4 &1774804531
 Transform:
   m_ObjectHideFlags: 0
