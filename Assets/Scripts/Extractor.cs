@@ -8,7 +8,7 @@ public class Extractor : MonoBehaviour
     [SerializeField] private NeighboursSearcher _searcher;
 
     private AttentionMonitor _attentionMonitor;
-    private List<GameObject> _markedGifts;
+    private List<Cell> _markedGifts;
     private List<Cell> _neighboursCells;
     private bool _isPressed;
 
@@ -16,7 +16,7 @@ public class Extractor : MonoBehaviour
 
     private void Awake()
     {
-        _markedGifts = new List<GameObject>();
+        _markedGifts = new List<Cell>();
     }
 
     private void OnEnable()
@@ -44,17 +44,17 @@ public class Extractor : MonoBehaviour
     {
         if (_isPressed == false)
         {
-            _markedGifts.Add(cell.gameObject);
+            _markedGifts.Add(cell);
             _isPressed = true;
         }
     }
 
-    private void TryAddHovered(Cell gift)
+    private void TryAddHovered(Cell cell)
     {
         if (_isPressed)
         {
-            if (CheckMatch(gift.gameObject))
-                _markedGifts.Add(gift.gameObject);
+            if (CheckMatch(cell))
+                _markedGifts.Add(cell);
         }
 
         TryedAddHovered?.Invoke();
@@ -64,11 +64,11 @@ public class Extractor : MonoBehaviour
     {
         if (_markedGifts.Count > 1)
         {
-            foreach (var gift in _markedGifts)
+            foreach (var cell in _markedGifts)
             {
-                if (gift != null)
+                if (cell != null)
                 {
-                    Destroy(gift);
+                    Destroy(cell.gameObject);
                 }
             }
         }
@@ -83,19 +83,19 @@ public class Extractor : MonoBehaviour
             _neighboursCells = _searcher.NeighboursCells;
         else
         {
-            if (cell.Value == _markedGifts[_markedGifts.Count - 1].GetComponent<Cell>().Value)
+            if (cell.Value == _markedGifts[_markedGifts.Count - 1].Value)
                 _neighboursCells = _searcher.NeighboursCells;
         }
             
     }
 
-    private bool CheckMatch(GameObject gift)
+    private bool CheckMatch(Cell cell)
     {
         foreach (Cell neighbourCell in _neighboursCells)
         {
             if (neighbourCell != null)
             {
-                if (_markedGifts[_markedGifts.Count - 1].GetComponent<Cell>().Value == gift.GetComponent<Cell>().Value && gift == neighbourCell.gameObject)
+                if (_markedGifts[_markedGifts.Count - 1].Value == cell.Value && cell.gameObject == neighbourCell.gameObject)
                 {
                     return true;
                 }
