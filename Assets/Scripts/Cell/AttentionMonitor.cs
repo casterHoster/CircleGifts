@@ -5,7 +5,7 @@ public class AttentionMonitor : MonoBehaviour
 {
     public event Action<GameObject> IsHovered;
     public event Action<Cell> IsUnhovered;
-    public event Action<GameObject> IsPressed;
+    public event Action<Cell> IsPressed;
     public event Action IsRealized;
 
 
@@ -21,7 +21,7 @@ public class AttentionMonitor : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        IsPressed?.Invoke(gameObject);
+        IsPressed?.Invoke(gameObject.GetComponent<Cell>());
     }
 
     private void OnMouseUp()

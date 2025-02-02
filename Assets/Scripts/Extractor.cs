@@ -40,11 +40,11 @@ public class Extractor : MonoBehaviour
         _attentionMonitor.IsHovered += TryAddHovered;
     }
 
-    private void AddPressed(GameObject gift)
+    private void AddPressed(Cell cell)
     {
         if (_isPressed == false)
         {
-            _markedGifts.Add(gift);
+            _markedGifts.Add(cell.gameObject);
             _isPressed = true;
         }
     }
