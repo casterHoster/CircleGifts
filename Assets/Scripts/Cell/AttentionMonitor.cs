@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttentionMonitor : MonoBehaviour
 {
-    public event Action<GameObject> IsHovered;
+    public event Action<Cell> IsHovered;
     public event Action<Cell> IsUnhovered;
     public event Action<Cell> IsPressed;
     public event Action IsRealized;
@@ -11,7 +11,7 @@ public class AttentionMonitor : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        IsHovered?.Invoke(gameObject);
+        IsHovered?.Invoke(gameObject.GetComponent<Cell>());
     }
 
     private void OnMouseExit()

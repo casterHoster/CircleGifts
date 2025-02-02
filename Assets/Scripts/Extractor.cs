@@ -49,12 +49,12 @@ public class Extractor : MonoBehaviour
         }
     }
 
-    private void TryAddHovered(GameObject gift)
+    private void TryAddHovered(Cell gift)
     {
         if (_isPressed)
         {
-            if (CheckMatch(gift))
-                _markedGifts.Add(gift);
+            if (CheckMatch(gift.gameObject))
+                _markedGifts.Add(gift.gameObject);
         }
 
         TryedAddHovered?.Invoke();
