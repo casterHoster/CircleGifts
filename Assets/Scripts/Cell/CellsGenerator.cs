@@ -11,7 +11,7 @@ public class CellsGenerator : MonoBehaviour
     [SerializeField] private int _verticalCellsCount = 5;
     [SerializeField] private float _indentX = 2.7f;
     [SerializeField] private float _indentY = 2.5f;
-    [SerializeField] private int _spacingCells = 4;
+    [SerializeField] private int _space = 4;
 
     public event Action<Cell> Instantiated;
 
@@ -35,7 +35,7 @@ public class CellsGenerator : MonoBehaviour
 
     private Vector2 GetPositionOnBoard(int coordinateX, int coordinateY)
     {
-        return new Vector2((-_boardTransform.rect.width / _indentX + _spacingCells * coordinateX),
-            _boardTransform.rect.height / _indentY - _spacingCells * coordinateY);
+        return new Vector2((-_boardTransform.rect.width / _indentX + _space * coordinateX),
+            _boardTransform.rect.height / _indentY - _space * coordinateY);
     }
 }
