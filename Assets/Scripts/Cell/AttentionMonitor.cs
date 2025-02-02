@@ -4,7 +4,7 @@ using UnityEngine;
 public class AttentionMonitor : MonoBehaviour
 {
     public event Action<GameObject> IsHovered;
-    public event Action<GameObject> IsUnhovered;
+    public event Action<Cell> IsUnhovered;
     public event Action<GameObject> IsPressed;
     public event Action IsRealized;
 
@@ -16,7 +16,7 @@ public class AttentionMonitor : MonoBehaviour
 
     private void OnMouseExit()
     {
-        IsUnhovered?.Invoke(gameObject);
+        IsUnhovered?.Invoke(gameObject.GetComponent<Cell>());
     }
 
     private void OnMouseDrag()

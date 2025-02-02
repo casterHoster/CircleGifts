@@ -71,7 +71,7 @@ public class NeighboursSearcher : MonoBehaviour
             collider2d.enabled = true;
     }
 
-    private void ClearNeighbourList(GameObject cell)
+    private void ClearNeighbourList(Cell cell)
     {
         _neighboursCells.Clear();
     }

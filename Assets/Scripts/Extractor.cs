@@ -77,14 +77,12 @@ public class Extractor : MonoBehaviour
         _isPressed = false;
     }
 
-    private void SaveNeighbours(GameObject gift)
+    private void SaveNeighbours(Cell cell)
     {
         if (!_isPressed)
             _neighboursCells = _searcher.NeighboursCells;
         else
         {
-            gift.TryGetComponent(out Cell cell);
-
             if (cell.Value == _markedGifts[_markedGifts.Count - 1].GetComponent<Cell>().Value)
                 _neighboursCells = _searcher.NeighboursCells;
         }
