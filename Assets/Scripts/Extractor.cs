@@ -12,8 +12,6 @@ public class Extractor : MonoBehaviour
     private List<Gift> _neighboursGifts;
     private bool _isPressed;
 
-    public event Action TryedAddHovered;
-
     public void Initial()
     {
         _markedGifts = new List<Gift>();
@@ -52,8 +50,6 @@ public class Extractor : MonoBehaviour
             if (CheckMatch(Gift))
                 _markedGifts.Add(Gift);
         }
-
-        TryedAddHovered?.Invoke();
     }
 
     private void ExtractGifts()
