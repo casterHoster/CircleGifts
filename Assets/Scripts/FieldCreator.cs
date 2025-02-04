@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class FieldCreator : MonoBehaviour
 {
@@ -14,11 +13,11 @@ public class FieldCreator : MonoBehaviour
     [SerializeField] private Cell _cellPrefab;
 
     private List<Vector2> _giftPositions;
-    private List<Cell> _cells;
+
+    public Action<Cell> CellCreated;
 
     public void Initial()
     {
-        _cells = new List<Cell>();
         _giftPositions = new List<Vector2>();
         FormPositions();
 
@@ -26,7 +25,7 @@ public class FieldCreator : MonoBehaviour
         {
             var cell = Instantiate(_cellPrefab, _board.RectTransform);
             cell.RectTransform.anchoredPosition = _giftPositions[i];
-            _cells.Add(cell);
+            CellCreated?.Invoke(cell);
         }
     }
 
