@@ -14,7 +14,7 @@ public class Extractor : MonoBehaviour
 
     public event Action TryedAddHovered;
 
-    private void OnEnable()
+    public void Initial()
     {
         _markedGifts = new List<Cell>();
         _cellsGenerator.Instantiated += SignUpMonitor;

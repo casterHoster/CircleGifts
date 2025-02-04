@@ -14,7 +14,7 @@ public class NeighboursSearcher : MonoBehaviour
 
     public List<Cell> NeighboursCells { get { return new List<Cell>(_neighboursCells); } }
 
-    private void OnEnable()
+    public void Initial()
     {
         _neighboursCells = new List<Cell>();
         _cellsGenerator.Instantiated += SignUpMonitor;
