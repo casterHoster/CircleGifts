@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(AttentionMonitor))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Cell : MonoBehaviour
+public class Gift : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
 
