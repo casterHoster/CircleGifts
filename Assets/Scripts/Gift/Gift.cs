@@ -27,4 +27,9 @@ public class Gift : MonoBehaviour
     {
         _spriteRenderer.sprite = sprite;
     }
+
+    public void SetRectTransform(RectTransform transform)
+    {
+        RectTransform = transform;
+    }
 }

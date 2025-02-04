@@ -12,6 +12,8 @@ public class Extractor : MonoBehaviour
     private List<Gift> _neighboursGifts;
     private bool _isPressed;
 
+    public Action<Gift> Extracted;
+
     public void Initial()
     {
         _markedGifts = new List<Gift>();
@@ -43,12 +45,14 @@ public class Extractor : MonoBehaviour
         }
     }
 
-    private void TryAddHovered(Gift Gift)
+    private void TryAddHovered(Gift gift)
     {
         if (_isPressed)
         {
-            if (CheckMatch(Gift))
-                _markedGifts.Add(Gift);
+            if (CheckMatch(gift) && !_markedGifts.Contains(gift))
+                _markedGifts.Add(gift);
+
+            TryRemoveUnselected(gift);
         }
     }
 
@@ -56,11 +60,11 @@ public class Extractor : MonoBehaviour
     {
         if (_markedGifts.Count > 1)
         {
-            foreach (var Gift in _markedGifts)
+            foreach (var gift in _markedGifts)
             {
-                if (Gift != null)
+                if (gift != null)
                 {
-                    Destroy(Gift.gameObject);
+                    Extracted?.Invoke(gift);
                 }
             }
         }
@@ -81,13 +85,13 @@ public class Extractor : MonoBehaviour
             
     }
 
-    private bool CheckMatch(Gift Gift)
+    private bool CheckMatch(Gift gift)
     {
         foreach (Gift neighbourGift in _neighboursGifts)
         {
             if (neighbourGift != null)
             {
-                if (_markedGifts[_markedGifts.Count - 1].Value == Gift.Value && Gift.gameObject == neighbourGift.gameObject)
+                if (_markedGifts[_markedGifts.Count - 1].Value == gift.Value && gift.gameObject == neighbourGift.gameObject)
                 {
                     return true;
                 }
@@ -95,5 +99,13 @@ public class Extractor : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void TryRemoveUnselected(Gift gift)
+    {
+        if (_markedGifts.Count - 2 >= 0 && gift == _markedGifts[_markedGifts.Count - 2])
+        {
+            _markedGifts.RemoveAt(_markedGifts.Count - 2);
+        }
     }
 }
