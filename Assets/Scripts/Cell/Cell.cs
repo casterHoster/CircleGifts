@@ -9,6 +9,7 @@ public class Cell : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     public int Value { get; protected set; }
+
     public RectTransform RectTransform { get; private set; }
 
     protected virtual void Awake()
