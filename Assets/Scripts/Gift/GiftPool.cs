@@ -5,7 +5,6 @@ using UnityEngine.Pool;
 
 public class GiftsPool : MonoBehaviour
 {
-    [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
     [SerializeField] private FieldCreator _fieldCreator;
     [SerializeField] private Extractor _extractor;
@@ -19,7 +18,7 @@ public class GiftsPool : MonoBehaviour
     {
         _giftPool = new ObjectPool<Gift>
             (
-            createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
+            createFunc: () => _giftFabric.InstantGift(_workingCell.RectTransform),
             actionOnGet: (obj) => obj.SetRectTransform(_workingCell.RectTransform),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             defaultCapacity : 25
