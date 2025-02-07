@@ -10,12 +10,9 @@ public class Gift : MonoBehaviour
 
     public int Value { get; protected set; }
 
-    public RectTransform RectTransform { get; private set; }
-
     protected virtual void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        RectTransform = GetComponent<RectTransform>();
     }
 
     public void SetValue(int value)
@@ -26,10 +23,5 @@ public class Gift : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         _spriteRenderer.sprite = sprite;
-    }
-
-    public void SetRectTransform(RectTransform transform)
-    {
-        RectTransform = transform;
     }
 }

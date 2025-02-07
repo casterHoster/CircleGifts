@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 
 public class GiftsPool : MonoBehaviour
 {
+    [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
     [SerializeField] private FieldCreator _fieldCreator;
     [SerializeField] private Extractor _extractor;
@@ -18,10 +19,10 @@ public class GiftsPool : MonoBehaviour
     {
         _giftPool = new ObjectPool<Gift>
             (
-            createFunc: () => _giftFabric.InstantGift(_workingCell.RectTransform),
-            actionOnGet: (obj) => obj.SetRectTransform(_workingCell.RectTransform),
+            createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
+            actionOnGet: (obj) => GetGift(obj),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
-            defaultCapacity : 25
+            defaultCapacity: 25
             );
 
         _extractor.Extracted += ReleaseGift;
@@ -38,6 +39,8 @@ public class GiftsPool : MonoBehaviour
     private void Create(Cell cell)
     {
         var gift = _giftPool.Get();
+        gift.gameObject.transform.position =
+            new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
         Instantiated?.Invoke(gift);
     }
 
@@ -54,5 +57,11 @@ public class GiftsPool : MonoBehaviour
         {
             gift.transform.parent.gameObject.GetComponent<Cell>().PassEmpty();
         }
-    } 
+    }
+
+    private void GetGift(Gift gift)
+    {
+        gift.gameObject.transform.position = new Vector3(_workingCell.transform.position.x, _workingCell.transform.position.y, _workingCell.transform.position.z);
+        gift.gameObject.SetActive(true);
+    }
 }
