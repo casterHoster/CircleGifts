@@ -23,8 +23,8 @@ public class GiftsFabric : MonoBehaviour
 
     public Gift InstantGift(RectTransform boardTransform)
     {
-        var gift = Instantiate(_giftPrefab, boardTransform); 
-        Characterize(gift, GetRandomCharacteristic());
+        var gift = Instantiate(_giftPrefab, boardTransform);
+        gift.SetRectTransform(cellTransform);
         return gift;
     }
 }

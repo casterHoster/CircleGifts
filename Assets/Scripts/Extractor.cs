@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Extractor : MonoBehaviour
 {
-    [SerializeField] private GiftsGenerator _GiftsGenerator;
+    [SerializeField] private GiftsPool _giftsGenerator;
     [SerializeField] private NeighboursSearcher _searcher;
 
     private AttentionMonitor _attentionMonitor;
@@ -17,12 +17,12 @@ public class Extractor : MonoBehaviour
     public void Initial()
     {
         _markedGifts = new List<Gift>();
-        _GiftsGenerator.Instantiated += SignUpMonitor;
+        _giftsGenerator.Instantiated += SignUpMonitor;
     }
 
     private void OnDisable()
     {
-        _GiftsGenerator.Instantiated -= SignUpMonitor;
+        _giftsGenerator.Instantiated -= SignUpMonitor;
         _attentionMonitor.IsPressed -= AddPressed;
         _attentionMonitor.IsRealized -= ExtractGifts;
     }

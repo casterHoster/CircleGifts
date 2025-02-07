@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CompositeRoot : MonoBehaviour
 {
-    [SerializeField] private GiftsGenerator _giftsGenerator;
+    [SerializeField] private GiftsPool _giftsGenerator;
     [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private FieldCreator _fieldCreator;

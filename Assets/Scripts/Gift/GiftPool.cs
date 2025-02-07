@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class GiftsGenerator : MonoBehaviour
+public class GiftsPool : MonoBehaviour
 {
+    [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
     [SerializeField] private FieldCreator _fieldCreator;
     [SerializeField] private Extractor _extractor;
@@ -18,7 +19,7 @@ public class GiftsGenerator : MonoBehaviour
     {
         _giftPool = new ObjectPool<Gift>
             (
-            createFunc: () => _giftFabric.InstantGift(_workingCell.RectTransform),
+            createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
             actionOnGet: (obj) => obj.SetRectTransform(_workingCell.RectTransform),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             defaultCapacity : 25
@@ -49,5 +50,10 @@ public class GiftsGenerator : MonoBehaviour
     private void ReleaseGift(Gift gift)
     {
         _giftPool.Release(gift);
+
+        if (gift.transform.parent != null)
+        {
+            gift.transform.parent.gameObject.GetComponent<Cell>().PassEmpty();
+        }
     } 
 }
