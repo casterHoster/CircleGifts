@@ -61,7 +61,8 @@ public class GiftsPool : MonoBehaviour
 
     private void GetGift(Gift gift)
     {
-        gift.gameObject.transform.position = new Vector3(_workingCell.transform.position.x, _workingCell.transform.position.y, _workingCell.transform.position.z);
+        gift.gameObject.transform.position =
+            new Vector3(_workingCell.transform.position.x, _workingCell.transform.position.y, gift.transform.position.z);
         gift.gameObject.SetActive(true);
     }
 }

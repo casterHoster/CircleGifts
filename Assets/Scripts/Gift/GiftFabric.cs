@@ -24,7 +24,6 @@ public class GiftsFabric : MonoBehaviour
     public Gift InstantGift(RectTransform boardTransform)
     {
         var gift = Instantiate(_giftPrefab, boardTransform); 
-        gift.SetRectTransform(boardTransform);
         Characterize(gift, GetRandomCharacteristic());
         return gift;
     }
