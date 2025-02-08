@@ -6,71 +6,71 @@ using UnityEngine;
 
 public class NeighboursSearcher : MonoBehaviour
 {
-    [SerializeField] private GiftsPool _GiftsGenerator;
+    [SerializeField] private FieldCreator _fieldCreator;
 
     private AttentionMonitor _attentionMonitor;
-    private List<Gift> _neighboursGifts;
+    private List<Cell> _neighboursCells;
     private float _detectionDistance = 1;
 
-    public List<Gift> NeighboursGifts { get { return new List<Gift>(_neighboursGifts); } }
+    public List<Cell> NeighboursCells { get { return new List<Cell>(_neighboursCells); } }
 
     public void Initial()
     {
-        _neighboursGifts = new List<Gift>();
-        _GiftsGenerator.Instantiated += SignUpMonitor;
+        _neighboursCells = new List<Cell>();
+        _fieldCreator.CellCreated += SignUpMonitor;
     }
 
 
     private void OnDisable()
     {
-        _attentionMonitor.IsHovered -= FindNeighbourGifts;
-        _GiftsGenerator.Instantiated -= SignUpMonitor;
+        _attentionMonitor.IsHovered -= FindNeighbourCells;
+        _fieldCreator.CellCreated -= SignUpMonitor;
     }
 
-    private void SignUpMonitor(Gift Gift)
+    private void SignUpMonitor(Cell cell)
     {
-        _attentionMonitor = Gift.gameObject.GetComponent<AttentionMonitor>();
-        _attentionMonitor.IsHovered += FindNeighbourGifts;
+        _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
+        _attentionMonitor.IsHovered += FindNeighbourCells;
         _attentionMonitor.IsUnhovered += ClearNeighbourList;
     }
 
-    private void FindNeighbourGifts(Gift gift)
+    private void FindNeighbourCells(Cell cell)
     {
-            var collider2d = gift.GetComponent<BoxCollider2D>();
+            var collider2d = cell.GetComponent<BoxCollider2D>();
             collider2d.enabled = false;
 
             List<RaycastHit2D> raycastHits = new List<RaycastHit2D>();
 
-            RaycastHit2D hitUp = Physics2D.Raycast(gift.transform.position, Vector2.up, _detectionDistance);
+            RaycastHit2D hitUp = Physics2D.Raycast(cell.transform.position, Vector2.up, _detectionDistance);
             raycastHits.Add(hitUp);
-            RaycastHit2D hitDown = Physics2D.Raycast(gift.transform.position, Vector2.down, _detectionDistance);
+            RaycastHit2D hitDown = Physics2D.Raycast(cell.transform.position, Vector2.down, _detectionDistance);
             raycastHits.Add(hitDown);
-            RaycastHit2D hitLeft = Physics2D.Raycast(gift.transform.position, Vector2.left, _detectionDistance);
+            RaycastHit2D hitLeft = Physics2D.Raycast(cell.transform.position, Vector2.left, _detectionDistance);
             raycastHits.Add(hitLeft);
-            RaycastHit2D hitRight = Physics2D.Raycast(gift.transform.position, Vector2.right, _detectionDistance);
+            RaycastHit2D hitRight = Physics2D.Raycast(cell.transform.position, Vector2.right, _detectionDistance);
             raycastHits.Add(hitRight);
-            RaycastHit2D hitUpRight = Physics2D.Raycast(gift.transform.position, Vector2.up + Vector2.right, _detectionDistance);
+            RaycastHit2D hitUpRight = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.right, _detectionDistance);
             raycastHits.Add(hitUpRight);
-            RaycastHit2D hitUpLeft = Physics2D.Raycast(gift.transform.position, Vector2.up + Vector2.left, _detectionDistance);
+            RaycastHit2D hitUpLeft = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.left, _detectionDistance);
             raycastHits.Add(hitUpLeft);
-            RaycastHit2D hitDownLeft = Physics2D.Raycast(gift.transform.position, Vector2.down + Vector2.left, _detectionDistance);
+            RaycastHit2D hitDownLeft = Physics2D.Raycast(cell.transform.position, Vector2.down + Vector2.left, _detectionDistance);
             raycastHits.Add(hitDownLeft);
-            RaycastHit2D hitDownRight = Physics2D.Raycast(gift.transform.position, Vector2.down + Vector2.right, _detectionDistance);
+            RaycastHit2D hitDownRight = Physics2D.Raycast(cell.transform.position, Vector2.down + Vector2.right, _detectionDistance);
             raycastHits.Add(hitDownRight);   
 
             foreach (var hit in raycastHits)
             {
-                if (hit.collider != null && hit.collider.TryGetComponent(out Gift thisGift) && thisGift.Value == gift.Value)
+                if (hit.collider != null && hit.collider.TryGetComponent(out Cell neighbourCell) && neighbourCell.Gift.Value == cell.Gift.Value)
                 {
-                    _neighboursGifts.Add(thisGift);
+                    _neighboursCells.Add(neighbourCell);
                 }
             }
 
             collider2d.enabled = true;
     }
 
-    private void ClearNeighbourList(Gift Gift)
+    private void ClearNeighbourList(Cell cell)
     {
-        _neighboursGifts.Clear();
+        _neighboursCells.Clear();
     }
 }

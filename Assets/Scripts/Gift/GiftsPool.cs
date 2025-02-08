@@ -11,9 +11,7 @@ public class GiftsPool : MonoBehaviour
     [SerializeField] private Extractor _extractor;
 
     private ObjectPool<Gift> _giftPool;
-    private Cell _workingCell;
-
-    public event Action<Gift> Instantiated;
+    private Cell _currentCell;
 
     public void Initial()
     {
@@ -26,39 +24,32 @@ public class GiftsPool : MonoBehaviour
             );
 
         _extractor.Extracted += ReleaseGift;
-        _fieldCreator.CellCreated += AssignCell;
         _fieldCreator.CellCreated += CreateProcess;
     }
 
     private void OnDisable()
     {
         _fieldCreator.CellCreated -= CreateProcess;
-        _fieldCreator.CellCreated -= AssignCell;
     }
 
     private void CreateProcess(Cell cell)
     {
+        _currentCell = cell;
         var gift = _giftPool.Get();
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
         cell.ReserveGift(gift);
-        Instantiated?.Invoke(gift);
     }
 
-    private void AssignCell(Cell cell)
+    private void ReleaseGift(Cell cell)
     {
-        _workingCell = cell;
-    }
-
-    private void ReleaseGift(Gift gift)
-    {
-        _giftPool.Release(gift);
+        _giftPool.Release(cell.Gift);
     }
 
     private void GetGift(Gift gift)
     {
         gift.gameObject.transform.position =
-            new Vector3(_workingCell.transform.position.x, _workingCell.transform.position.y, gift.transform.position.z);
+            new Vector3(_currentCell.transform.position.x, _currentCell.transform.position.y, gift.transform.position.z);
         gift.gameObject.SetActive(true);
     }
 }

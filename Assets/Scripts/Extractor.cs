@@ -4,94 +4,95 @@ using UnityEngine;
 
 public class Extractor : MonoBehaviour
 {
-    [SerializeField] private GiftsPool _giftsGenerator;
+    [SerializeField] private FieldCreator _fieldCreator;
     [SerializeField] private NeighboursSearcher _searcher;
 
     private AttentionMonitor _attentionMonitor;
-    private List<Gift> _markedGifts;
-    private List<Gift> _neighboursGifts;
+    private List<Cell> _chainedCells;
+    private List<Cell> _neighbourCells;
     private bool _isPressed;
 
-    public Action<Gift> Extracted;
+    public Action<Cell> Extracted;
 
     public void Initial()
     {
-        _markedGifts = new List<Gift>();
-        _giftsGenerator.Instantiated += SignUpMonitor;
+        _chainedCells = new List<Cell>();
+        _fieldCreator.CellCreated += SignUpMonitor;
     }
 
     private void OnDisable()
     {
-        _giftsGenerator.Instantiated -= SignUpMonitor;
+        _fieldCreator.CellCreated -= SignUpMonitor;
         _attentionMonitor.IsPressed -= AddPressed;
-        _attentionMonitor.IsRealized -= ExtractGifts;
+        _attentionMonitor.IsRealized -= ExtractCell;
     }
 
-    private void SignUpMonitor(Gift Gift)
+    private void SignUpMonitor(Cell cell)
     {
-        _attentionMonitor = Gift.gameObject.GetComponent<AttentionMonitor>();
+        _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
         _attentionMonitor.IsPressed += AddPressed;
-        _attentionMonitor.IsRealized += ExtractGifts;
+        _attentionMonitor.IsRealized += ExtractCell;
         _attentionMonitor.IsUnhovered += SaveNeighbours;
         _attentionMonitor.IsHovered += TryAddHovered;
     }
 
-    private void AddPressed(Gift Gift)
+    private void AddPressed(Cell cell)
     {
         if (_isPressed == false)
         {
-            _markedGifts.Add(Gift);
+            _chainedCells.Add(cell);
             _isPressed = true;
         }
     }
 
-    private void TryAddHovered(Gift gift)
+    private void TryAddHovered(Cell cell)
     {
         if (_isPressed)
         {
-            if (CheckMatch(gift) && !_markedGifts.Contains(gift))
-                _markedGifts.Add(gift);
+            if (CheckMatch(cell) && !_chainedCells.Contains(cell))
+                _chainedCells.Add(cell);
 
-            TryRemoveUnselected(gift);
+            RemoveNotInChain(cell);
         }
     }
 
-    private void ExtractGifts()
+    private void ExtractCell()
     {
-        if (_markedGifts.Count > 1)
+        if (_chainedCells.Count > 1)
         {
-            foreach (var gift in _markedGifts)
+            foreach (var cell in _chainedCells)
             {
-                if (gift != null)
+                if (cell != null)
                 {
-                    Extracted?.Invoke(gift);
+                    cell.CleanGift();
+                    Extracted?.Invoke(cell);
                 }
             }
         }
 
-        _markedGifts.Clear();
+        _chainedCells.Clear();
         _isPressed = false;
     }
 
-    private void SaveNeighbours(Gift Gift)
+    private void SaveNeighbours(Cell cell)
     {
         if (!_isPressed)
-            _neighboursGifts = _searcher.NeighboursGifts;
+            _neighbourCells = _searcher.NeighboursCells;
         else
         {
-            if (Gift.Value == _markedGifts[_markedGifts.Count - 1].Value)
-                _neighboursGifts = _searcher.NeighboursGifts;
+            if (cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value)
+                _neighbourCells = _searcher.NeighboursCells;
         }
             
     }
 
-    private bool CheckMatch(Gift gift)
+    private bool CheckMatch(Cell cell)
     {
-        foreach (Gift neighbourGift in _neighboursGifts)
+        foreach (Cell neighbourCell in _neighbourCells)
         {
-            if (neighbourGift != null)
+            if (neighbourCell != null)
             {
-                if (_markedGifts[_markedGifts.Count - 1].Value == gift.Value && gift.gameObject == neighbourGift.gameObject)
+                if (_chainedCells[_chainedCells.Count - 1].Gift.Value == cell.Gift.Value && cell.gameObject == neighbourCell.gameObject)
                 {
                     return true;
                 }
@@ -101,11 +102,11 @@ public class Extractor : MonoBehaviour
         return false;
     }
 
-    private void TryRemoveUnselected(Gift gift)
+    private void RemoveNotInChain(Cell cell)
     {
-        if (_markedGifts.Count - 2 >= 0 && gift == _markedGifts[_markedGifts.Count - 2])
+        if (_chainedCells.Count >= 2 && cell == _chainedCells[_chainedCells.Count - 2])
         {
-            _markedGifts.RemoveAt(_markedGifts.Count - 2);
+            _chainedCells.RemoveAt(_chainedCells.Count - 2);
         }
     }
 }

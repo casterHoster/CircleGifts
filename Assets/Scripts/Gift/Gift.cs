@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RectTransform))]
-[RequireComponent(typeof(AttentionMonitor))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Gift : MonoBehaviour
 {

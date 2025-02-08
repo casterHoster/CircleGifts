@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class Lift : MonoBehaviour
 {
-    [SerializeField] private GiftsPool _giftsPool;
+    [SerializeField] private Extractor _extractor;
 
     private float _detectionDistance = 1;
-    private int _layerMask;
 
     private void OnEnable()
     {
-
+        _extractor.Extracted += RelocateGift;
     }
 
     private void RelocateGift(Cell cell)
