@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 183545758}
   - component: {fileID: 183545757}
   m_Layer: 0
-  m_Name: GiftGenerator
+  m_Name: GiftPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,9 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 183545756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a435bdabb24a144098f274625b01d1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 08fdaea16d55adc4f934c72e8db62b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 1732819235}
   _giftFabric: {fileID: 1190074719}
   _fieldCreator: {fileID: 1288871465}
   _extractor: {fileID: 280937291}
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1534489f28d255418abaef66c66e649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fieldCreator: {fileID: 1288871465}
+  _giftsPool: {fileID: 183545757}
 --- !u!4 &750997361
 Transform:
   m_ObjectHideFlags: 0

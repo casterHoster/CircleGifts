@@ -4,17 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class Cell : MonoBehaviour
 {
-    public Action<Cell> Emptyed;
+    public Gift Gift { get; private set; }
 
-    public RectTransform RectTransform { get; private set; }
-
-    private void Awake()
+    public void ReserveGift(Gift gift)
     {
-        RectTransform = GetComponent<RectTransform>();
-    }
-
-    public void PassEmpty()
-    {
-        Emptyed?.Invoke(this);
+        Gift = gift;
     }
 }

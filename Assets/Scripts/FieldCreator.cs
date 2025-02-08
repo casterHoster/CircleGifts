@@ -23,8 +23,9 @@ public class FieldCreator : MonoBehaviour
 
         for (int i = 0; i < _giftPositions.Count; i++)
         {
-            var cell = Instantiate(_cellPrefab, _board.RectTransform);
-            cell.RectTransform.anchoredPosition = _giftPositions[i];
+            Cell cell = Instantiate(_cellPrefab, _board.RectTransform);
+            RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = _giftPositions[i];
             CellCreated?.Invoke(cell);
         }
     }

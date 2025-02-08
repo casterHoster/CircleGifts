@@ -27,20 +27,21 @@ public class GiftsPool : MonoBehaviour
 
         _extractor.Extracted += ReleaseGift;
         _fieldCreator.CellCreated += AssignCell;
-        _fieldCreator.CellCreated += Create;
+        _fieldCreator.CellCreated += CreateProcess;
     }
 
     private void OnDisable()
     {
-        _fieldCreator.CellCreated -= Create;
+        _fieldCreator.CellCreated -= CreateProcess;
         _fieldCreator.CellCreated -= AssignCell;
     }
 
-    private void Create(Cell cell)
+    private void CreateProcess(Cell cell)
     {
         var gift = _giftPool.Get();
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
+        cell.ReserveGift(gift);
         Instantiated?.Invoke(gift);
     }
 
@@ -52,11 +53,6 @@ public class GiftsPool : MonoBehaviour
     private void ReleaseGift(Gift gift)
     {
         _giftPool.Release(gift);
-
-        if (gift.transform.parent != null)
-        {
-            gift.transform.parent.gameObject.GetComponent<Cell>().PassEmpty();
-        }
     }
 
     private void GetGift(Gift gift)
