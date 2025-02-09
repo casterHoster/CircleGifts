@@ -18,7 +18,7 @@ public class GiftsPool : MonoBehaviour
         _giftPool = new ObjectPool<Gift>
             (
             createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
-            actionOnGet: (obj) => GetGift(obj),
+            actionOnGet: (obj) => GetFromPool(obj),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             defaultCapacity: 25
             );
@@ -38,7 +38,7 @@ public class GiftsPool : MonoBehaviour
         var gift = _giftPool.Get();
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
-        cell.ReserveGift(gift);
+        cell.Fill(gift);
     }
 
     private void ReleaseGift(Cell cell)
@@ -46,7 +46,7 @@ public class GiftsPool : MonoBehaviour
         _giftPool.Release(cell.Gift);
     }
 
-    private void GetGift(Gift gift)
+    private void GetFromPool(Gift gift)
     {
         gift.gameObject.transform.position =
             new Vector3(_currentCell.transform.position.x, _currentCell.transform.position.y, gift.transform.position.z);

@@ -64,8 +64,8 @@ public class Extractor : MonoBehaviour
             {
                 if (cell != null)
                 {
-                    cell.CleanGift();
                     Extracted?.Invoke(cell);
+                    cell.Clear();
                 }
             }
         }
@@ -83,7 +83,7 @@ public class Extractor : MonoBehaviour
             if (cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value)
                 _neighbourCells = _searcher.NeighboursCells;
         }
-            
+
     }
 
     private bool CheckMatch(Cell cell)

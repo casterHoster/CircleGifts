@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6138c311be5d59c4b86b77be1ea93e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _giftsGenerator: {fileID: 183545757}
+  _fieldCreator: {fileID: 1288871465}
   _searcher: {fileID: 1774804530}
 --- !u!4 &280937292
 Transform:
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1534489f28d255418abaef66c66e649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _giftsPool: {fileID: 183545757}
+  _fieldCreator: {fileID: 1288871465}
 --- !u!4 &750997361
 Transform:
   m_ObjectHideFlags: 0
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c269eda0d4c3747849a9b46a4550c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GiftsGenerator: {fileID: 183545757}
+  _fieldCreator: {fileID: 1288871465}
 --- !u!4 &1774804531
 Transform:
   m_ObjectHideFlags: 0
