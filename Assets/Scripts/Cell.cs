@@ -9,15 +9,19 @@ public class Cell : MonoBehaviour
 {
     public Action<Cell> Cleared;
 
+    public bool HasGift {  get; private set; } 
+
     public Gift Gift { get; private set; }
 
     public void Fill(Gift gift)
     {
         Gift = gift;
+        HasGift = true;
     }
 
     public void Clear()
     {
         Cleared?.Invoke(this);
+        HasGift = false;
     }
 }

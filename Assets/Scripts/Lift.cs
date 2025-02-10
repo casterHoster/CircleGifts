@@ -11,10 +11,12 @@ public class Lift : MonoBehaviour
     private float threshold = 0.1f;
     private Queue<Cell> _cells;
     private bool _isProcessed;
+    private WaitForSeconds _cooldown = new WaitForSeconds(0.05f);
 
-    private void OnEnable()
+    public void Initial()
     {
         _cells = new Queue<Cell>();
+        StartCoroutine(CheckQueueCells());
         _fieldCreator.CellCreated += SignUpClearing;
     }
 
@@ -28,13 +30,18 @@ public class Lift : MonoBehaviour
         _cells.Enqueue(cell);
     }
 
-    private void Update()
+    private IEnumerator CheckQueueCells()
     {
-        if (_cells.Count > 0 && _isProcessed == false)
+        while (enabled)
         {
-            _isProcessed = true;
-            RelocateGift();
-        }  
+            if (_cells.Count > 0 && _isProcessed == false)
+            {
+                _isProcessed = true;
+                RelocateGift();
+            }
+
+            yield return _cooldown;
+        }
     }
 
     private void RelocateGift()

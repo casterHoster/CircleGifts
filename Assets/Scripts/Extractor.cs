@@ -47,7 +47,7 @@ public class Extractor : MonoBehaviour
 
     private void TryAddHovered(Cell cell)
     {
-        if (_isPressed)
+        if (_isPressed && cell.HasGift)
         {
             if (CheckMatch(cell) && !_chainedCells.Contains(cell))
                 _chainedCells.Add(cell);
