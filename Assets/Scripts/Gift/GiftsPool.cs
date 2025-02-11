@@ -18,38 +18,31 @@ public class GiftsPool : MonoBehaviour
         _giftPool = new ObjectPool<Gift>
             (
             createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
-            actionOnGet: (obj) => GetFromPool(obj),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             defaultCapacity: 25
             );
 
         _extractor.Extracted += ReleaseGift;
-        _fieldCreator.CellCreated += CreateProcess;
+        _fieldCreator.CellCreated += Generate;
     }
 
     private void OnDisable()
     {
-        _fieldCreator.CellCreated -= CreateProcess;
+        _fieldCreator.CellCreated -= Generate;
     }
 
-    private void CreateProcess(Cell cell)
+    public void Generate(Cell cell)
     {
-        _currentCell = cell;
         var gift = _giftPool.Get();
+        cell.Fill(gift);
+        _giftFabric.Characterize(gift);
+        gift.gameObject.SetActive(true);
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
-        cell.Fill(gift);
     }
 
     private void ReleaseGift(Cell cell)
     {
         _giftPool.Release(cell.Gift);
-    }
-
-    private void GetFromPool(Gift gift)
-    {
-        gift.gameObject.transform.position =
-            new Vector3(_currentCell.transform.position.x, _currentCell.transform.position.y, gift.transform.position.z);
-        gift.gameObject.SetActive(true);
     }
 }

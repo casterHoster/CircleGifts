@@ -343,6 +343,7 @@ MonoBehaviour:
   _neighboursSearcher: {fileID: 1774804530}
   _extractor: {fileID: 280937291}
   _fieldCreator: {fileID: 1288871465}
+  _operator: {fileID: 750997360}
 --- !u!4 &748316781
 Transform:
   m_ObjectHideFlags: 0
@@ -369,7 +370,7 @@ GameObject:
   - component: {fileID: 750997361}
   - component: {fileID: 750997360}
   m_Layer: 0
-  m_Name: Lift
+  m_Name: Operator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fieldCreator: {fileID: 1288871465}
+  _giftsPool: {fileID: 183545757}
 --- !u!4 &750997361
 Transform:
   m_ObjectHideFlags: 0

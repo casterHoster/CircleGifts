@@ -8,14 +8,14 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private FieldCreator _fieldCreator;
-    [SerializeField] private Lift _lift;
+    [SerializeField] private BoardOperator _operator;
 
     private void Start()
     {
         _extractor.Initial();
         _neighboursSearcher.Initial();
         _giftsGenerator.Initial();
-        _lift.Initial();
+        _operator.Initial();
         _fieldCreator.Initial();
     }
 }

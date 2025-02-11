@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lift : MonoBehaviour
+public class BoardOperator : MonoBehaviour
 {
     [SerializeField] private FieldCreator _fieldCreator;
+    [SerializeField] private GiftsPool _giftsPool;
 
     private float _detectionDistance = 1;
     private float _speed = 2;
     private float threshold = 0.1f;
     private Queue<Cell> _cells;
-    private bool _isProcessed;
-    private WaitForSeconds _cooldown = new WaitForSeconds(0.05f);
+    private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.05f);
 
     public void Initial()
     {
@@ -34,17 +34,16 @@ public class Lift : MonoBehaviour
     {
         while (enabled)
         {
-            if (_cells.Count > 0 && _isProcessed == false)
+            if (_cells.Count > 0)
             {
-                _isProcessed = true;
-                RelocateGift();
+                Reform();
             }
 
-            yield return _cooldown;
+            yield return _cooldownChecking;
         }
     }
 
-    private void RelocateGift()
+    private void Reform()
     {
         Cell cell = _cells.Dequeue();
         var collider2d = cell.GetComponent<BoxCollider2D>();
@@ -52,19 +51,35 @@ public class Lift : MonoBehaviour
 
         RaycastHit2D hitUp = Physics2D.Raycast(cell.transform.position, Vector2.up, _detectionDistance);
 
-        if (hitUp.collider != null && hitUp.collider.TryGetComponent(out Cell upCell) && !_cells.Contains(upCell))
+        if (hitUp.collider != null)
         {
-            StartCoroutine(Move(upCell.Gift, cell));
-            cell.Fill(upCell.Gift);
-            upCell.Clear();
+            if (hitUp.collider.TryGetComponent(out Cell upCell) && !_cells.Contains(upCell) && upCell.Gift != null)
+            {
+                cell.Fill(upCell.Gift);
+                upCell.Clear();
+                StartCoroutine(Move(cell.Gift, cell));
+            }
+            else
+            {
+                _cells.Enqueue(cell);
+            }
         }
-        else 
+        else
         {
-            _cells.Enqueue(cell);
+            if (cell.HasGift == false)
+                StartCoroutine(GenerateGiftWithDelay(cell));
+            else
+                _cells.Enqueue(cell);
         }
 
         collider2d.enabled = true;
-        _isProcessed = false;
+    }
+
+    private IEnumerator GenerateGiftWithDelay(Cell cell)
+    {
+        yield return new WaitForSeconds(1f);
+
+        _giftsPool.Generate(cell);
     }
 
     private IEnumerator Move(Gift gift, Cell cell)

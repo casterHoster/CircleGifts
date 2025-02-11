@@ -15,13 +15,21 @@ public class Cell : MonoBehaviour
 
     public void Fill(Gift gift)
     {
-        Gift = gift;
-        HasGift = true;
+        if (gift != null)
+        {
+            Gift = gift;
+            HasGift = true;
+        }
+        else
+        {
+            Debug.LogError("Gift is null!");
+        }
     }
 
     public void Clear()
     {
-        Cleared?.Invoke(this);
+        Gift = null;
         HasGift = false;
+        Cleared?.Invoke(this);
     }
 }

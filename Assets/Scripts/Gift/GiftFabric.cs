@@ -15,16 +15,18 @@ public class GiftsFabric : MonoBehaviour
         return _giftCharacteristics[numberCharacteristic];
     }
 
-    private void Characterize(Gift gift, GiftCharacteristics characteristics)
+    public void Characterize(Gift gift)
     {
-        gift.SetValue(characteristics.Value);
-        gift.SetSprite(characteristics.Sprite);
+        GiftCharacteristics characteristic = GetRandomCharacteristic();
+
+        gift.SetValue(characteristic.Value);
+        gift.SetSprite(characteristic.Sprite);
     }
 
     public Gift InstantGift(RectTransform boardTransform)
     {
         var gift = Instantiate(_giftPrefab, boardTransform); 
-        Characterize(gift, GetRandomCharacteristic());
+        Characterize(gift);
         return gift;
     }
 }
