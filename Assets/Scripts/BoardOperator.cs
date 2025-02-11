@@ -6,9 +6,10 @@ public class BoardOperator : MonoBehaviour
 {
     [SerializeField] private FieldCreator _fieldCreator;
     [SerializeField] private GiftsPool _giftsPool;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _generateDelay;
 
     private float _detectionDistance = 1;
-    private float _speed = 2;
     private float threshold = 0.1f;
     private Queue<Cell> _cells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.05f);
@@ -77,9 +78,12 @@ public class BoardOperator : MonoBehaviour
 
     private IEnumerator GenerateGiftWithDelay(Cell cell)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_generateDelay);
 
         _giftsPool.Generate(cell);
+        cell.Gift.transform.position = 
+            new Vector3(cell.Gift.gameObject.transform.position.x, cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
+        StartCoroutine(Move(cell.Gift, cell));
     }
 
     private IEnumerator Move(Gift gift, Cell cell)
@@ -88,7 +92,7 @@ public class BoardOperator : MonoBehaviour
 
         while (Vector3.Distance(gift.transform.position, cell.transform.position) > threshold)
         {
-            gift.transform.position = Vector3.MoveTowards(gift.transform.position, targetPosition, _speed * Time.deltaTime);
+            gift.transform.position = Vector3.MoveTowards(gift.transform.position, targetPosition, _moveSpeed * Time.deltaTime);
             yield return null;
         }
 

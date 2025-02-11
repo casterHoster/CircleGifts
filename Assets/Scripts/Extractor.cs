@@ -13,6 +13,7 @@ public class Extractor : MonoBehaviour
     private bool _isPressed;
 
     public Action<Cell> Extracted;
+    public Action<Cell> Lasted;
 
     public void Initial()
     {
@@ -25,6 +26,8 @@ public class Extractor : MonoBehaviour
         _fieldCreator.CellCreated -= SignUpMonitor;
         _attentionMonitor.IsPressed -= AddPressed;
         _attentionMonitor.IsRealized -= ExtractCell;
+        _attentionMonitor.IsUnhovered -= SaveNeighbours;
+        _attentionMonitor.IsHovered -= TryAddHovered;
     }
 
     private void SignUpMonitor(Cell cell)
@@ -60,12 +63,17 @@ public class Extractor : MonoBehaviour
     {
         if (_chainedCells.Count > 1)
         {
+            Cell lastCell = _chainedCells[_chainedCells.Count - 1];
+
+            Lasted?.Invoke(lastCell);
+
+            _chainedCells.Remove(lastCell);
+
             foreach (var cell in _chainedCells)
             {
                 if (cell != null)
                 {
                     Extracted?.Invoke(cell);
-                    cell.Clear();
                 }
             }
         }

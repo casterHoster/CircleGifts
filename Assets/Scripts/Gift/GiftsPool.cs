@@ -24,6 +24,7 @@ public class GiftsPool : MonoBehaviour
 
         _extractor.Extracted += ReleaseGift;
         _fieldCreator.CellCreated += Generate;
+        _giftFabric.Maximised += ReleaseGift;
     }
 
     private void OnDisable()
@@ -44,5 +45,6 @@ public class GiftsPool : MonoBehaviour
     private void ReleaseGift(Cell cell)
     {
         _giftPool.Release(cell.Gift);
+        cell.Clear();
     }
 }

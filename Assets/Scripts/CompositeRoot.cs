@@ -5,6 +5,7 @@ using UnityEngine;
 public class CompositeRoot : MonoBehaviour
 {
     [SerializeField] private GiftsPool _giftsGenerator;
+    [SerializeField] private GiftsFabric _giftsFabric;
     [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private FieldCreator _fieldCreator;
@@ -13,6 +14,7 @@ public class CompositeRoot : MonoBehaviour
     private void Start()
     {
         _extractor.Initial();
+        _giftsFabric.Initial();
         _neighboursSearcher.Initial();
         _giftsGenerator.Initial();
         _operator.Initial();

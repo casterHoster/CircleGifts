@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _giftsGenerator: {fileID: 183545757}
+  _giftsFabric: {fileID: 1190074719}
   _neighboursSearcher: {fileID: 1774804530}
   _extractor: {fileID: 280937291}
   _fieldCreator: {fileID: 1288871465}
@@ -445,6 +446,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ced4629b05478f48b4d16b838363d7a, type: 2}
   - {fileID: 11400000, guid: 3e5e79ab004c60d4b829c79e1af7a807, type: 2}
   - {fileID: 11400000, guid: fa793141d7982fb438c8b1204d006d76, type: 2}
+  _extractor: {fileID: 280937291}
 --- !u!4 &1190074720
 Transform:
   m_ObjectHideFlags: 0
