@@ -5,45 +5,49 @@ using UnityEngine;
 public class FieldCreator : MonoBehaviour
 {
     [SerializeField] private Board _board;
-    [SerializeField] private int _horizontalGiftsCount = 5;
-    [SerializeField] private int _verticalGiftsCount = 5;
-    [SerializeField] private float _backspaceX = 2.7f;
-    [SerializeField] private float _backspaceY = 2.5f;
-    [SerializeField] private int _space = 4;
+    [SerializeField] private int _horizontalCellsCount = 5;
+    [SerializeField] private int _verticalCellsCount = 5;
+    [SerializeField] private float _backspaceBoardX = 2.7f;
+    [SerializeField] private float _backspaceBoardY = 2.5f;
+    [SerializeField] private int _spaceCells = 4;
     [SerializeField] private Cell _cellPrefab;
 
-    private List<Vector2> _giftPositions;
+    private List<Vector2> _cellPositions;
 
     public Action<Cell> CellCreated;
 
     public void Initial()
     {
-        _giftPositions = new List<Vector2>();
+        _cellPositions = new List<Vector2>();
         FormPositions();
-
-        for (int i = 0; i < _giftPositions.Count; i++)
-        {
-            Cell cell = Instantiate(_cellPrefab, _board.RectTransform);
-            RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = _giftPositions[i];
-            CellCreated?.Invoke(cell);
-        }
+        GenerateCells();
     }
 
-    private Vector2 GetPositionOnBoard(int coordinateX, int coordinateY)
+    private Vector2 GetStartedPositionOnBoard(int coordinateX, int coordinateY)
     {
-        return new Vector2((-_board.RectTransform.rect.width / _backspaceX + _space * coordinateX),
-            _board.RectTransform.rect.height / _backspaceY - _space * coordinateY);
+        return new Vector2((-_board.RectTransform.rect.width / _backspaceBoardX + _spaceCells * coordinateX),
+            _board.RectTransform.rect.height / _backspaceBoardY - _spaceCells * coordinateY);
     }
 
     private void FormPositions()
     {
-        for (int x = 0; x < _horizontalGiftsCount; x++)
+        for (int x = 0; x < _horizontalCellsCount; x++)
         {
-            for (int y = 0; y < _verticalGiftsCount; y++)
+            for (int y = 0; y < _verticalCellsCount; y++)
             {
-                _giftPositions.Add(GetPositionOnBoard(x, y));
+                _cellPositions.Add(GetStartedPositionOnBoard(x, y));
             }
+        }
+    }
+
+    private void GenerateCells()
+    {
+        for (int i = 0; i < _cellPositions.Count; i++)
+        {
+            Cell cell = Instantiate(_cellPrefab, _board.RectTransform);
+            RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = _cellPositions[i];
+            CellCreated?.Invoke(cell);
         }
     }
 }
