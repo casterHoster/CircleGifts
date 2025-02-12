@@ -391,6 +391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fieldCreator: {fileID: 1288871465}
   _giftsPool: {fileID: 183545757}
+  _moveSpeed: 2
+  _generateDelay: 0.5
 --- !u!4 &750997361
 Transform:
   m_ObjectHideFlags: 0
@@ -436,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _giftPrefab: {fileID: -1353289559298319798, guid: 10a81f9cbca5628489e99a252f1a3f72, type: 3}
+  _extractor: {fileID: 280937291}
   _giftCharacteristics:
   - {fileID: 11400000, guid: 39b41bacd688ab34a9270d459017ebb8, type: 2}
   - {fileID: 11400000, guid: f348b62d0e6269f4194058d3c74560b4, type: 2}
@@ -446,7 +449,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ced4629b05478f48b4d16b838363d7a, type: 2}
   - {fileID: 11400000, guid: 3e5e79ab004c60d4b829c79e1af7a807, type: 2}
   - {fileID: 11400000, guid: fa793141d7982fb438c8b1204d006d76, type: 2}
-  _extractor: {fileID: 280937291}
 --- !u!4 &1190074720
 Transform:
   m_ObjectHideFlags: 0
