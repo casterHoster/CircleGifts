@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NeighboursSearcher : MonoBehaviour
 {
-    [SerializeField] private FieldCreator _fieldCreator;
+    [SerializeField] private CellsCreator _cellsCreator;
 
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _neighboursCells;
@@ -17,14 +17,14 @@ public class NeighboursSearcher : MonoBehaviour
     public void Initial()
     {
         _neighboursCells = new List<Cell>();
-        _fieldCreator.CellCreated += SignUpMonitor;
+        _cellsCreator.CellCreated += SignUpMonitor;
     }
 
 
     private void OnDisable()
     {
         _attentionMonitor.IsHovered -= FindNeighbourCells;
-        _fieldCreator.CellCreated -= SignUpMonitor;
+        _cellsCreator.CellCreated -= SignUpMonitor;
         _attentionMonitor.IsUnhovered -= ClearNeighbourList;
     }
 

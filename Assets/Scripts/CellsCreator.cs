@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldCreator : MonoBehaviour
+public class CellsCreator : MonoBehaviour
 {
     [SerializeField] private Board _board;
     [SerializeField] private int _horizontalCellsCount = 5;

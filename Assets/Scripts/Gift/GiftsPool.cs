@@ -7,7 +7,7 @@ public class GiftsPool : MonoBehaviour
 {
     [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
-    [SerializeField] private FieldCreator _fieldCreator;
+    [SerializeField] private CellsCreator _fieldCreator;
     [SerializeField] private Extractor _extractor;
 
     private ObjectPool<Gift> _giftPool;

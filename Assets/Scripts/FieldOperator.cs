@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardOperator : MonoBehaviour
+public class FieldOperator : MonoBehaviour
 {
-    [SerializeField] private FieldCreator _fieldCreator;
+    [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private GiftsPool _giftsPool;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _generateDelay;
@@ -14,11 +15,13 @@ public class BoardOperator : MonoBehaviour
     private Queue<Cell> _cells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.05f);
 
+    public Action Reformed;
+
     public void Initial()
     {
         _cells = new Queue<Cell>();
         StartCoroutine(CheckQueueCells());
-        _fieldCreator.CellCreated += SignUpClearing;
+        _cellsCreator.CellCreated += SignUpClearing;
     }
 
     private void SignUpClearing(Cell cell)
@@ -74,6 +77,11 @@ public class BoardOperator : MonoBehaviour
         }
 
         collider2d.enabled = true;
+
+        if (_cells.Count == 0)
+        {
+            Reformed?.Invoke();
+        }
     }
 
     private IEnumerator GenerateGiftWithDelay(Cell cell)
@@ -81,7 +89,7 @@ public class BoardOperator : MonoBehaviour
         yield return new WaitForSeconds(_generateDelay);
 
         _giftsPool.Generate(cell);
-        cell.Gift.transform.position = 
+        cell.Gift.transform.position =
             new Vector3(cell.Gift.gameObject.transform.position.x, cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
         StartCoroutine(Move(cell.Gift, cell));
     }
