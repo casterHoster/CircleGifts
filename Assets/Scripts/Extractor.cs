@@ -14,6 +14,7 @@ public class Extractor : MonoBehaviour
 
     public Action<Cell> Extracted;
     public Action<Cell> Lasted;
+    public Action<List<Cell>> Processed;
 
     public void Initial()
     {
@@ -63,6 +64,8 @@ public class Extractor : MonoBehaviour
     {
         if (_chainedCells.Count > 1)
         {
+            Processed?.Invoke(_chainedCells);
+
             Cell lastCell = _chainedCells[_chainedCells.Count - 1];
 
             Lasted?.Invoke(lastCell);
@@ -71,10 +74,7 @@ public class Extractor : MonoBehaviour
 
             foreach (var cell in _chainedCells)
             {
-                if (cell != null)
-                {
-                    Extracted?.Invoke(cell);
-                }
+                Extracted?.Invoke(cell);
             }
         }
 
