@@ -7,20 +7,52 @@ using UnityEngine;
 public class GiftsFabric : MonoBehaviour
 {
     [SerializeField] private Gift _giftPrefab;
-    [SerializeField] Extractor _extractor;
+    [SerializeField] private Extractor _extractor;
+    [SerializeField] private CellsAnalyser _cellAnalyser;
     [SerializeField] private List<GiftCharacteristics> _giftCharacteristics;
+    [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3; 
+
+    private List<GiftCharacteristics> _generatingCharacteristics;
 
     public Action<Cell> Maximised;
 
     public void Initial()
     {
-        _extractor.Lasted += Improve;
+        InitStartedGiftChahcteristics();
+        _extractor.EndCellDifined += Improve;
+        _cellAnalyser.HightestValueFound += AddCharacteristicForGenerate;
+    }
+
+    private void InitStartedGiftChahcteristics()
+    {
+        _generatingCharacteristics = new List<GiftCharacteristics>();
+
+        if (_strartedGeneratingCharacteristicsCount > 0 && _strartedGeneratingCharacteristicsCount < _giftCharacteristics.Count)
+        {
+            for (int i = 0; i < _strartedGeneratingCharacteristicsCount; i++) 
+            {
+                _generatingCharacteristics.Add(_giftCharacteristics[i]);
+            }
+        }
+    }
+
+    private void AddCharacteristicForGenerate(int value)
+    {
+        foreach (var characteristic in _generatingCharacteristics)
+        {
+            if (characteristic.Value == value)
+            {
+                return;
+            }
+        }
+
+        _generatingCharacteristics.Add(SearchCharacteristic(value));
     }
 
     private GiftCharacteristics GetRandomCharacteristic()
     {
-        var numberCharacteristic = UnityEngine.Random.Range(0, _giftCharacteristics.Count);
-        return _giftCharacteristics[numberCharacteristic];
+        var numberCharacteristic = UnityEngine.Random.Range(0, _generatingCharacteristics.Count);
+        return _generatingCharacteristics[numberCharacteristic];
     }
 
     private void Improve(Cell cell)
@@ -41,8 +73,6 @@ public class GiftsFabric : MonoBehaviour
             Maximised?.Invoke(cell);
         }
     }
-
-
 
     public void Characterize(Gift gift)
     {

@@ -11,7 +11,6 @@ public class GiftsPool : MonoBehaviour
     [SerializeField] private Extractor _extractor;
 
     private ObjectPool<Gift> _giftPool;
-    private ObjectPool<Gift> _workingGifts;
 
     public void Initial()
     {
@@ -30,6 +29,8 @@ public class GiftsPool : MonoBehaviour
     private void OnDisable()
     {
         _fieldCreator.CellCreated -= Generate;
+        _extractor.Extracted -= ReleaseGift;
+        _giftFabric.Maximised -= ReleaseGift;
     }
     private void ReleaseGift(Cell cell)
     {

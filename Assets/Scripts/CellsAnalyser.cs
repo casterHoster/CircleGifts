@@ -13,6 +13,7 @@ public class CellsAnalyser : MonoBehaviour
     private List<Cell> _cells = new List<Cell>();
 
     public Action MovedInpossible;
+    public Action<int> HightestValueFound;
 
     public void Initial()
     {
@@ -38,6 +39,7 @@ public class CellsAnalyser : MonoBehaviour
     private void RunPlayingAnalyse()
     {
         StartCoroutine(IdentifyPossiblePlayingAfterDelay());
+        FindHighestGiftValue();
     }
 
     private bool TryFindPerspectiveCells()
@@ -64,18 +66,29 @@ public class CellsAnalyser : MonoBehaviour
         return false;
     }
 
-    private int FindHighestGiftValue()
+    private void FindHighestGiftValue()
     {
-        int value = _cells[0].Gift.Value;
+        List<Cell> cellsWithValues = new List<Cell>();
 
-        for (int i = 1; i < _cells.Count; i++) 
+        foreach(var cell in _cells)
         {
-            if (_cells[i].Gift.Value > value)
+            if (cell.Gift != null)
             {
-                value = _cells[i].Gift.Value;
+                cellsWithValues.Add(cell);
             }
         }
 
-        return value;
+        int value = cellsWithValues[0].Gift.Value;
+
+        for (int i = 1; i < cellsWithValues.Count; i++)
+        {
+            if (cellsWithValues[i].Gift.Value > value)
+            {
+                value = cellsWithValues[i].Gift.Value;
+            }
+        }
+
+        HightestValueFound?.Invoke(value);
+
     }
 }

@@ -13,7 +13,7 @@ public class Extractor : MonoBehaviour
     private bool _isPressed;
 
     public Action<Cell> Extracted;
-    public Action<Cell> Lasted;
+    public Action<Cell> EndCellDifined;
     public Action<List<Cell>> Processed;
 
     public void Initial()
@@ -68,7 +68,7 @@ public class Extractor : MonoBehaviour
 
             Cell lastCell = _chainedCells[_chainedCells.Count - 1];
 
-            Lasted?.Invoke(lastCell);
+            EndCellDifined?.Invoke(lastCell);
 
             _chainedCells.Remove(lastCell);
 
