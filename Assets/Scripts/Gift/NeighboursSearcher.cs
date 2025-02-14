@@ -7,10 +7,10 @@ using UnityEngine;
 public class NeighboursSearcher : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private float _detectionDistance = 1;
 
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _neighboursCells;
-    private float _detectionDistance = 1;
 
     public List<Cell> NeighboursCells { get { return new List<Cell>(_neighboursCells); } }
 

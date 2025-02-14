@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CellsAnalyser : MonoBehaviour
 {
-    [SerializeField] CellsCreator _cellsCreator;
-    [SerializeField] FieldOperator _fieldOperator;
+    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private FieldOperator _fieldOperator;
+    [SerializeField] private float _detectionDistance = 1;
 
     private WaitForSeconds _analyseDalay = new WaitForSeconds(2f);
-    private float _detectionDistance = 1;
     private List<Cell> _cells = new List<Cell>();
 
     public Action MovedInpossible;
@@ -62,5 +62,20 @@ public class CellsAnalyser : MonoBehaviour
         }
 
         return false;
+    }
+
+    private int FindHighestGiftValue()
+    {
+        int value = _cells[0].Gift.Value;
+
+        for (int i = 1; i < _cells.Count; i++) 
+        {
+            if (_cells[i].Gift.Value > value)
+            {
+                value = _cells[i].Gift.Value;
+            }
+        }
+
+        return value;
     }
 }

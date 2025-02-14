@@ -9,7 +9,7 @@ public class CellsCreator : MonoBehaviour
     [SerializeField] private int _verticalCellsCount = 5;
     [SerializeField] private float _backspaceBoardX = 2.7f;
     [SerializeField] private float _backspaceBoardY = 2.5f;
-    [SerializeField] private int _spaceCells = 4;
+    [SerializeField] private float _spaceCells = 4;
     [SerializeField] private Cell _cellPrefab;
 
     private List<Vector2> _cellPositions;

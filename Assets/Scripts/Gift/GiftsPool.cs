@@ -11,7 +11,7 @@ public class GiftsPool : MonoBehaviour
     [SerializeField] private Extractor _extractor;
 
     private ObjectPool<Gift> _giftPool;
-    private Cell _currentCell;
+    private ObjectPool<Gift> _workingGifts;
 
     public void Initial()
     {
@@ -31,6 +31,11 @@ public class GiftsPool : MonoBehaviour
     {
         _fieldCreator.CellCreated -= Generate;
     }
+    private void ReleaseGift(Cell cell)
+    {
+        _giftPool.Release(cell.Gift);
+        cell.Clear();
+    }
 
     public void Generate(Cell cell)
     {
@@ -40,11 +45,5 @@ public class GiftsPool : MonoBehaviour
         gift.gameObject.SetActive(true);
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
-    }
-
-    private void ReleaseGift(Cell cell)
-    {
-        _giftPool.Release(cell.Gift);
-        cell.Clear();
     }
 }

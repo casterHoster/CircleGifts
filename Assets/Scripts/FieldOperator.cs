@@ -9,11 +9,11 @@ public class FieldOperator : MonoBehaviour
     [SerializeField] private GiftsPool _giftsPool;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _generateDelay;
+    [SerializeField] private float _detectionDistance = 1;
 
-    private float _detectionDistance = 1;
-    private float threshold = 0.1f;
+    private float threshold = 0.15f;
     private Queue<Cell> _cells;
-    private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.05f);
+    private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
     public Action Reformed;
 
@@ -31,7 +31,8 @@ public class FieldOperator : MonoBehaviour
 
     private void AddCellQueue(Cell cell)
     {
-        _cells.Enqueue(cell);
+        if (!_cells.Contains(cell))
+            _cells.Enqueue(cell);
     }
 
     private IEnumerator CheckQueueCells()
@@ -54,10 +55,11 @@ public class FieldOperator : MonoBehaviour
         collider2d.enabled = false;
 
         RaycastHit2D hitUp = Physics2D.Raycast(cell.transform.position, Vector2.up, _detectionDistance);
+        collider2d.enabled = true;
 
         if (hitUp.collider != null)
         {
-            if (hitUp.collider.TryGetComponent(out Cell upCell) && !_cells.Contains(upCell) && upCell.Gift != null)
+            if (hitUp.collider.TryGetComponent(out Cell upCell) && !_cells.Contains(upCell) && upCell.Gift != null && cell.Gift == null)
             {
                 cell.Fill(upCell.Gift);
                 upCell.Clear();
@@ -70,13 +72,11 @@ public class FieldOperator : MonoBehaviour
         }
         else
         {
-            if (cell.HasGift == false)
+            if (cell.Gift == null)
                 StartCoroutine(GenerateGiftWithDelay(cell));
             else
                 _cells.Enqueue(cell);
         }
-
-        collider2d.enabled = true;
 
         if (_cells.Count == 0)
         {
@@ -96,14 +96,20 @@ public class FieldOperator : MonoBehaviour
 
     private IEnumerator Move(Gift gift, Cell cell)
     {
-        Vector3 targetPosition = new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
+        float targetPosX = cell.transform.position.x;
+        float targetPosY = cell.transform.position.y;
+        float targetPosZ = gift.transform.position.z;
 
-        while (Vector3.Distance(gift.transform.position, cell.transform.position) > threshold)
+
+        Vector3 finishPosittion = cell.transform.position;
+        Vector3 targetPosition = new Vector3(targetPosX, targetPosY, targetPosZ);
+
+        while (Vector3.Distance(gift.transform.position, finishPosittion) > threshold)
         {
             gift.transform.position = Vector3.MoveTowards(gift.transform.position, targetPosition, _moveSpeed * Time.deltaTime);
             yield return null;
         }
 
-        gift.transform.position = new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
+        gift.transform.position = new Vector3(targetPosX, targetPosY, targetPosZ);
     }
 }

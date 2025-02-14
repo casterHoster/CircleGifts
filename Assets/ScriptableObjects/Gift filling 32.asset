@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Gift filling 32
   m_EditorClassIdentifier: 
   _value: 32
-  _sprite: {fileID: 21300000, guid: 0534ba8cf5db6104e83384ae97254d91, type: 3}
+  _sprite: {fileID: 21300000, guid: 4190bf3e46f59c54681ba919c19bd53f, type: 3}

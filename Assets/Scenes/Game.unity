@@ -507,6 +507,7 @@ MonoBehaviour:
   _giftsPool: {fileID: 183545757}
   _moveSpeed: 2
   _generateDelay: 0.5
+  _detectionDistance: 1.8
 --- !u!4 &750997361
 Transform:
   m_ObjectHideFlags: 0
@@ -553,6 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cellsCreator: {fileID: 1288871465}
   _fieldOperator: {fileID: 750997360}
+  _detectionDistance: 1.8
 --- !u!4 &788213397
 Transform:
   m_ObjectHideFlags: 0
@@ -657,9 +659,9 @@ MonoBehaviour:
   _board: {fileID: 1732819235}
   _horizontalCellsCount: 5
   _verticalCellsCount: 5
-  _backspaceBoardX: 2.7
-  _backspaceBoardY: 2.5
-  _spaceCells: 4
+  _backspaceBoardX: 4.4
+  _backspaceBoardY: 2.7
+  _spaceCells: 1.1
   _cellPrefab: {fileID: 5433142274185783904, guid: 52bca857353bdd8468174db1200a0d38, type: 3}
 --- !u!4 &1288871466
 Transform:
@@ -846,7 +848,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: de0652c728a9e0f45baca46b53b651b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a31694d86a86a0443baf8ffaec05f60b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -866,15 +868,15 @@ RectTransform:
   m_GameObject: {fileID: 1732819230}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 35}
-  m_LocalScale: {x: 0.25770158, y: 0.3072596, z: 0.3072596}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 21.6869, y: 32.5346}
+  m_AnchoredPosition: {x: 0.007, y: 0.12}
+  m_SizeDelta: {x: 9.9963, y: 5.7917}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732819235
 MonoBehaviour:
@@ -918,6 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellsCreator: {fileID: 1288871465}
+  _detectionDistance: 1.8
 --- !u!4 &1774804531
 Transform:
   m_ObjectHideFlags: 0
