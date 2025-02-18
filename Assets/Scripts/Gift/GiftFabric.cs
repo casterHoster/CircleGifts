@@ -90,12 +90,6 @@ public class GiftsFabric : MonoBehaviour
         return gift;
     }
 
-    private void Characterize(Gift gift, GiftCharacteristics characteristic)
-    {
-        gift.SetValue(characteristic.Value);
-        gift.SetSprite(characteristic.Sprite);
-    }
-
     private GiftCharacteristics SearchCharacteristic(int value)
     {
         foreach (var characteristic in _giftCharacteristics)

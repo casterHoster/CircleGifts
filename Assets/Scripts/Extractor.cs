@@ -14,7 +14,9 @@ public class Extractor : MonoBehaviour
 
     public Action<Cell> Extracted;
     public Action<Cell> EndCellDifined;
-    public Action<List<Cell>> Processed;
+    public Action<List<Cell>> Scored;
+    public Action<Cell> PutOuted;
+    public Action<Cell> CellAdded;
 
     public void Initial()
     {
@@ -26,8 +28,8 @@ public class Extractor : MonoBehaviour
     {
         _fieldCreator.CellCreated -= SignUpMonitor;
         _attentionMonitor.IsPressed -= AddPressed;
-        _attentionMonitor.IsRealized -= ExtractCell;
-        _attentionMonitor.IsUnhovered -= SaveNeighbours;
+        _attentionMonitor.IsRealized -= ExtractCells;
+        _attentionMonitor.IsUnhovered -= SaveNeighboursByUnvovering;
         _attentionMonitor.IsHovered -= TryAddHovered;
     }
 
@@ -35,8 +37,8 @@ public class Extractor : MonoBehaviour
     {
         _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
         _attentionMonitor.IsPressed += AddPressed;
-        _attentionMonitor.IsRealized += ExtractCell;
-        _attentionMonitor.IsUnhovered += SaveNeighbours;
+        _attentionMonitor.IsRealized += ExtractCells;
+        _attentionMonitor.IsUnhovered += SaveNeighboursByUnvovering;
         _attentionMonitor.IsHovered += TryAddHovered;
     }
 
@@ -45,6 +47,8 @@ public class Extractor : MonoBehaviour
         if (_isPressed == false)
         {
             _chainedCells.Add(cell);
+            SaveNeighboursByClicking();
+            CellAdded?.Invoke(cell);
             _isPressed = true;
         }
     }
@@ -53,23 +57,29 @@ public class Extractor : MonoBehaviour
     {
         if (_isPressed && cell.Gift != null)
         {
-            if (CheckMatch(cell) && !_chainedCells.Contains(cell))
-                _chainedCells.Add(cell);
-
-            RemoveNotInChain(cell);
+            if (CheckMatchWithNeighbours(cell))
+            {
+                if (_chainedCells.Contains(cell))
+                {
+                    PutOuted?.Invoke(_chainedCells[_chainedCells.Count - 1]);
+                    _chainedCells.RemoveAt(_chainedCells.Count - 1);
+                }
+                else
+                {
+                    _chainedCells.Add(cell);
+                    CellAdded?.Invoke(cell);
+                }
+            }
         }
     }
 
-    private void ExtractCell()
+    private void ExtractCells()
     {
         if (_chainedCells.Count > 1)
         {
-            Processed?.Invoke(_chainedCells);
-
+            Scored?.Invoke(_chainedCells);
             Cell lastCell = _chainedCells[_chainedCells.Count - 1];
-
             EndCellDifined?.Invoke(lastCell);
-
             _chainedCells.Remove(lastCell);
 
             foreach (var cell in _chainedCells)
@@ -77,24 +87,30 @@ public class Extractor : MonoBehaviour
                 Extracted?.Invoke(cell);
             }
         }
+        else if (_chainedCells.Count > 0)
+        {
+            PutOuted?.Invoke(_chainedCells[_chainedCells.Count - 1]);
+        }
 
         _chainedCells.Clear();
         _isPressed = false;
     }
 
-    private void SaveNeighbours(Cell cell)
+    private void SaveNeighboursByClicking()
     {
-        if (!_isPressed)
-            _neighbourCells = _searcher.NeighboursCells;
-        else
-        {
-            if (cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value)
-                _neighbourCells = _searcher.NeighboursCells;
-        }
-
+        _neighbourCells = _searcher.NeighboursCells;
     }
 
-    private bool CheckMatch(Cell cell)
+    private void SaveNeighboursByUnvovering(Cell cell)
+    {
+        if (_isPressed)
+        {
+            if (cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
+                _neighbourCells = _searcher.NeighboursCells;
+        }
+    }
+
+    private bool CheckMatchWithNeighbours(Cell cell)
     {
         foreach (Cell neighbourCell in _neighbourCells)
         {
@@ -108,13 +124,5 @@ public class Extractor : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void RemoveNotInChain(Cell cell)
-    {
-        if (_chainedCells.Count >= 2 && cell == _chainedCells[_chainedCells.Count - 2])
-        {
-            _chainedCells.RemoveAt(_chainedCells.Count - 2);
-        }
     }
 }

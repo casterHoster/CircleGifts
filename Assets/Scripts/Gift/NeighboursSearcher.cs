@@ -23,8 +23,8 @@ public class NeighboursSearcher : MonoBehaviour
 
     private void OnDisable()
     {
-        _attentionMonitor.IsHovered -= FindNeighbourCells;
         _cellsCreator.CellCreated -= SignUpMonitor;
+        _attentionMonitor.IsHovered -= FindNeighbourCells;
         _attentionMonitor.IsUnhovered -= ClearNeighbourList;
     }
 

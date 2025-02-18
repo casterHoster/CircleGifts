@@ -13,7 +13,7 @@ public class ScoreCounter : MonoBehaviour
 
     private void OnEnable()
     {
-        _extractor.Processed += IncreaseScore;
+        _extractor.Scored += IncreaseScore;
     }
 
     private int CountCellsSum(List<Cell> cells)
