@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent (typeof(LineRenderer))]
 public class Lightning : MonoBehaviour
 {
-    [SerializeField] private int _segments = 10;
+    [SerializeField] private int _segments = 1;
     [SerializeField] private float _startLineWidth = 1f;
     [SerializeField] private float _endLineWidth = 1f;
 
