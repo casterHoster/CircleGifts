@@ -56,6 +56,19 @@ public class LightningBuilder : MonoBehaviour
         _points.Remove(cell.transform.position);
     }
 
+    private void Realize(Cell cell, int count)
+    {
+        foreach (var lightning in _lightnings)
+        {
+            if (lightning.Target == cell.transform.position && lightning.gameObject.activeSelf == true)
+            {
+                _lightningPool.Release(lightning);
+            }
+        }
+
+        _points.Remove(cell.transform.position);
+    }
+
 
 
 

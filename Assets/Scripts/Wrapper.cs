@@ -41,6 +41,12 @@ public class Wrapper : MonoBehaviour
         CountNewWrapValue();
     }
 
+    private void RemoveCell(Cell cell, int count)
+    {
+        _cells.Remove(cell);
+        CountNewWrapValue();
+    }
+
     private void CountNewWrapValue()
     {
         int value = 0;

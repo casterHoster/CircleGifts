@@ -11,6 +11,7 @@ public class GiftsFabric : MonoBehaviour
     [SerializeField] private CellsAnalyser _cellAnalyser;
     [SerializeField] private List<GiftCharacteristics> _giftCharacteristics;
     [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3; 
+    [SerializeField] private Sprite _defaultSprite;
 
     private List<GiftCharacteristics> _generatingCharacteristics;
 
@@ -55,11 +56,14 @@ public class GiftsFabric : MonoBehaviour
         return _generatingCharacteristics[numberCharacteristic];
     }
 
-    private void Improve(Cell cell)
+    private void Improve(Cell cell, int countCells)
     {
         int value = cell.Gift.Value;
 
-        value *= 2;
+        for (int i = 0; i < countCells - 1; i++)
+        {
+            value = value * 2;
+        }
 
         GiftCharacteristics characteristic = SearchCharacteristic(value);
 
@@ -93,7 +97,7 @@ public class GiftsFabric : MonoBehaviour
         }
         else
         {
-            Debug.Log("Great");
+            gift.SetSprite(_defaultSprite);
         }
     }
 

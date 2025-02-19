@@ -32,4 +32,8 @@ public class LighterCells : MonoBehaviour
     {
         cell.GetComponent<SpriteRenderer>().enabled = false;
     }
+    private void DisableSprite(Cell cell, int count)
+    {
+        cell.GetComponent<SpriteRenderer>().enabled = false;
+    }
 }

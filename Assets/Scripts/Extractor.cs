@@ -13,7 +13,7 @@ public class Extractor : MonoBehaviour
     private bool _isPressed;
 
     public Action<Cell> Extracted;
-    public Action<Cell> EndCellDifined;
+    public Action<Cell, int> EndCellDifined;
     public Action<List<Cell>> Scored;
     public Action<Cell> PutOuted;
     public Action<Cell> CellAdded;
@@ -79,7 +79,7 @@ public class Extractor : MonoBehaviour
         {
             Scored?.Invoke(_chainedCells);
             Cell lastCell = _chainedCells[_chainedCells.Count - 1];
-            EndCellDifined?.Invoke(lastCell);
+            EndCellDifined?.Invoke(lastCell, _chainedCells.Count);
             _chainedCells.Remove(lastCell);
 
             foreach (var cell in _chainedCells)

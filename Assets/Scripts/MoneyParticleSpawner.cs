@@ -20,4 +20,10 @@ public class MoneyParticleSpawner : MonoBehaviour
         _moneyParticle.transform.position = new Vector3(cell.transform.position.x, cell.transform.position.y, -0.1f);
         _moneyParticle.Play();
     }
+
+    private void PlayParticle(Cell cell, int count)
+    {
+        _moneyParticle.transform.position = new Vector3(cell.transform.position.x, cell.transform.position.y, -0.1f);
+        _moneyParticle.Play();
+    }
 }
