@@ -88,7 +88,7 @@ public class FieldOperator : MonoBehaviour
     {
         yield return new WaitForSeconds(_generateDelay);
 
-        _giftsPool.Generate(cell);
+        _giftsPool.GenerateForCell(cell);
         cell.Gift.transform.position =
             new Vector3(cell.Gift.gameObject.transform.position.x, cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
         StartCoroutine(Move(cell.Gift, cell));

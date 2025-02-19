@@ -74,7 +74,7 @@ public class GiftsFabric : MonoBehaviour
         }
     }
 
-    public void Characterize(Gift gift)
+    public void RandomCharacterize(Gift gift)
     {
         GiftCharacteristics characteristic = GetRandomCharacteristic();
 
@@ -82,11 +82,26 @@ public class GiftsFabric : MonoBehaviour
         gift.SetSprite(characteristic.Sprite);
     }
 
+    public void TargetingCharacterize(Gift gift, int value)
+    {
+        GiftCharacteristics characteristic = SearchCharacteristic(value);
+
+        if (characteristic != null)
+        {
+            gift.SetValue(characteristic.Value);
+            gift.SetSprite(characteristic.Sprite);
+        }
+        else
+        {
+            Debug.Log("Great");
+        }
+    }
+
 
     public Gift InstantGift(RectTransform boardTransform)
     {
         var gift = Instantiate(_giftPrefab, boardTransform);
-        Characterize(gift);
+        RandomCharacterize(gift);
         return gift;
     }
 

@@ -16,14 +16,13 @@ public class ScoreCounter : MonoBehaviour
         _extractor.Scored += IncreaseScore;
     }
 
-    private int CountCellsSum(List<Cell> cells)
-    {
-        return cells.Count * cells[cells.Count - 1].Gift.Value;
-    }
-
     private void IncreaseScore(List<Cell> cells)
     {
-        _score += CountCellsSum(cells);
+        foreach (Cell cell in cells) 
+        {
+            _score += cell.Gift.Value;
+        }
+
         ScoreChanged?.Invoke(_score);
     }
 }
