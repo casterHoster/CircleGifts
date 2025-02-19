@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class MoneyParticleSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ParticleSystem _moneyParticlePrefab;
+    [SerializeField] private Extractor _extractor;
+
+    private ParticleSystem _moneyParticle;
+
+    private void OnEnable()
     {
-        
+        _extractor.EndCellDifined += PlayParticle;
+        _moneyParticle = Instantiate(_moneyParticlePrefab);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlayParticle(Cell cell)
     {
-        
+        _moneyParticle.transform.position = new Vector3(cell.transform.position.x, cell.transform.position.y, -0.1f);
+        _moneyParticle.Play();
     }
 }
