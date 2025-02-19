@@ -27,7 +27,7 @@ public class Lightning : MonoBehaviour
 
         for (int i = 1; i < _segments - 1; i++)
         {
-            positions[i] = Vector3.Lerp(startPoint, endPoint, (float)i / (_segments - 1));
+            positions[i] = Vector3.Lerp(startPoint, endPoint, Time.deltaTime);
         }
 
         _lineRenderer.SetPositions(positions);
