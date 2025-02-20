@@ -6,9 +6,14 @@ public class GameFinisher : MonoBehaviour
 {
     [SerializeField] CellsAnalyser _cellsAnalyser;
 
-    private void OnEnable()
+    public void Initial()
     {
         _cellsAnalyser.MovedInpossible += EndTheGame;
+    }
+
+    private void OnDisable()
+    {
+        _cellsAnalyser.MovedInpossible -= EndTheGame;
     }
 
     private void EndTheGame()

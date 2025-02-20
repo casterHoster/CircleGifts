@@ -1,17 +1,15 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GiftsFabric : MonoBehaviour
 {
+    [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Gift _giftPrefab;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private CellsAnalyser _cellAnalyser;
     [SerializeField] private List<GiftCharacteristics> _giftCharacteristics;
     [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3; 
-    [SerializeField] private Sprite _defaultSprite;
 
     private List<GiftCharacteristics> _generatingCharacteristics;
 
@@ -20,8 +18,14 @@ public class GiftsFabric : MonoBehaviour
     public void Initial()
     {
         InitStartedGiftChahcteristics();
-        _extractor.EndCellDifined += Improve;
-        _cellAnalyser.HightestValueFound += AddCharacteristicForGenerate;
+        _extractor.EndCellDifined += ImproveGift;
+        _cellAnalyser.HightestValueFound += AddCharacteristic;
+    }
+
+    private void OnDisable()
+    {
+        _extractor.EndCellDifined -= ImproveGift;
+        _cellAnalyser.HightestValueFound -= AddCharacteristic;
     }
 
     private void InitStartedGiftChahcteristics()
@@ -37,7 +41,7 @@ public class GiftsFabric : MonoBehaviour
         }
     }
 
-    private void AddCharacteristicForGenerate(int value)
+    private void AddCharacteristic(int value)
     {
         foreach (var characteristic in _generatingCharacteristics)
         {
@@ -56,7 +60,7 @@ public class GiftsFabric : MonoBehaviour
         return _generatingCharacteristics[numberCharacteristic];
     }
 
-    private void Improve(Cell cell, int countCells)
+    private void ImproveGift(Cell cell, int countCells)
     {
         int value = cell.Gift.Value;
 
@@ -102,7 +106,7 @@ public class GiftsFabric : MonoBehaviour
     }
 
 
-    public Gift InstantGift(RectTransform boardTransform)
+    public Gift InstantiateRandomGift(RectTransform boardTransform)
     {
         var gift = Instantiate(_giftPrefab, boardTransform);
         RandomCharacterize(gift);

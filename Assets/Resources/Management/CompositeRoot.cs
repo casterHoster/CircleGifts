@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CompositeRoot : MonoBehaviour
@@ -11,6 +9,12 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldOperator _operator;
     [SerializeField] private CellsAnalyser _cellsAnalyser;
+    [SerializeField] private LightningBuilder _lightningBuilder;
+    [SerializeField] private GameFinisher _gameFinisher;
+    [SerializeField] private CellsLighter _lighterCells;
+    [SerializeField] private MoneyParticlePlayer _moneyParticlePlayer;
+    [SerializeField] private ScoreCounter _scoreCounter;
+    [SerializeField] private Wrapper _wrapper;
 
     private void Start()
     {
@@ -21,5 +25,11 @@ public class CompositeRoot : MonoBehaviour
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsCreator.Initial();
+        _lightningBuilder.Initial();
+        _gameFinisher.Initial();
+        _lighterCells.Initial();
+        _moneyParticlePlayer.Initial();
+        _scoreCounter.Initial();
+        _wrapper.Initial();
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -17,31 +15,31 @@ public class GiftsPool : MonoBehaviour
     {
         _giftPool = new ObjectPool<Gift>
             (
-            createFunc: () => _giftFabric.InstantGift(_board.RectTransform),
+            createFunc: () => _giftFabric.InstantiateRandomGift(_board.RectTransform),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             defaultCapacity: 25
             );
 
-        _extractor.Extracted += ReleaseGiftFromCell;
+        _extractor.Extracted += ReleaseFromCell;
         _fieldCreator.CellCreated += GenerateForCell;
-        _giftFabric.Maximised += ReleaseGiftFromCell;
-        _wrapperViewer.ValueChanged += RealeseGiftFromCanvas;
+        _giftFabric.Maximised += ReleaseFromCell;
+        _wrapperViewer.ValueChanged += RealeseFromCanvas;
     }
 
     private void OnDisable()
     {
         _fieldCreator.CellCreated -= GenerateForCell;
-        _extractor.Extracted -= ReleaseGiftFromCell;
-        _giftFabric.Maximised -= ReleaseGiftFromCell;
-        _wrapperViewer.ValueChanged += RealeseGiftFromCanvas;
+        _extractor.Extracted -= ReleaseFromCell;
+        _giftFabric.Maximised -= ReleaseFromCell;
+        _wrapperViewer.ValueChanged += RealeseFromCanvas;
     }
-    private void ReleaseGiftFromCell(Cell cell)
+    private void ReleaseFromCell(Cell cell)
     {
         _giftPool.Release(cell.Gift);
         cell.Clear();
     }
 
-    private void RealeseGiftFromCanvas(Gift gift)
+    private void RealeseFromCanvas(Gift gift)
     {
         _giftPool.Release(gift);
     }

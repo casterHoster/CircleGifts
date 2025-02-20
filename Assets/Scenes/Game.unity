@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 210628686}
   - component: {fileID: 210628685}
   m_Layer: 0
-  m_Name: LighterCells
+  m_Name: CellsLighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 210628684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcac6006bedf174f9837b9116c8969b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7529daef74f583c42bd40c3632bf5d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _extractor: {fileID: 280937291}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 484470570}
   - component: {fileID: 484470569}
   m_Layer: 0
-  m_Name: ParticleMoneySpawner
+  m_Name: MoneyParticlePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -752,6 +752,12 @@ MonoBehaviour:
   _cellsCreator: {fileID: 1288871465}
   _operator: {fileID: 750997360}
   _cellsAnalyser: {fileID: 788213396}
+  _lightningBuilder: {fileID: 1879179460}
+  _gameFinisher: {fileID: 114038044}
+  _lighterCells: {fileID: 210628685}
+  _moneyParticlePlayer: {fileID: 484470569}
+  _scoreCounter: {fileID: 2121152371}
+  _wrapper: {fileID: 545465417}
 --- !u!4 &748316781
 Transform:
   m_ObjectHideFlags: 0
@@ -892,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dad37c404873af47b90f9943a978954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultSprite: {fileID: 21300000, guid: 3ec365d0a13ed9b4a91386621f881ed9, type: 3}
   _giftPrefab: {fileID: -1353289559298319798, guid: 10a81f9cbca5628489e99a252f1a3f72, type: 3}
   _extractor: {fileID: 280937291}
   _cellAnalyser: {fileID: 788213396}
@@ -907,7 +914,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa793141d7982fb438c8b1204d006d76, type: 2}
   - {fileID: 11400000, guid: 0006c4f87dd6e1d47bf72e54003d9a67, type: 2}
   _strartedGeneratingCharacteristicsCount: 3
-  _defaultSprite: {fileID: 21300000, guid: 3ec365d0a13ed9b4a91386621f881ed9, type: 3}
 --- !u!4 &1190074720
 Transform:
   m_ObjectHideFlags: 0

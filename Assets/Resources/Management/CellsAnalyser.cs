@@ -21,6 +21,12 @@ public class CellsAnalyser : MonoBehaviour
         _fieldOperator.Reformed += RunPlayingAnalyse;
     }
 
+    private void OnDisable()
+    {
+        _cellsCreator.CellCreated -= AddCell;
+        _fieldOperator.Reformed -= RunPlayingAnalyse;
+    }
+
     private void AddCell(Cell cell)
     {
         _cells.Add(cell);
@@ -89,6 +95,5 @@ public class CellsAnalyser : MonoBehaviour
         }
 
         HightestValueFound?.Invoke(value);
-
     }
 }

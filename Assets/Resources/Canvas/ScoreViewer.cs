@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,8 +14,6 @@ public class ScoreViewer : MonoBehaviour
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
         _scoreCounter.ScoreChanged += ChangeScorView;
     }
-
-
 
     private void ChangeScorView(int score)
     {

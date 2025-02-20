@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +10,14 @@ public class ScoreCounter : MonoBehaviour
 
     public Action<int> ScoreChanged;
 
-    private void OnEnable()
+    public void Initial()
     {
         _extractor.Scored += IncreaseScore;
+    }
+
+    private void OnDisable()
+    {
+        _extractor.Scored -= IncreaseScore;
     }
 
     private void IncreaseScore(List<Cell> cells)

@@ -14,6 +14,7 @@ public class FieldOperator : MonoBehaviour
     private float threshold = 0.15f;
     private Queue<Cell> _cells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
+    private Action<Cell> _cellClearedHandler;
 
     public Action Reformed;
 
@@ -24,8 +25,22 @@ public class FieldOperator : MonoBehaviour
         _cellsCreator.CellCreated += SignUpClearing;
     }
 
+    private void OnDisable()
+    {
+        _cellsCreator.CellCreated -= SignUpClearing;
+
+        if (_cellClearedHandler != null)
+        {
+            foreach (var cell in _cells)
+            {
+                cell.Cleared -= _cellClearedHandler;
+            }
+        }
+    }
+
     private void SignUpClearing(Cell cell)
     {
+        _cellClearedHandler = AddCellQueue;
         cell.Cleared += AddCellQueue;
     }
 

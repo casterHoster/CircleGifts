@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class LighterCells : MonoBehaviour
+public class CellsLighter : MonoBehaviour
 {
     [SerializeField] private Extractor _extractor;
 
-    private void OnEnable()
+    public void Initial()
     {
         _extractor.CellAdded += EnableSprite;
         _extractor.EndCellDifined += DisableSprite;

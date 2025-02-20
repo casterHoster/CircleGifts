@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,7 +11,7 @@ public class LightningBuilder : MonoBehaviour
     private List<Vector3> _points;
     private List<Lightning> _lightnings;
 
-    private void OnEnable()
+    public void Initial()
     {
         _lightningPool = new ObjectPool<Lightning>
             (
@@ -29,6 +27,14 @@ public class LightningBuilder : MonoBehaviour
         _extractor.Extracted += Realize;
         _extractor.PutOuted += Realize;
         _extractor.EndCellDifined += Realize;
+    }
+
+    private void OnDisable()
+    {
+        _extractor.CellAdded -= GiveDirection;
+        _extractor.Extracted -= Realize;
+        _extractor.PutOuted -= Realize;
+        _extractor.EndCellDifined -= Realize;
     }
 
     private void GiveDirection(Cell cell)
@@ -68,9 +74,4 @@ public class LightningBuilder : MonoBehaviour
 
         _points.Remove(cell.transform.position);
     }
-
-
-
-
-
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +10,9 @@ public class Wrapper : MonoBehaviour
 
     public Action<int> Counted;
 
-    private void OnEnable()
+    public void Initial()
     {
         _cells = new List<Cell>();
-
         _extractor.CellAdded += AddCell;
         _extractor.EndCellDifined += RemoveCell;
         _extractor.Extracted += RemoveCell;
@@ -59,7 +57,6 @@ public class Wrapper : MonoBehaviour
             {
                 value = value * 2;
             }
-
         }
 
         Counted?.Invoke(value);
