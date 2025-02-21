@@ -6,7 +6,7 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] Extractor _extractor;
 
-    private int _score = 0;
+    public int Score {  get; private set; }
 
     public Action<int> ScoreChanged;
 
@@ -24,9 +24,9 @@ public class ScoreCounter : MonoBehaviour
     {
         foreach (Cell cell in cells) 
         {
-            _score += cell.Gift.Value;
+            Score += cell.Gift.Value;
         }
 
-        ScoreChanged?.Invoke(_score);
+        ScoreChanged?.Invoke(Score);
     }
 }

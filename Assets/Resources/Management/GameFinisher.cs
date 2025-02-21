@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameFinisher : MonoBehaviour
 {
     [SerializeField] CellsAnalyser _cellsAnalyser;
+    [SerializeField] GameObject _gameOverBoard;
 
     public void Initial()
     {
@@ -18,6 +17,6 @@ public class GameFinisher : MonoBehaviour
 
     private void EndTheGame()
     {
-        Debug.Log("Game Over");
+        _gameOverBoard.SetActive(true);
     }
 }

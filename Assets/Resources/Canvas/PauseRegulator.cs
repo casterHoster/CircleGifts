@@ -11,6 +11,10 @@ public class PauseRegulator : MonoBehaviour
     public Action Paused;
     public Action Resumed;
 
+    private void Awake()
+    {
+        _pause.SetActive(false);
+    }
 
     public void Resume()
     {

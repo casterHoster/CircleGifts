@@ -7,11 +7,11 @@ public class ScoreViewer : MonoBehaviour
     [SerializeField] ScoreCounter _scoreCounter;
 
     private TextMeshProUGUI _textMeshProUGUI;
-    private int _scoreView;
 
     private void OnEnable()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        ChangeScorView(_scoreCounter.Score);
         _scoreCounter.ScoreChanged += ChangeScorView;
     }
 
