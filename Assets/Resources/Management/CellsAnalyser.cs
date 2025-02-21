@@ -6,7 +6,7 @@ using UnityEngine;
 public class CellsAnalyser : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
-    [SerializeField] private FieldOperator _fieldOperator;
+    [SerializeField] private FieldUpdater _fieldOperator;
     [SerializeField] private float _detectionDistance = 1;
 
     private WaitForSeconds _analyseDalay = new WaitForSeconds(2f);
