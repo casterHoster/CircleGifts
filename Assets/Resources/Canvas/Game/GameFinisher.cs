@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFinisher : MonoBehaviour
 {
@@ -8,6 +9,16 @@ public class GameFinisher : MonoBehaviour
     public void Initial()
     {
         _cellsAnalyser.MovedInpossible += EndTheGame;
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnDisable()

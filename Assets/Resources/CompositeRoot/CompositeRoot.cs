@@ -16,6 +16,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private ScoreCounter _scoreCounter;
     [SerializeField] private Wrapper _wrapper;
     [SerializeField] private CellsColliderToggle _cellsColliderToggle;
+    [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
 
     private void Start()
     {
@@ -33,5 +34,6 @@ public class CompositeRoot : MonoBehaviour
         _moneyParticlePlayer.Initial();
         _scoreCounter.Initial();
         _wrapper.Initial();
+        _backgroundSoundsRegulator.Initial();
     }
 }

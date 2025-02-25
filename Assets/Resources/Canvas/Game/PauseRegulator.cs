@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseRegulator : MonoBehaviour
 {
     [SerializeField] GameObject _pause;
+    [SerializeField] GameObject _settings;
 
     public Action Paused;
     public Action Resumed;
@@ -23,7 +22,7 @@ public class PauseRegulator : MonoBehaviour
         Resumed?.Invoke();
     }
     
-    public void Pause()
+    public void OpenPause()
     {
         Time.timeScale = 0f;
         _pause.SetActive(true);
@@ -33,6 +32,18 @@ public class PauseRegulator : MonoBehaviour
     public void LoadMainMenu()
     { 
         Time.timeScale = 1f;
-        //SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void OpenSettings()
+    {
+        _settings.SetActive(true);
+        _pause.SetActive(false);
+    }
+
+    public void CloseSettings()
+    {
+        _settings.SetActive(false);
+        _pause.SetActive(true);
     }
 }
