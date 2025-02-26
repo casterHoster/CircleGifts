@@ -17,6 +17,7 @@ public class Extractor : MonoBehaviour
     public Action<List<Cell>> Scored;
     public Action<Cell> PutOuted;
     public Action<Cell> CellAdded;
+    public Action CellRemoved;
 
     public void Initial()
     {
@@ -63,6 +64,7 @@ public class Extractor : MonoBehaviour
                 {
                     PutOuted?.Invoke(_chainedCells[_chainedCells.Count - 1]);
                     _chainedCells.RemoveAt(_chainedCells.Count - 1);
+                    CellRemoved?.Invoke();
                 }
                 else
                 {

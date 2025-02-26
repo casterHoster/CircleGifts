@@ -1225,6 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338650252}
   - component: {fileID: 338650253}
+  - component: {fileID: 338650254}
   m_Layer: 0
   m_Name: EffectsSounds
   m_TagString: Untagged
@@ -1343,6 +1344,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &338650254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338650251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1df6541d132b04469b7a0601289d978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wrapeEffect: {fileID: 8300000, guid: 11ab4d38fb1e9cf4bb9aed53aa4dda42, type: 3}
+  _extractEffect: {fileID: 8300000, guid: 64e99eb936d3e3241ad8969a2c8bab29, type: 3}
+  _extractor: {fileID: 280937291}
 --- !u!1 &453794922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1907,7 @@ MonoBehaviour:
   _wrapper: {fileID: 545465417}
   _cellsColliderToggle: {fileID: 1771221677}
   _backgroundSoundsRegulator: {fileID: 453794925}
+  _effectsSoundsRegulator: {fileID: 338650254}
 --- !u!4 &748316781
 Transform:
   m_ObjectHideFlags: 0

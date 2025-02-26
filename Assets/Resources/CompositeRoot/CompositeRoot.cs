@@ -17,6 +17,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private Wrapper _wrapper;
     [SerializeField] private CellsColliderToggle _cellsColliderToggle;
     [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
+    [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
 
     private void Start()
     {
@@ -35,5 +36,6 @@ public class CompositeRoot : MonoBehaviour
         _scoreCounter.Initial();
         _wrapper.Initial();
         _backgroundSoundsRegulator.Initial();
+        _effectsSoundsRegulator.Initial();
     }
 }
