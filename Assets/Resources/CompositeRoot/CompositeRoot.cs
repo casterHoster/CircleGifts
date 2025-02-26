@@ -18,6 +18,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private CellsColliderToggle _cellsColliderToggle;
     [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
     [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
+    [SerializeField] private VolumeSettings _volumeSettings;
 
     private void Start()
     {
@@ -37,5 +38,6 @@ public class CompositeRoot : MonoBehaviour
         _wrapper.Initial();
         _backgroundSoundsRegulator.Initial();
         _effectsSoundsRegulator.Initial();
+        _volumeSettings.Initial();
     }
 }
