@@ -23,7 +23,7 @@ public class GiftsPool : MonoBehaviour
         _extractor.Extracted += ReleaseFromCell;
         _fieldCreator.CellCreated += GenerateForCell;
         _giftFabric.Maximised += ReleaseFromCell;
-        _wrapperViewer.ValueChanged += RealeseFromCanvas;
+        _wrapperViewer.ValueChanged += RealeseFromUI;
     }
 
     private void OnDisable()
@@ -31,7 +31,7 @@ public class GiftsPool : MonoBehaviour
         _fieldCreator.CellCreated -= GenerateForCell;
         _extractor.Extracted -= ReleaseFromCell;
         _giftFabric.Maximised -= ReleaseFromCell;
-        _wrapperViewer.ValueChanged += RealeseFromCanvas;
+        _wrapperViewer.ValueChanged += RealeseFromUI;
     }
     private void ReleaseFromCell(Cell cell)
     {
@@ -39,7 +39,7 @@ public class GiftsPool : MonoBehaviour
         cell.Clear();
     }
 
-    private void RealeseFromCanvas(Gift gift)
+    private void RealeseFromUI(Gift gift)
     {
         _giftPool.Release(gift);
     }
@@ -49,6 +49,7 @@ public class GiftsPool : MonoBehaviour
         var gift = _giftPool.Get();
         cell.Fill(gift);
         _giftFabric.RandomCharacterize(gift);
+        gift.transform.localScale = cell.transform.localScale;
         gift.gameObject.SetActive(true);
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
