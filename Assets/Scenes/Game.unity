@@ -3179,8 +3179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 1717228393}
-  _rows: 2
-  _columns: 2
+  _rows: 5
+  _columns: 5
   _spaceCellsPercent: 0.2
   _cellPrefab: {fileID: 5433142274185783904, guid: 52bca857353bdd8468174db1200a0d38, type: 3}
   _screenSpacePercentWidth: 0.18
@@ -4801,11 +4801,11 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1358007453}
   - {fileID: 748316781}
+  - {fileID: 1288871466}
   - {fileID: 183545758}
   - {fileID: 1190074720}
   - {fileID: 280937292}
   - {fileID: 1774804531}
-  - {fileID: 1288871466}
   - {fileID: 750997361}
   - {fileID: 788213397}
   - {fileID: 114038045}
