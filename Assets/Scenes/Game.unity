@@ -3181,10 +3181,11 @@ MonoBehaviour:
   _board: {fileID: 1717228393}
   _rows: 5
   _columns: 5
-  _spaceCellsPercent: 0.2
+  _spaceCellsPercentWidth: 0.15
+  _spaceCellsPercentHeight: 0.23
   _cellPrefab: {fileID: 5433142274185783904, guid: 52bca857353bdd8468174db1200a0d38, type: 3}
   _screenSpacePercentWidth: 0.18
-  _screenSpacePercentHeight: 0.18
+  _screenSpacePercentHeight: 0.1
 --- !u!4 &1288871466
 Transform:
   m_ObjectHideFlags: 0
