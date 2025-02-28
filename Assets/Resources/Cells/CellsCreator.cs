@@ -7,7 +7,9 @@ public class CellsCreator : MonoBehaviour
     [SerializeField] private Board _board;
     [SerializeField] private int _rows = 5;
     [SerializeField] private int _columns = 5;
-    [SerializeField] private float _spaceCellsPercent;
+    //[SerializeField] private float _spaceCellsPercent;
+    [SerializeField] private float _spaceCellsPercentWidth;
+    [SerializeField] private float _spaceCellsPercentHeight;
     [SerializeField] private Cell _cellPrefab;
     [SerializeField] private float _screenSpacePercentWidth;
     [SerializeField] private float _screenSpacePercentHeight;
@@ -15,7 +17,9 @@ public class CellsCreator : MonoBehaviour
     private List<Vector2> _cellPositions;
     private float _screenWidth;
     private float _screenHeight;
-    private float _cellSpace;
+    //private float _cellSpace;
+    private float _cellSpaceWidth;
+    private float _cellSpaceHeight;
     private float _screenSpaceWidth;
     private float _screenSpaceHeight;
     private float _baseScreenWidth = 1280f;
@@ -29,7 +33,9 @@ public class CellsCreator : MonoBehaviour
     {
         _screenWidth = Screen.width;
         _screenHeight = Screen.height;
-        _cellSpace = _screenWidth * _spaceCellsPercent;
+        //_cellSpace = _screenWidth * _spaceCellsPercent;
+        _cellSpaceWidth = _screenWidth * _spaceCellsPercentWidth;
+        _cellSpaceHeight = _screenHeight * _spaceCellsPercentHeight;
         _screenSpaceWidth = _screenWidth * _screenSpacePercentWidth;
         _screenSpaceHeight = _screenHeight * _screenSpacePercentHeight;
         CalculateCellSize();
@@ -42,8 +48,8 @@ public class CellsCreator : MonoBehaviour
 
     private Vector2 GetPositionOnBoard(int coordinateX, int coordinateY)
     {
-        return new Vector2((-_screenWidth / 2 + _screenSpaceWidth + _cellSpace * coordinateX),
-            _screenHeight / 2 - _screenSpaceHeight - _cellSpace * coordinateY);
+        return new Vector2((-_screenWidth / 2 + _screenSpaceWidth + _cellSpaceWidth * coordinateX),
+            _screenHeight / 2 - _screenSpaceHeight - _cellSpaceHeight * coordinateY);
     }
 
     private void FormPositions()
@@ -71,6 +77,8 @@ public class CellsCreator : MonoBehaviour
 
     private void CalculateCellSize()
     {
-        _cellScale = Mathf.Min(_screenWidth / _baseScreenWidth, _screenHeight / _baseScreenHeight);
+        _cellScale = Mathf.Min(_screenWidth / _baseScreenWidth);
+
+        //_cellScale = Mathf.Min(_screenWidth / _baseScreenWidth, _screenHeight / _baseScreenHeight);
     }
 }
