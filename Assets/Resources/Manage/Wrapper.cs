@@ -8,7 +8,7 @@ public class Wrapper : MonoBehaviour
 
     private List<Cell> _cells;
 
-    public Action<int> Counted;
+    public Action<int, Cell> Counted;
 
     public void Initial()
     {
@@ -30,22 +30,22 @@ public class Wrapper : MonoBehaviour
     private void AddCell(Cell cell)
     {
         _cells.Add(cell);
-        CountNewWrapValue();
+        CountNewWrapValue(cell);
     }
 
     private void RemoveCell(Cell cell)
     {
         _cells.Remove(cell);
-        CountNewWrapValue();
+        CountNewWrapValue(cell);
     }
 
     private void RemoveCell(Cell cell, int count)
     {
         _cells.Remove(cell);
-        CountNewWrapValue();
+        CountNewWrapValue(cell);
     }
 
-    private void CountNewWrapValue()
+    private void CountNewWrapValue(Cell cell)
     {
         int value = 0;
 
@@ -59,6 +59,6 @@ public class Wrapper : MonoBehaviour
             }
         }
 
-        Counted?.Invoke(value);
+        Counted?.Invoke(value, cell);
     }
 }

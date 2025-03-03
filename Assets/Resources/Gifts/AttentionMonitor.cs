@@ -3,25 +3,31 @@ using UnityEngine;
 
 public class AttentionMonitor : MonoBehaviour
 {
+    private Cell _cell;
+
     public event Action<Cell> IsHovered;
     public event Action<Cell> IsUnhovered;
     public event Action<Cell> IsPressed;
     public event Action IsRealized;
 
+    private void Awake()
+    {
+        _cell = GetComponent<Cell>();
+    }
 
     private void OnMouseEnter()
     {
-        IsHovered?.Invoke(gameObject.GetComponent<Cell>());
+        IsHovered?.Invoke(_cell);
     }
 
     private void OnMouseExit()
     {
-        IsUnhovered?.Invoke(gameObject.GetComponent<Cell>());
+        IsUnhovered?.Invoke(_cell);
     }
 
     private void OnMouseDrag()
     {
-        IsPressed?.Invoke(gameObject.GetComponent<Cell>());
+        IsPressed?.Invoke(_cell);
     }
 
     private void OnMouseUp()

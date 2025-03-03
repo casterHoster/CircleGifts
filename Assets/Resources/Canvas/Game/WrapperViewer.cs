@@ -16,7 +16,7 @@ public class WrapperViewer : MonoBehaviour
         _wrapper.Counted += SetUpGift;
     }
 
-    private void SetUpGift(int value)
+    private void SetUpGift(int value, Cell cell)
     {
         if (value == 0 && _isSetGift)
         {
@@ -27,12 +27,12 @@ public class WrapperViewer : MonoBehaviour
         else if (_gift != null)
         {
             ValueChanged?.Invoke(_gift);
-            _gift = _giftsPool.GenerateForCanvas(value, transform);
+            _gift = _giftsPool.GenerateForCanvas(value, transform, cell);
             _isSetGift = true;
         }
         else
         {
-            _gift = _giftsPool.GenerateForCanvas(value, transform);
+            _gift = _giftsPool.GenerateForCanvas(value, transform, cell);
             _isSetGift = true;
         }
     }

@@ -56,10 +56,11 @@ public class GiftsPool : MonoBehaviour
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
     }
 
-    public Gift GenerateForCanvas(int value, Transform transform)
+    public Gift GenerateForCanvas(int value, Transform transform, Cell cell)
     {
         var gift = _giftPool.Get();
         _giftFabric.TargetingCharacterize(gift, value);
+        gift.transform.localScale = cell.transform.localScale / _collerationScalingCell;
         gift.gameObject.SetActive(true);
         gift.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
         return gift;
