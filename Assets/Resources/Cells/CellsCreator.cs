@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class CellsCreator : MonoBehaviour
 {
+    [SerializeField] private Cell _cellPrefab;
     [SerializeField] private Board _board;
     [SerializeField] private int _rows = 5;
     [SerializeField] private int _columns = 5;
-    //[SerializeField] private float _spaceCellsPercent;
-    [SerializeField] private float _spaceCellsPercentWidth;
-    [SerializeField] private float _spaceCellsPercentHeight;
-    [SerializeField] private Cell _cellPrefab;
-    [SerializeField] private float _screenSpacePercentWidth;
-    [SerializeField] private float _screenSpacePercentHeight;
 
     private List<Vector2> _cellPositions;
     private float _screenWidth;
     private float _screenHeight;
-    //private float _cellSpace;
     private float _cellSpaceWidth;
     private float _cellSpaceHeight;
-    private float _screenSpaceWidth;
-    private float _screenSpaceHeight;
-    private float _baseScreenWidth = 1280f;
-    private float _baseScreenHeight = 720;
-    private float _cellScale;
-    private Vector3 _baseCellSize;
+    private float _cellScaling;
+    private Vector3 _prefabCellSize;
+    private float _countEmptySpaceInCells = 2;
 
     public Action<Cell> CellCreated;
 
@@ -33,14 +24,10 @@ public class CellsCreator : MonoBehaviour
     {
         _screenWidth = Screen.width;
         _screenHeight = Screen.height;
-        //_cellSpace = _screenWidth * _spaceCellsPercent;
-        _cellSpaceWidth = _screenWidth * _spaceCellsPercentWidth;
-        _cellSpaceHeight = _screenHeight * _spaceCellsPercentHeight;
-        _screenSpaceWidth = _screenWidth * _screenSpacePercentWidth;
-        _screenSpaceHeight = _screenHeight * _screenSpacePercentHeight;
-        CalculateCellSize();
-        _baseCellSize = _cellPrefab.transform.localScale;
-
+        CalculateCellScaling();
+        _prefabCellSize = _cellPrefab.transform.localScale;
+        _cellSpaceWidth = _cellScaling * _prefabCellSize.x * _countEmptySpaceInCells;
+        _cellSpaceHeight = _cellScaling * _prefabCellSize.y * _countEmptySpaceInCells;
         _cellPositions = new List<Vector2>();
         FormPositions();
         GenerateCells();
@@ -48,8 +35,12 @@ public class CellsCreator : MonoBehaviour
 
     private Vector2 GetPositionOnBoard(int coordinateX, int coordinateY)
     {
-        return new Vector2((-_screenWidth / 2 + _screenSpaceWidth + _cellSpaceWidth * coordinateX),
-            _screenHeight / 2 - _screenSpaceHeight - _cellSpaceHeight * coordinateY);
+        float halfWidth = (_columns - 1) * _cellSpaceWidth / 2f;
+        float halfHeight = (_rows - 1) * _cellSpaceHeight / 2f;
+        float positionX = coordinateX * _cellSpaceWidth - halfWidth;
+        float positionY = -coordinateY * _cellSpaceHeight + halfHeight;
+
+        return new Vector2(positionX, positionY);
     }
 
     private void FormPositions()
@@ -68,17 +59,24 @@ public class CellsCreator : MonoBehaviour
         for (int i = 0; i < _cellPositions.Count; i++)
         {
             Cell cell = Instantiate(_cellPrefab, _board.RectTransform);
-            cell.transform.localScale = new Vector3(_cellScale * _baseCellSize.x, _cellScale * _baseCellSize.y, _cellScale * _baseCellSize.z);
+            cell.transform.localScale = new Vector3(_cellScaling * _prefabCellSize.x, _cellScaling * _prefabCellSize.y, _cellScaling * _prefabCellSize.z);
             RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = _cellPositions[i];
             CellCreated?.Invoke(cell);
         }
     }
 
-    private void CalculateCellSize()
+    private void CalculateCellScaling()
     {
-        _cellScale = Mathf.Min(_screenWidth / _baseScreenWidth);
+        float screenAspectRatio = _screenWidth / _screenHeight;
 
-        //_cellScale = Mathf.Min(_screenWidth / _baseScreenWidth, _screenHeight / _baseScreenHeight);
+        if (screenAspectRatio > 1)
+        {
+            _cellScaling = _screenHeight / _screenWidth;
+        }
+        else
+        {
+            _cellScaling = _screenWidth / _screenHeight;
+        }
     }
 }

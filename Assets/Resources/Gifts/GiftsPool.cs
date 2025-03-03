@@ -10,6 +10,7 @@ public class GiftsPool : MonoBehaviour
     [SerializeField] private WrapperViewer _wrapperViewer;
 
     private ObjectPool<Gift> _giftPool;
+    private float _collerationScalingCell = 4;
 
     public void Initial()
     {
@@ -49,7 +50,7 @@ public class GiftsPool : MonoBehaviour
         var gift = _giftPool.Get();
         cell.Fill(gift);
         _giftFabric.RandomCharacterize(gift);
-        gift.transform.localScale = cell.transform.localScale / 4;
+        gift.transform.localScale = cell.transform.localScale / _collerationScalingCell;
         gift.gameObject.SetActive(true);
         gift.gameObject.transform.position =
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
