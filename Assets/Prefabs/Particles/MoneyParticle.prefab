@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4381777688988899459}
   - component: {fileID: 5112788695685416516}
   - component: {fileID: 2657267156260026425}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MoneyParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4802,7 +4802,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.05
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
