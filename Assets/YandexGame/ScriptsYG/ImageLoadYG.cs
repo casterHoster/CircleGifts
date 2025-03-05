@@ -12,7 +12,7 @@ namespace YG
         public RawImage rawImage;
         public Image spriteImage;
         public string urlImage;
-        public UnityEngine.GameObject loadAnimObj;
+        public GameObject loadAnimObj;
         [Tooltip("Вы можете выключить запись лога в консоль.")]
         [SerializeField] bool debug;
 

@@ -35,7 +35,7 @@ namespace YG.Insides
 
         private void DrawScreen(Color color)
         {
-            UnityEngine.GameObject obj = gameObject;
+            GameObject obj = gameObject;
             Canvas canvas = obj.AddComponent<Canvas>();
             canvas.sortingOrder = 32767;
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;

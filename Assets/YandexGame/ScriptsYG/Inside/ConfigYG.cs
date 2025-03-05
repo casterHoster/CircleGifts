@@ -10,7 +10,7 @@ namespace YG.Insides
 
         public static InfoYG GetInfoYG()
         {
-            UnityEngine.GameObject ygPrefab = (UnityEngine.GameObject)AssetDatabase.LoadAssetAtPath(patchYGPrefab, typeof(UnityEngine.GameObject));
+            GameObject ygPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(patchYGPrefab, typeof(GameObject));
             if (ygPrefab == null)
             {
                 Debug.LogError($"Префаб YandexGame не был найден по пути: {patchYGPrefab}");

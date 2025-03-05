@@ -219,7 +219,7 @@ namespace YG
 #if UNITY_EDITOR
         private void FullAdInEditor()
         {
-            UnityEngine.GameObject obj = new UnityEngine.GameObject { name = "TestFullAd" };
+            GameObject obj = new GameObject { name = "TestFullAd" };
             DontDestroyOnLoad(obj);
             Insides.CallingAnEvent call = obj.AddComponent(typeof(Insides.CallingAnEvent)) as Insides.CallingAnEvent;
             call.StartCoroutine(call.CallingAd(infoYG.durationOfAdSimulation));
@@ -251,7 +251,7 @@ namespace YG
 #if UNITY_EDITOR
         private void AdRewardInEditor(int id)
         {
-            UnityEngine.GameObject obj = new UnityEngine.GameObject { name = "TestVideoAd" };
+            GameObject obj = new GameObject { name = "TestVideoAd" };
             DontDestroyOnLoad(obj);
             Insides.CallingAnEvent call = obj.AddComponent(typeof(Insides.CallingAnEvent)) as Insides.CallingAnEvent;
             call.StartCoroutine(call.CallingAd(infoYG.durationOfAdSimulation, id));
