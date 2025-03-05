@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 144915279}
   - component: {fileID: 144915280}
   - component: {fileID: 144915281}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WrapViewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,14 +462,14 @@ RectTransform:
   m_GameObject: {fileID: 144915278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.01}
-  m_LocalScale: {x: 77.94835, y: 77.94835, z: 77.94835}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1358007453}
+  m_Father: {fileID: 242728165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 45.799927, y: -83.70001}
+  m_AnchoredPosition: {x: 40, y: -80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144915280
@@ -1013,6 +1013,8 @@ GameObject:
   - component: {fileID: 210628687}
   - component: {fileID: 210628686}
   - component: {fileID: 210628685}
+  - component: {fileID: 210628689}
+  - component: {fileID: 210628688}
   m_Layer: 0
   m_Name: CellsLighter
   m_TagString: Untagged
@@ -1085,21 +1087,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &210628687
-Transform:
+--- !u!224 &210628687
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210628684}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.081072584, y: 2.6700249, z: 19.741068}
+  m_LocalPosition: {x: 0, y: 0, z: 19.741068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.081072584, y: 2.6700249}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &210628688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210628684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &210628689
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210628684}
+  m_CullTransparentMesh: 1
 --- !u!1 &227413135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1307,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1717228392}
+  - {fileID: 144915279}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3530,7 +3575,6 @@ RectTransform:
   - {fileID: 2131850082}
   - {fileID: 1007501690}
   - {fileID: 2099279985}
-  - {fileID: 144915279}
   - {fileID: 585322541}
   - {fileID: 1155208623}
   m_Father: {fileID: 0}
@@ -4545,8 +4589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -30}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 161.03012, y: -30}
+  m_SizeDelta: {x: 202.06, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099279986
 MonoBehaviour:
@@ -4644,7 +4688,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 63.364864, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.52861017, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4799,7 +4843,6 @@ SceneRoots:
   - {fileID: 114038045}
   - {fileID: 227413138}
   - {fileID: 2121152372}
-  - {fileID: 210628687}
   - {fileID: 1879179461}
   - {fileID: 484470570}
   - {fileID: 545465418}
@@ -4808,3 +4851,4 @@ SceneRoots:
   - {fileID: 1636838557}
   - {fileID: 1827814281}
   - {fileID: 1429625425}
+  - {fileID: 210628687}

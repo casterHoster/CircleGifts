@@ -8,11 +8,16 @@ public class WrapperViewer : MonoBehaviour
 
     private Gift _gift;
     private bool _isSetGift;
+    private RectTransform _rectTransform;
+
 
     public Action<Gift> ValueChanged;
 
     private void OnEnable()
     {
+        Scaler scaler = new Scaler();
+        _rectTransform = GetComponent<RectTransform>();
+        _rectTransform.localScale = new Vector3(_rectTransform.localScale.x * scaler.Scaling, _rectTransform.localScale.y * scaler.Scaling);
         _wrapper.Counted += SetUpGift;
     }
 

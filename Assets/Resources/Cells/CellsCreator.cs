@@ -10,8 +10,6 @@ public class CellsCreator : MonoBehaviour
     [SerializeField] private int _columns = 5;
 
     private List<Vector2> _cellPositions;
-    private float _screenWidth;
-    private float _screenHeight;
     private float _cellSpaceWidth;
     private float _cellSpaceHeight;
     private float _cellScaling;
@@ -22,9 +20,8 @@ public class CellsCreator : MonoBehaviour
 
     public void Initial()
     {
-        _screenWidth = Screen.width;
-        _screenHeight = Screen.height;
-        CalculateCellScaling();
+        Scaler scaler = new Scaler();
+        _cellScaling = scaler.Scaling;
         _prefabCellSize = _cellPrefab.transform.localScale;
         _cellSpaceWidth = _cellScaling * _prefabCellSize.x * _countEmptySpaceInCells;
         _cellSpaceHeight = _cellScaling * _prefabCellSize.y * _countEmptySpaceInCells;
@@ -63,20 +60,6 @@ public class CellsCreator : MonoBehaviour
             RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = _cellPositions[i];
             CellCreated?.Invoke(cell);
-        }
-    }
-
-    private void CalculateCellScaling()
-    {
-        float screenAspectRatio = _screenWidth / _screenHeight;
-
-        if (screenAspectRatio > 1)
-        {
-            _cellScaling = _screenHeight / _screenWidth;
-        }
-        else
-        {
-            _cellScaling = _screenWidth / _screenHeight;
         }
     }
 }

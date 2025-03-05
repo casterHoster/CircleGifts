@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Image))]
 public class CellsLighter : MonoBehaviour
 {
     [SerializeField] private Extractor _extractor;
@@ -23,15 +24,15 @@ public class CellsLighter : MonoBehaviour
 
     private void EnableSprite(Cell cell)
     {
-        cell.GetComponent<SpriteRenderer>().enabled = true;
+        cell.GetComponent<Image>().enabled = true;
     }
 
     private void DisableSprite(Cell cell)
     {
-        cell.GetComponent<SpriteRenderer>().enabled = false;
+        cell.GetComponent<Image>().enabled = false;
     }
     private void DisableSprite(Cell cell, int count)
     {
-        cell.GetComponent<SpriteRenderer>().enabled = false;
+        cell.GetComponent<Image>().enabled = false;
     }
 }

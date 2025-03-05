@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FieldUpdater : MonoBehaviour
@@ -12,7 +11,7 @@ public class FieldUpdater : MonoBehaviour
     [SerializeField] private float _generateDelay;
     [SerializeField] private float _detectionDistance = 1;
 
-    private float threshold = 0.1f;
+    private float _threshold = 0.1f;
     private Queue<Cell> _clearCells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
@@ -120,7 +119,7 @@ public class FieldUpdater : MonoBehaviour
         Vector3 finishPosittion = cell.transform.position;
         Vector3 targetPosition = new Vector3(targetPosX, targetPosY, targetPosZ);
 
-        while (Vector3.Distance(gift.transform.position, finishPosittion) > threshold)
+        while (Vector3.Distance(gift.transform.position, finishPosittion) > _threshold)
         {
             gift.transform.position = Vector3.MoveTowards(gift.transform.position, targetPosition, _moveSpeed * Time.deltaTime);
             yield return null;
