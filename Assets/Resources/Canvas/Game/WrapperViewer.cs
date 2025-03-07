@@ -10,7 +10,6 @@ public class WrapperViewer : MonoBehaviour
     private bool _isSetGift;
     private RectTransform _rectTransform;
 
-
     public Action<Gift> ValueChanged;
 
     private void OnEnable()

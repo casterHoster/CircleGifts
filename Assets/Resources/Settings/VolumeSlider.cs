@@ -5,7 +5,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class VolumeSlider : MonoBehaviour
 {
-    [SerializeField] SoundType _soundType;
+    [SerializeField] private SoundType _soundType;
 
     private Slider _slider;
     private float _defalutValue = 0.5f;

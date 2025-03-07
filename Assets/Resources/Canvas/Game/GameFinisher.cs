@@ -11,6 +11,11 @@ public class GameFinisher : MonoBehaviour
         _cellsAnalyser.MovedInpossible += EndTheGame;
     }
 
+    private void OnDisable()
+    {
+        _cellsAnalyser.MovedInpossible -= EndTheGame;
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -19,11 +24,6 @@ public class GameFinisher : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    private void OnDisable()
-    {
-        _cellsAnalyser.MovedInpossible -= EndTheGame;
     }
 
     private void EndTheGame()

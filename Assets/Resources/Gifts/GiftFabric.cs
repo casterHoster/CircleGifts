@@ -28,6 +28,36 @@ public class GiftsFabric : MonoBehaviour
         _cellAnalyser.HightestValueFound -= AddCharacteristic;
     }
 
+    public void RandomCharacterize(Gift gift)
+    {
+        GiftCharacteristics characteristic = GetRandomCharacteristic();
+
+        gift.SetValue(characteristic.Value);
+        gift.SetSprite(characteristic.Sprite);
+    }
+
+    public void TargetingCharacterize(Gift gift, int value)
+    {
+        GiftCharacteristics characteristic = SearchCharacteristic(value);
+
+        if (characteristic != null)
+        {
+            gift.SetValue(characteristic.Value);
+            gift.SetSprite(characteristic.Sprite);
+        }
+        else
+        {
+            gift.SetSprite(_defaultSprite);
+        }
+    }
+
+    public Gift InstantiateRandomGift(RectTransform boardTransform)
+    {
+        var gift = Instantiate(_giftPrefab, boardTransform);
+        RandomCharacterize(gift);
+        return gift;
+    }
+
     private void InitStartedGiftChahcteristics()
     {
         _generatingCharacteristics = new List<GiftCharacteristics>();
@@ -80,37 +110,6 @@ public class GiftsFabric : MonoBehaviour
         {
             Maximised?.Invoke(cell);
         }
-    }
-
-    public void RandomCharacterize(Gift gift)
-    {
-        GiftCharacteristics characteristic = GetRandomCharacteristic();
-
-        gift.SetValue(characteristic.Value);
-        gift.SetSprite(characteristic.Sprite);
-    }
-
-    public void TargetingCharacterize(Gift gift, int value)
-    {
-        GiftCharacteristics characteristic = SearchCharacteristic(value);
-
-        if (characteristic != null)
-        {
-            gift.SetValue(characteristic.Value);
-            gift.SetSprite(characteristic.Sprite);
-        }
-        else
-        {
-            gift.SetSprite(_defaultSprite);
-        }
-    }
-
-
-    public Gift InstantiateRandomGift(RectTransform boardTransform)
-    {
-        var gift = Instantiate(_giftPrefab, boardTransform);
-        RandomCharacterize(gift);
-        return gift;
     }
 
     private GiftCharacteristics SearchCharacteristic(int value)

@@ -5,7 +5,7 @@ public class GiftsPool : MonoBehaviour
 {
     [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
-    [SerializeField] private CellsCreator _fieldCreator;
+    [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private WrapperViewer _wrapperViewer;
 
@@ -22,27 +22,17 @@ public class GiftsPool : MonoBehaviour
             );
 
         _extractor.Extracted += ReleaseFromCell;
-        _fieldCreator.CellCreated += GenerateForCell;
+        _cellsCreator.CellCreated += GenerateForCell;
         _giftFabric.Maximised += ReleaseFromCell;
         _wrapperViewer.ValueChanged += RealeseFromUI;
     }
 
     private void OnDisable()
     {
-        _fieldCreator.CellCreated -= GenerateForCell;
+        _cellsCreator.CellCreated -= GenerateForCell;
         _extractor.Extracted -= ReleaseFromCell;
         _giftFabric.Maximised -= ReleaseFromCell;
         _wrapperViewer.ValueChanged += RealeseFromUI;
-    }
-    private void ReleaseFromCell(Cell cell)
-    {
-        _giftPool.Release(cell.Gift);
-        cell.Clear();
-    }
-
-    private void RealeseFromUI(Gift gift)
-    {
-        _giftPool.Release(gift);
     }
 
     public void GenerateForCell(Cell cell)
@@ -64,5 +54,16 @@ public class GiftsPool : MonoBehaviour
         gift.gameObject.SetActive(true);
         gift.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
         return gift;
+    }
+
+    private void ReleaseFromCell(Cell cell)
+    {
+        _giftPool.Release(cell.Gift);
+        cell.Clear();
+    }
+
+    private void RealeseFromUI(Gift gift)
+    {
+        _giftPool.Release(gift);
     }
 }
