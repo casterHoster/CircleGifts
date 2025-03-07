@@ -17,6 +17,7 @@ public class CellsCreator : MonoBehaviour
     private float _countEmptySpaceInCells = 2;
 
     public Action<Cell> CellCreated;
+    public Action AllCellsCreated;
 
     public void Initial()
     {
@@ -61,5 +62,7 @@ public class CellsCreator : MonoBehaviour
             rectTransform.anchoredPosition = _cellPositions[i];
             CellCreated?.Invoke(cell);
         }
+
+        AllCellsCreated?.Invoke();
     }
 }

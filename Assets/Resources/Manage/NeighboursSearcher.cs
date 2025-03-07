@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class NeighboursSearcher : MonoBehaviour
 {
-    [SerializeField] private CellsCreator _cellsCreator;
-    [SerializeField] private float _detectionDistance = 1;
+    [SerializeField] protected CellsCreator _cellsCreator;
+    [SerializeField] protected float _detectionDistance = 1;
 
-    private List<Cell> _neighboursCells;
+    protected List<Cell> _neighboursCells;
 
     public List<Cell> NeighboursCells { get { return new List<Cell>(_neighboursCells); } }
 
-    public void Initial()
+    public virtual void Initial()
     {
         _neighboursCells = new List<Cell>();
     }
 
-    private void FindNeighbourCells(Cell cell)
+    public void FindNeighbourCells(Cell cell)
     {
         var collider2d = cell.GetComponent<BoxCollider2D>();
         collider2d.enabled = false;
@@ -24,10 +24,5 @@ public class NeighboursSearcher : MonoBehaviour
         _neighboursCells = cellSearcher.Search(cell, _detectionDistance);
 
         collider2d.enabled = true;
-    }
-
-    private void ClearNeighbourList(Cell cell)
-    {
-        _neighboursCells.Clear();
     }
 }

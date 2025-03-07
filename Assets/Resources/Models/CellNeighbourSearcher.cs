@@ -8,22 +8,22 @@ public class CellNeighbourSearcher
         List<RaycastHit2D> raycastHits = new List<RaycastHit2D>();
         List<Cell> neighboursCells = new List<Cell>();
 
-        RaycastHit2D hitUp = Physics2D.Raycast(cell.transform.position, Vector2.up, detectionDistance);
-        raycastHits.Add(hitUp);
-        RaycastHit2D hitDown = Physics2D.Raycast(cell.transform.position, Vector2.down, detectionDistance);
-        raycastHits.Add(hitDown);
-        RaycastHit2D hitLeft = Physics2D.Raycast(cell.transform.position, Vector2.left, detectionDistance);
-        raycastHits.Add(hitLeft);
         RaycastHit2D hitRight = Physics2D.Raycast(cell.transform.position, Vector2.right, detectionDistance);
         raycastHits.Add(hitRight);
-        RaycastHit2D hitUpRight = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.right, detectionDistance);
-        raycastHits.Add(hitUpRight);
-        RaycastHit2D hitUpLeft = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.left, detectionDistance);
-        raycastHits.Add(hitUpLeft);
-        RaycastHit2D hitDownLeft = Physics2D.Raycast(cell.transform.position, Vector2.down + Vector2.left, detectionDistance);
-        raycastHits.Add(hitDownLeft);
         RaycastHit2D hitDownRight = Physics2D.Raycast(cell.transform.position, Vector2.down + Vector2.right, detectionDistance);
         raycastHits.Add(hitDownRight);
+        RaycastHit2D hitDown = Physics2D.Raycast(cell.transform.position, Vector2.down, detectionDistance);
+        raycastHits.Add(hitDown);
+        RaycastHit2D hitDownLeft = Physics2D.Raycast(cell.transform.position, Vector2.down + Vector2.left, detectionDistance);
+        raycastHits.Add(hitDownLeft);
+        RaycastHit2D hitLeft = Physics2D.Raycast(cell.transform.position, Vector2.left, detectionDistance);
+        raycastHits.Add(hitLeft);
+        RaycastHit2D hitUpLeft = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.left, detectionDistance);
+        raycastHits.Add(hitUpLeft);
+        RaycastHit2D hitUp = Physics2D.Raycast(cell.transform.position, Vector2.up, detectionDistance);
+        raycastHits.Add(hitUp);
+        RaycastHit2D hitUpRight = Physics2D.Raycast(cell.transform.position, Vector2.up + Vector2.right, detectionDistance);
+        raycastHits.Add(hitUpRight);
 
         foreach (var hit in raycastHits)
         {

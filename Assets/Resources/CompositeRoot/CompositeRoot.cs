@@ -24,8 +24,8 @@ public class CompositeRoot : MonoBehaviour
     {
         _extractor.Initial();
         _giftsFabric.Initial();
-        _neighboursSearcher.Initial();
         _giftsPool.Initial();
+        _neighboursSearcher.Initial();
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsColliderToggle.Initial();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PanelScaler : MonoBehaviour
+public class ObjectScreenScaler : MonoBehaviour
 {
     private RectTransform _rectTransform;
 
