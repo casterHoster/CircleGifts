@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathPointer : MonoBehaviour
 {
     [SerializeField] GameObject _pointer;
-    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private CellStorage _cellStorage;
     [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private float _speed;
 
@@ -13,13 +13,7 @@ public class PathPointer : MonoBehaviour
 
     private void OnEnable()
     {
-        _cellsCreator.CellCreated += AddCellList;
-        _cellsCreator.AllCellsCreated += StartPointing;
-    }
 
-    private void AddCellList(Cell cell)
-    {
-        _cells.Add(cell);
     }
 
     private void StartPointing()

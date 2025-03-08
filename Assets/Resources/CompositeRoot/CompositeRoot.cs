@@ -19,6 +19,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
     [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
     [SerializeField] private VolumeSettings _volumeSettings;
+    [SerializeField] private CellStorage _cellStorage;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class CompositeRoot : MonoBehaviour
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsColliderToggle.Initial();
+        _cellStorage.Initial();
         _cellsCreator.Initial();
         _lightningBuilder.Initial();
         _gameFinisher.Initial();

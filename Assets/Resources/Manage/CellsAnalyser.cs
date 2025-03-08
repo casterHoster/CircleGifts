@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CellsAnalyser : MonoBehaviour
 {
-    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private CellStorage _cellStorage;
     [SerializeField] private FieldUpdater _fieldOperator;
     [SerializeField] private float _detectionDistance = 1;
 
@@ -17,19 +17,19 @@ public class CellsAnalyser : MonoBehaviour
 
     public void Initial()
     {
-        _cellsCreator.CellCreated += AddCell;
+        _cellStorage.ListFormed += AssignCellsList;
         _fieldOperator.Reformed += RunPlayingAnalyse;
     }
 
     private void OnDisable()
     {
-        _cellsCreator.CellCreated -= AddCell;
+        _cellStorage.ListFormed += AssignCellsList;
         _fieldOperator.Reformed -= RunPlayingAnalyse;
     }
 
-    private void AddCell(Cell cell)
+    private void AssignCellsList(List<Cell> cells)
     {
-        _cells.Add(cell);
+        _cells = cells;
     }
 
     private IEnumerator IdentifyPossiblePlayingAfterDelay()

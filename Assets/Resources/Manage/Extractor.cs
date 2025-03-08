@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Extractor : MonoBehaviour
 {
-    [SerializeField] private CellsCreator _fieldCreator;
+    [SerializeField] private CellStorage _cellStorage;
     [SerializeField] private NeighboursSearcherForExtraction _searcher;
 
     private AttentionMonitor _attentionMonitor;
@@ -22,25 +22,28 @@ public class Extractor : MonoBehaviour
     public void Initial()
     {
         _chainedCells = new List<Cell>();
-        _fieldCreator.CellCreated += SignUpMonitor;
+        _cellStorage.ListFormed += SignUpMonitors;
     }
 
     private void OnDisable()
     {
-        _fieldCreator.CellCreated -= SignUpMonitor;
+        _cellStorage.ListFormed -= SignUpMonitors;
         _attentionMonitor.IsPressed -= AddPressed;
         _attentionMonitor.IsRealized -= ExtractCells;
         _attentionMonitor.IsUnhovered -= SaveNeighboursByUnvovering;
         _attentionMonitor.IsHovered -= TryAddHovered;
     }
 
-    private void SignUpMonitor(Cell cell)
+    private void SignUpMonitors(List<Cell> cells)
     {
-        _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
-        _attentionMonitor.IsPressed += AddPressed;
-        _attentionMonitor.IsRealized += ExtractCells;
-        _attentionMonitor.IsUnhovered += SaveNeighboursByUnvovering;
-        _attentionMonitor.IsHovered += TryAddHovered;
+        foreach (Cell cell in cells)
+        {
+            _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
+            _attentionMonitor.IsPressed += AddPressed;
+            _attentionMonitor.IsRealized += ExtractCells;
+            _attentionMonitor.IsUnhovered += SaveNeighboursByUnvovering;
+            _attentionMonitor.IsHovered += TryAddHovered;
+        }
     }
 
     private void AddPressed(Cell cell)

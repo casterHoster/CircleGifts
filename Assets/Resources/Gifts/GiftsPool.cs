@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -5,9 +6,10 @@ public class GiftsPool : MonoBehaviour
 {
     [SerializeField] private Board _board;
     [SerializeField] private GiftsFabric _giftFabric;
-    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private CellStorage _cellStorage;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private WrapperViewer _wrapperViewer;
+    [SerializeField] private FieldUpdater _fieldUpdater;
 
     private ObjectPool<Gift> _giftPool;
     private float _collerationScalingCell = 4;
@@ -22,20 +24,29 @@ public class GiftsPool : MonoBehaviour
             );
 
         _extractor.Extracted += ReleaseFromCell;
-        _cellsCreator.CellCreated += GenerateForCell;
+        _cellStorage.ListFormed += GenerateStartedGiftsForCells;
         _giftFabric.Maximised += ReleaseFromCell;
         _wrapperViewer.ValueChanged += RealeseFromUI;
+        _fieldUpdater.NeededCellUpdate += GenerateGift;
     }
 
     private void OnDisable()
     {
-        _cellsCreator.CellCreated -= GenerateForCell;
+        _cellStorage.ListFormed += GenerateStartedGiftsForCells;
         _extractor.Extracted -= ReleaseFromCell;
         _giftFabric.Maximised -= ReleaseFromCell;
         _wrapperViewer.ValueChanged += RealeseFromUI;
     }
 
-    public void GenerateForCell(Cell cell)
+    private void GenerateStartedGiftsForCells(List<Cell> cells)
+    {
+        foreach (Cell cell in cells)
+        {
+            GenerateGift(cell);
+        }
+    }
+
+    private void GenerateGift(Cell cell)
     {
         var gift = _giftPool.Get();
         cell.Fill(gift);

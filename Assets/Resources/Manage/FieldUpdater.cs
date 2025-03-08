@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FieldUpdater : MonoBehaviour
 {
-    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private CellStorage _cellStorage;
     [SerializeField] private GiftsPool _giftsPool;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _generateDelay;
@@ -16,18 +16,19 @@ public class FieldUpdater : MonoBehaviour
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
     public Action Reformed;
+    public Action<Cell> NeededCellUpdate;
     private Action<Cell> _cellClearedHandler;
 
     public void Initial()
     {
         _clearCells = new Queue<Cell>();
         StartCoroutine(CheckQueueCells());
-        _cellsCreator.CellCreated += SignUpClearing;
+        _cellStorage.ListFormed += SignUpClearing;
     }
 
     private void OnDisable()
     {
-        _cellsCreator.CellCreated -= SignUpClearing;
+        _cellStorage.ListFormed -= SignUpClearing;
 
         if (_cellClearedHandler != null)
         {
@@ -38,10 +39,13 @@ public class FieldUpdater : MonoBehaviour
         }
     }
 
-    private void SignUpClearing(Cell cell)
+    private void SignUpClearing(List<Cell> cells)
     {
-        _cellClearedHandler = AddCellQueue;
-        cell.Cleared += AddCellQueue;
+        foreach (var cell in cells)
+        {
+            _cellClearedHandler = AddCellQueue;
+            cell.Cleared += AddCellQueue;
+        }
     }
 
     private void AddCellQueue(Cell cell)
@@ -88,7 +92,7 @@ public class FieldUpdater : MonoBehaviour
         else
         {
             if (cell.Gift == null)
-                StartCoroutine(GenerateGiftWithDelay(cell));
+                StartCoroutine(UpdateCellsGiftWithDelay(cell));
             else
                 _clearCells.Enqueue(cell);
         }
@@ -99,11 +103,11 @@ public class FieldUpdater : MonoBehaviour
         }
     }
 
-    private IEnumerator GenerateGiftWithDelay(Cell cell)
+    private IEnumerator UpdateCellsGiftWithDelay(Cell cell)
     {
         yield return new WaitForSeconds(_generateDelay);
 
-        _giftsPool.GenerateForCell(cell);
+        NeededCellUpdate?.Invoke(cell);
         cell.Gift.transform.position =
             new Vector3(cell.Gift.gameObject.transform.position.x, cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
         StartCoroutine(MoveGifts(cell.Gift, cell));

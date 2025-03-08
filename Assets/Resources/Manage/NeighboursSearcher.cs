@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NeighboursSearcher : MonoBehaviour
 {
-    [SerializeField] protected CellsCreator _cellsCreator;
+    [SerializeField] protected CellStorage _cellStorage;
     [SerializeField] protected float _detectionDistance = 1;
 
     protected List<Cell> _neighboursCells;

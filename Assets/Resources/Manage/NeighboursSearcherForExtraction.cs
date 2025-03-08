@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 public class NeighboursSearcherForExtraction : NeighboursSearcher
 {
     private AttentionMonitor _attentionMonitor;
@@ -6,21 +8,24 @@ public class NeighboursSearcherForExtraction : NeighboursSearcher
     public override void Initial()
     {
         base.Initial();
-        _cellsCreator.CellCreated += SignUpMonitor;
+        _cellStorage.ListFormed += SignUpMonitors;
     }
 
     private void OnDisable()
     {
-        _cellsCreator.CellCreated -= SignUpMonitor;
+        _cellStorage.ListFormed += SignUpMonitors;
         _attentionMonitor.IsHovered -= FindNeighbourCells;
         _attentionMonitor.IsUnhovered -= ClearNeighbourList;
     }
 
-    private void SignUpMonitor(Cell cell)
+    private void SignUpMonitors(List<Cell> cells)
     {
-        _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
-        _attentionMonitor.IsHovered += FindNeighbourCells;
-        _attentionMonitor.IsUnhovered += ClearNeighbourList;
+        foreach (var cell in cells)
+        {
+            _attentionMonitor = cell.gameObject.GetComponent<AttentionMonitor>();
+            _attentionMonitor.IsHovered += FindNeighbourCells;
+            _attentionMonitor.IsUnhovered += ClearNeighbourList;
+        }
     }
 
     private void ClearNeighbourList(Cell cell)
