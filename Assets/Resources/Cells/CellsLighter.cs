@@ -5,9 +5,12 @@ using UnityEngine.UI;
 public class CellsLighter : MonoBehaviour
 {
     [SerializeField] private Extractor _extractor;
+    [SerializeField] private PathPointer _pathPointer;
 
     public void Initial()
     {
+        _pathPointer.CellReached += EnableSprite;
+        _pathPointer.CircleOvered += DisableSprite;
         _extractor.CellAdded += EnableSprite;
         _extractor.EndCellDifined += DisableSprite;
         _extractor.Extracted += DisableSprite;
@@ -16,6 +19,8 @@ public class CellsLighter : MonoBehaviour
 
     private void OnDisable()
     {
+        _pathPointer.CellReached -= EnableSprite;
+        _pathPointer.CircleOvered -= DisableSprite;
         _extractor.CellAdded -= EnableSprite;
         _extractor.EndCellDifined -= DisableSprite;
         _extractor.Extracted -= DisableSprite;

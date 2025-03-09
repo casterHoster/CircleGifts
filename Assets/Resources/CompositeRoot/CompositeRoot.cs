@@ -27,6 +27,7 @@ public class CompositeRoot : MonoBehaviour
         _giftsFabric.Initial();
         _neighboursSearcher.Initial();
         _pathPointer.Initial();
+        _lighterCells.Initial();
         _giftsPool.Initial();
         _operator.Initial();
         _cellsAnalyser.Initial();
@@ -34,7 +35,6 @@ public class CompositeRoot : MonoBehaviour
         _cellsCreator.Initial();
         _lightningBuilder.Initial();
         _gameFinisher.Initial();
-        _lighterCells.Initial();
         _moneyParticlePlayer.Initial();
         _scoreCounter.Initial();
         _wrapper.Initial();
