@@ -21,13 +21,11 @@ public class LongerChainSearcher
             chains.Add(MakeChain(cell));
         }
 
-        longestChain = chains[0];
-
-        for (int i = 1; i < longestChain.Count; i++)
+        foreach (var chain in chains)
         {
-            if (chains[i].Count > longestChain.Count)
+            if (chain.Count > longestChain.Count)
             {
-                longestChain = chains[i];
+                longestChain = chain;
             }
         }
 

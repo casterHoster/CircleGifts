@@ -14,7 +14,7 @@ public class PathPointer : MonoBehaviour
     private List<Cell> _chainCells;
     private float _threshold = 0.1f;
 
-    private void OnEnable()
+    public void Initial()
     {
         _cellsCreator.AllCellsCreated += GetListCells;
         _giftsGenerator.StartedGiftsGenerated += StartPointing;
@@ -29,6 +29,7 @@ public class PathPointer : MonoBehaviour
     {
         LongerChainSearcher longerChainSearcher = new LongerChainSearcher(_cells, _neighboursSearcher);
         _chainCells = longerChainSearcher.SearchLongestChain();
+        Debug.Log(_chainCells.Count);
 
         _pointer.transform.position = _chainCells[0].transform.position;
 
@@ -37,6 +38,7 @@ public class PathPointer : MonoBehaviour
 
     private IEnumerator MoveThroughCells(List<Cell> cells)
     {
+        while (enabled)
         foreach (Cell cell in cells)
         {
             float targetPosX = cell.transform.position.x;

@@ -4,7 +4,7 @@ public class CompositeRoot : MonoBehaviour
 {
     [SerializeField] private GiftsGenerator _giftsPool;
     [SerializeField] private GiftsFabric _giftsFabric;
-    [SerializeField] private NeighboursSearcherForExtraction _neighboursSearcher;
+    [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldUpdater _operator;
@@ -19,13 +19,15 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
     [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
     [SerializeField] private VolumeSettings _volumeSettings;
+    [SerializeField] private PathPointer _pathPointer;
 
     private void Start()
     {
         _extractor.Initial();
         _giftsFabric.Initial();
-        _giftsPool.Initial();
         _neighboursSearcher.Initial();
+        _pathPointer.Initial();
+        _giftsPool.Initial();
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsColliderToggle.Initial();

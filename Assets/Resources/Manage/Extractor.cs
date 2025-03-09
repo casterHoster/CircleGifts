@@ -5,7 +5,7 @@ using UnityEngine;
 public class Extractor : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
-    [SerializeField] private NeighboursSearcherForExtraction _searcher;
+    [SerializeField] private NeighboursSearcher _searcher;
 
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _chainedCells;
