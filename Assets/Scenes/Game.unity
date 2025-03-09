@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 183545758}
   - component: {fileID: 183545757}
   m_Layer: 0
-  m_Name: GiftPool
+  m_Name: GiftGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,12 +714,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 183545756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fdaea16d55adc4f934c72e8db62b0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e5996f314f1ae7242accf0cd04086834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 1717228393}
   _giftFabric: {fileID: 1190074719}
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _extractor: {fileID: 280937291}
   _wrapperViewer: {fileID: 144915280}
   _fieldUpdater: {fileID: 750997360}
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6138c311be5d59c4b86b77be1ea93e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _searcher: {fileID: 1774804530}
 --- !u!4 &280937292
 Transform:
@@ -1654,51 +1654,6 @@ MonoBehaviour:
   _wrapeEffect: {fileID: 8300000, guid: 11ab4d38fb1e9cf4bb9aed53aa4dda42, type: 3}
   _extractEffect: {fileID: 8300000, guid: 64e99eb936d3e3241ad8969a2c8bab29, type: 3}
   _extractor: {fileID: 280937291}
---- !u!1 &356125193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 356125195}
-  - component: {fileID: 356125194}
-  m_Layer: 0
-  m_Name: CellsStorage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &356125194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356125193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3513fe7ad9149843b0ddc12e30d835f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cellCreator: {fileID: 1288871465}
---- !u!4 &356125195
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356125193}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5894856, y: 15.5053, z: -0.6852309}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &453794922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2291,6 @@ MonoBehaviour:
   _backgroundSoundsRegulator: {fileID: 453794925}
   _effectsSoundsRegulator: {fileID: 338650254}
   _volumeSettings: {fileID: 1746892909}
-  _cellStorage: {fileID: 356125194}
 --- !u!4 &748316781
 Transform:
   m_ObjectHideFlags: 0
@@ -2381,7 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1300cf7a91cb9f429e238fc84ef0185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _giftsPool: {fileID: 183545757}
   _moveSpeed: 2
   _generateDelay: 0.5
@@ -2430,7 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090a7dc3c82fde54c85311533dedb2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _fieldOperator: {fileID: 750997360}
   _detectionDistance: 1.8
 --- !u!4 &788213397
@@ -3275,7 +3229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointer: {fileID: 485240959}
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
+  _giftsGenerator: {fileID: 183545757}
   _neighboursSearcher: {fileID: 1774804530}
   _speed: 3
 --- !u!4 &1249739454
@@ -3791,7 +3746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c765705ebaef2449ec5f4ee0e37494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _detectionDistance: 2
 --- !u!4 &1572398244
 Transform:
@@ -4083,7 +4038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e5bae8c1bb10e40bc08d8ff0a753d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _pauseRegulator: {fileID: 546067206}
   _trainRegulator: {fileID: 1429625424}
 --- !u!4 &1771221678
@@ -4130,7 +4085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbdd6152a84b64418de982dcdb58cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStorage: {fileID: 356125194}
+  _cellsCreator: {fileID: 1288871465}
   _detectionDistance: 2
 --- !u!4 &1774804531
 Transform:
@@ -4744,4 +4699,3 @@ SceneRoots:
   - {fileID: 1429625425}
   - {fileID: 210628687}
   - {fileID: 1249739454}
-  - {fileID: 356125195}

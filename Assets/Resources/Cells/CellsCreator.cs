@@ -9,6 +9,7 @@ public class CellsCreator : MonoBehaviour
     [SerializeField] private int _rows = 5;
     [SerializeField] private int _columns = 5;
 
+    private List<Cell> _generatedCells = new List<Cell>();
     private List<Vector2> _cellPositions;
     private float _cellSpaceWidth;
     private float _cellSpaceHeight;
@@ -16,8 +17,7 @@ public class CellsCreator : MonoBehaviour
     private Vector3 _prefabCellSize;
     private float _countEmptySpaceInCells = 2;
 
-    public Action<Cell> CellCreated;
-    public Action AllCellsCreated;
+    public Action<List<Cell>> AllCellsCreated;
 
     public void Initial()
     {
@@ -60,9 +60,9 @@ public class CellsCreator : MonoBehaviour
             cell.transform.localScale = new Vector3(_cellScaling * _prefabCellSize.x, _cellScaling * _prefabCellSize.y, _cellScaling * _prefabCellSize.z);
             RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
             rectTransform.anchoredPosition = _cellPositions[i];
-            CellCreated?.Invoke(cell);
+            _generatedCells.Add(cell);
         }
 
-        AllCellsCreated?.Invoke();
+        AllCellsCreated?.Invoke(_generatedCells);
     }
 }

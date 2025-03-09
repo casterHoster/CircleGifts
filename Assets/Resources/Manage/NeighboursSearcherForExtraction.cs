@@ -8,12 +8,12 @@ public class NeighboursSearcherForExtraction : NeighboursSearcher
     public override void Initial()
     {
         base.Initial();
-        _cellStorage.ListFormed += SignUpMonitors;
+        _cellsCreator.AllCellsCreated += SignUpMonitors;
     }
 
     private void OnDisable()
     {
-        _cellStorage.ListFormed += SignUpMonitors;
+        _cellsCreator.AllCellsCreated -= SignUpMonitors;
         _attentionMonitor.IsHovered -= FindNeighbourCells;
         _attentionMonitor.IsUnhovered -= ClearNeighbourList;
     }

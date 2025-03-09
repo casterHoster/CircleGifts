@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class FieldUpdater : MonoBehaviour
 {
-    [SerializeField] private CellStorage _cellStorage;
-    [SerializeField] private GiftsPool _giftsPool;
+    [SerializeField] private CellsCreator _cellsCreator;
+    [SerializeField] private GiftsGenerator _giftsPool;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _generateDelay;
     [SerializeField] private float _detectionDistance = 1;
@@ -23,12 +23,12 @@ public class FieldUpdater : MonoBehaviour
     {
         _clearCells = new Queue<Cell>();
         StartCoroutine(CheckQueueCells());
-        _cellStorage.ListFormed += SignUpClearing;
+        _cellsCreator.AllCellsCreated += SignUpClearing;
     }
 
     private void OnDisable()
     {
-        _cellStorage.ListFormed -= SignUpClearing;
+        _cellsCreator.AllCellsCreated -= SignUpClearing;
 
         if (_cellClearedHandler != null)
         {
@@ -129,6 +129,6 @@ public class FieldUpdater : MonoBehaviour
             yield return null;
         }
 
-        gift.transform.position = new Vector3(targetPosX, targetPosY, targetPosZ);
+        gift.transform.position = targetPosition;
     }
 }

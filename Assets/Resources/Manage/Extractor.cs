@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Extractor : MonoBehaviour
 {
-    [SerializeField] private CellStorage _cellStorage;
+    [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private NeighboursSearcherForExtraction _searcher;
 
     private AttentionMonitor _attentionMonitor;
@@ -22,12 +22,12 @@ public class Extractor : MonoBehaviour
     public void Initial()
     {
         _chainedCells = new List<Cell>();
-        _cellStorage.ListFormed += SignUpMonitors;
+        _cellsCreator.AllCellsCreated += SignUpMonitors;
     }
 
     private void OnDisable()
     {
-        _cellStorage.ListFormed -= SignUpMonitors;
+        _cellsCreator.AllCellsCreated -= SignUpMonitors;
         _attentionMonitor.IsPressed -= AddPressed;
         _attentionMonitor.IsRealized -= ExtractCells;
         _attentionMonitor.IsUnhovered -= SaveNeighboursByUnvovering;

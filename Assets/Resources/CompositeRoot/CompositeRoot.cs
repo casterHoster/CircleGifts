@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CompositeRoot : MonoBehaviour
 {
-    [SerializeField] private GiftsPool _giftsPool;
+    [SerializeField] private GiftsGenerator _giftsPool;
     [SerializeField] private GiftsFabric _giftsFabric;
     [SerializeField] private NeighboursSearcherForExtraction _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
@@ -19,7 +19,6 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private BackgroundSoundsRegulator _backgroundSoundsRegulator;
     [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
     [SerializeField] private VolumeSettings _volumeSettings;
-    [SerializeField] private CellStorage _cellStorage;
 
     private void Start()
     {
@@ -30,7 +29,6 @@ public class CompositeRoot : MonoBehaviour
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsColliderToggle.Initial();
-        _cellStorage.Initial();
         _cellsCreator.Initial();
         _lightningBuilder.Initial();
         _gameFinisher.Initial();

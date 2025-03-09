@@ -4,7 +4,7 @@ using UnityEngine;
 public class WrapperViewer : MonoBehaviour
 {
     [SerializeField] Wrapper _wrapper;
-    [SerializeField] GiftsPool _giftsPool;
+    [SerializeField] GiftsGenerator _giftsPool;
 
     private Gift _gift;
     private bool _isSetGift;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CellsColliderToggle : MonoBehaviour
 {
-    [SerializeField] private CellStorage _cellStorage;
+    [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private PauseRegulator _pauseRegulator;
     [SerializeField] private TrainRegulator _trainRegulator;
 
@@ -14,7 +14,7 @@ public class CellsColliderToggle : MonoBehaviour
     public void Initial()
     {
         _cells = new List<Cell>();
-        _cellStorage.ListFormed += AssignCellsList;
+        _cellsCreator.AllCellsCreated += AssignCellsList;
         _pauseRegulator.Paused += DisableCellsColliders;
         _pauseRegulator.Resumed += EnableCellsColliders;
         _trainRegulator.Opened += DisableCellsColliders;
@@ -23,7 +23,7 @@ public class CellsColliderToggle : MonoBehaviour
 
     private void OnDisable()
     {
-        _cellStorage.ListFormed -= AssignCellsList;
+        _cellsCreator.AllCellsCreated -= AssignCellsList;
         _pauseRegulator.Paused -= DisableCellsColliders;
         _pauseRegulator.Resumed -= EnableCellsColliders;
         _trainRegulator.Opened -= DisableCellsColliders;
