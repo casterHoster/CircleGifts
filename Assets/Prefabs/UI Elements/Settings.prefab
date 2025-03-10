@@ -680,6 +680,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7507732968182556217, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.34996974
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507732968182556217, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.9250183
+      objectReference: {fileID: 0}
     - target: {fileID: 7737179897657080867, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -734,6 +742,10 @@ PrefabInstance:
     - target: {fileID: 1104556004907718463, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
       propertyPath: m_Name
       value: BackgroundVolumeSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139289759756413366, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6424525039775432201, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
       propertyPath: m_Value
@@ -850,6 +862,14 @@ PrefabInstance:
     - target: {fileID: 6745039612576331995, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507732968182556217, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.34996974
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507732968182556217, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.9250183
       objectReference: {fileID: 0}
     - target: {fileID: 7737179897657080867, guid: 529f13e79a53d1740844c8ed536d983a, type: 3}
       propertyPath: m_AnchorMax.x
