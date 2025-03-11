@@ -11,11 +11,11 @@ public class ScoreViewer : MonoBehaviour
     private void OnEnable()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        ChangeScorView(_scoreCounter.Score);
-        _scoreCounter.ScoreChanged += ChangeScorView;
+        ChangeScoreView(_scoreCounter.Score);
+        _scoreCounter.ScoreChanged += ChangeScoreView;
     }
 
-    private void ChangeScorView(int score)
+    private void ChangeScoreView(int score)
     {
         _textMeshProUGUI.text = score.ToString();
     }

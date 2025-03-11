@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,8 @@ public class GameFinisher : MonoBehaviour
 {
     [SerializeField] CellsAnalyser _cellsAnalyser;
     [SerializeField] GameObject _gameOverBoard;
+
+    public Action GameIsOver;
 
     public void Initial()
     {
@@ -29,5 +32,6 @@ public class GameFinisher : MonoBehaviour
     private void EndTheGame()
     {
         _gameOverBoard.SetActive(true);
+        GameIsOver?.Invoke();
     }
 }
