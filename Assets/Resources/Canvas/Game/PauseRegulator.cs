@@ -6,6 +6,7 @@ public class PauseRegulator : MonoBehaviour
 {
     [SerializeField] GameObject _pause;
     [SerializeField] GameObject _settings;
+    [SerializeField] GameObject _leaderboard;
 
     public Action Paused;
     public Action Resumed;
@@ -44,6 +45,18 @@ public class PauseRegulator : MonoBehaviour
     public void CloseSettings()
     {
         _settings.SetActive(false);
+        _pause.SetActive(true);
+    }
+
+    public void OpenLeaderboard()
+    {
+        _leaderboard.SetActive(true);
+        _pause.SetActive(false);
+    }
+
+    public void CloseLeaderboard()
+    {
+        _leaderboard.SetActive(false); 
         _pause.SetActive(true);
     }
 }
