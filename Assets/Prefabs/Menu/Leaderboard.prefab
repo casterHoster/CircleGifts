@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 9080370109415108131}
   - component: {fileID: 5719607210433693711}
   - component: {fileID: 2445343991658711887}
+  - component: {fileID: 3035286825422570999}
   m_Layer: 5
   m_Name: Text result
   m_TagString: Untagged
@@ -224,6 +225,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3035286825422570999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962597587148060448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 2445343991658711887}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
+  text: 
+  ru: "\u0420\u0415\u041A\u041E\u0420\u0414\u042B"
+  en: Records
+  tr: "Kay\u0131tlar"
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 3/3 completed
+  componentTextField: 1
+  countLang: 3
 --- !u!1 &2896166751820374087
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +917,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5706019594674162148}
   m_HandleRect: {fileID: 3259912286689210360}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000004
   m_Size: 0.8937391
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -932,7 +985,7 @@ MonoBehaviour:
   maxQuantityPlayers: 20
   quantityTop: 3
   quantityAround: 6
-  updateLBMethod: 1
+  updateLBMethod: 0
   entriesText: {fileID: 0}
   advanced: 1
   rootSpawnPlayersData: {fileID: 8840326926493276946}

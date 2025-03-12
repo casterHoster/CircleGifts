@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseRegulator : MonoBehaviour
 {
-    [SerializeField] GameObject _pause;
-    [SerializeField] GameObject _settings;
-    [SerializeField] GameObject _leaderboard;
+    [SerializeField] private GameObject _pause;
+    [SerializeField] private GameObject _settings;
+    [SerializeField] private GameObject _leaderboard;
 
     public Action Paused;
     public Action Resumed;
