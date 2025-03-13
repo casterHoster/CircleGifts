@@ -4,8 +4,8 @@ using UnityEngine;
 public class NeighboursSearcher : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
-    [SerializeField] private float _detectionDistance = 1;
-
+    
+    private float _detectionDistance = 1;
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _neighboursCells;
 
@@ -13,8 +13,10 @@ public class NeighboursSearcher : MonoBehaviour
 
     public virtual void Initial()
     {
+        Scaler scaler = new Scaler();
         _neighboursCells = new List<Cell>();
         _cellsCreator.AllCellsCreated += SignUpMonitors;
+        _detectionDistance = _detectionDistance / scaler.Scaling;
     }
 
     public void FindNeighbourCells(Cell cell)

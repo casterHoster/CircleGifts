@@ -7,8 +7,8 @@ public class CellsAnalyser : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldUpdater _fieldOperator;
-    [SerializeField] private float _detectionDistance = 1;
 
+    private float _detectionDistance = 1;
     private WaitForSeconds _analyseDalay = new WaitForSeconds(2f);
     private List<Cell> _cells = new List<Cell>();
 
@@ -19,6 +19,8 @@ public class CellsAnalyser : MonoBehaviour
     {
         _cellsCreator.AllCellsCreated += AssignCellsList;
         _fieldOperator.Reformed += RunPlayingAnalyse;
+        Scaler scaler = new Scaler();
+        _detectionDistance = _detectionDistance / scaler.Scaling;
     }
 
     private void OnDisable()
