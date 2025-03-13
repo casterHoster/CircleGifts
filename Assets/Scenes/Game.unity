@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.611}
+  m_AnchoredPosition: {x: 0, y: -0.53}
   m_SizeDelta: {x: 6.0325, y: 2.5322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39379099
@@ -208,12 +208,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.71
-  m_fontSizeBase: 0.71
+  m_fontSize: 0.8
+  m_fontSizeBase: 0.6
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0.5
+  m_fontSizeMax: 0.8
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -270,14 +270,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 39379099}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
-  ru: 
-  en: 
-  tr: 
+  ru: "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
+  en: Result
+  tr: "Sonu\xE7"
   az: 
   be: 
   he: 
@@ -307,9 +307,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 
-  componentTextField: 0
-  countLang: 0
+  processTranslateLabel: 3/3 completed
+  componentTextField: 1
+  countLang: 3
 --- !u!1 &51443227
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,15 +531,15 @@ RectTransform:
   m_GameObject: {fileID: 144915278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5099.9897}
-  m_LocalScale: {x: 150, y: 150, z: 150}
+  m_LocalScale: {x: 140, y: 140, z: 140}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 39379098}
   m_Father: {fileID: 1358007453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -80}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144915280
@@ -3198,6 +3198,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1358007453}
     m_Modifications:
+    - target: {fileID: 528694814155267139, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528694814155267139, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528694814155267139, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528694814155267139, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 1391305754212535202, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3289,6 +3305,10 @@ PrefabInstance:
     - target: {fileID: 4625507831672084041, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
       propertyPath: m_Name
       value: GameOverBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625507831672084041, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7869997653024711600, guid: 6df4cdfad45488a47a5746be621194c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

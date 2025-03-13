@@ -9,8 +9,9 @@ public class CellsAnalyser : MonoBehaviour
     [SerializeField] private FieldUpdater _fieldOperator;
 
     private float _detectionDistance = 1;
-    private WaitForSeconds _analyseDalay = new WaitForSeconds(2f);
+    private WaitForSeconds _analyseDelay = new WaitForSeconds(2f);
     private List<Cell> _cells = new List<Cell>();
+    private HightestGiftValueSearcher _giftValueSearcher = new HightestGiftValueSearcher();
 
     public Action MovedInpossible;
     public Action<int> HightestValueFound;
@@ -36,7 +37,7 @@ public class CellsAnalyser : MonoBehaviour
 
     private IEnumerator IdentifyPossiblePlayingAfterDelay()
     {
-        yield return _analyseDalay;
+        yield return _analyseDelay;
 
         if (TryFindPerspectiveCells() == false)
         {
@@ -76,25 +77,7 @@ public class CellsAnalyser : MonoBehaviour
 
     private void FindHighestGiftValue()
     {
-        List<Cell> cellsWithValues = new List<Cell>();
-
-        foreach(var cell in _cells)
-        {
-            if (cell.Gift != null)
-            {
-                cellsWithValues.Add(cell);
-            }
-        }
-
-        int value = cellsWithValues[0].Gift.Value;
-
-        for (int i = 1; i < cellsWithValues.Count; i++)
-        {
-            if (cellsWithValues[i].Gift.Value > value)
-            {
-                value = cellsWithValues[i].Gift.Value;
-            }
-        }
+        int value = _giftValueSearcher.Search(_cells);
 
         HightestValueFound?.Invoke(value);
     }
