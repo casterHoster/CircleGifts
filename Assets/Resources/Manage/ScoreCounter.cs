@@ -12,12 +12,12 @@ public class ScoreCounter : MonoBehaviour
 
     public void Initial()
     {
-        _extractor.Scored += IncreaseScore;
+        _extractor.ListIsDefined += IncreaseScore;
     }
 
     private void OnDisable()
     {
-        _extractor.Scored -= IncreaseScore;
+        _extractor.ListIsDefined -= IncreaseScore;
     }
 
     private void IncreaseScore(List<Cell> cells)

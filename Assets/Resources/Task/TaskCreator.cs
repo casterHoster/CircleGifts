@@ -1,35 +1,36 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class TaskCreator : MonoBehaviour
+public class TaskCreator
 {
-    [SerializeField] private CellsCreator _cellsCreator;
-    [SerializeField] private CellsAnalyser _cellsAnalyser;
-
     private int _targetValue;
     private int _targetGiftsCount;
     private int _targetMovesCount;
-    private float _movesCoefficient = 1.5f;
+    private float _movesCoefficient = 2;
     private int _minValue = 2;
     private int _maxValue = 1024;
     private int _minGiftsValueSpread = -2;
     private int _maxGiftsValueSpread = 2;
-    private int _minGiftsCount = 10;
-    private int _maxGiftsCount = 30;
-    private List<Cell> _cells = new List<Cell>();
-    private HightestGiftValueSearcher _hightestGiftValueSearcher = new HightestGiftValueSearcher();
+    private int _minGiftsCount = 5;
+    private int _maxGiftsCount = 20;
+    private List<Cell> _cells;
 
-    private void CreateTask()
+    public TaskCreator(List<Cell> cells)
+    {
+        _cells = cells;
+    }
+
+    public Task GetTask()
     {
         FormTargetValue();
         FormGiftCount();
         FormMovesCount();
         Task task = new Task(_targetValue, _targetGiftsCount, _targetMovesCount);
+        return task;
     }
 
     private void FormTargetValue()
     {
-        _targetValue = _hightestGiftValueSearcher.Search(_cells);
+        _targetValue = new HightestGiftValueSearcher().Search(_cells);
         int step = GetRandomSpread();
 
         if (step > 0)
@@ -51,7 +52,7 @@ public class TaskCreator : MonoBehaviour
         if (_targetValue > _maxValue)
             _targetValue = _maxValue;
 
-        if (_targetValue < _minValue) 
+        if (_targetValue < _minValue)
             _targetValue = _minValue;
     }
 
@@ -63,11 +64,6 @@ public class TaskCreator : MonoBehaviour
     private void FormMovesCount()
     {
         _targetMovesCount = (int)(_targetGiftsCount * _movesCoefficient);
-    }
-
-    private void AssignCellsList(List<Cell> cells)
-    {
-        _cells = cells;
     }
 
     private int GetRandomSpread()

@@ -14,13 +14,10 @@ public class WrapperViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        Scaler scaler = new Scaler();
-        _rectTransform = GetComponent<RectTransform>();
-        _rectTransform.localScale = new Vector3(_rectTransform.localScale.x * scaler.Scaling, _rectTransform.localScale.y * scaler.Scaling);
         _wrapper.Counted += SetUpGift;
     }
 
-    private void SetUpGift(int value, Cell cell)
+    private void SetUpGift(int value)
     {
         if (value == 0 && _isSetGift)
         {
@@ -31,12 +28,12 @@ public class WrapperViewer : MonoBehaviour
         else if (_gift != null)
         {
             ValueChanged?.Invoke(_gift);
-            _gift = _giftsPool.GenerateForCanvas(value, transform, cell);
+            _gift = _giftsPool.GenerateForCanvas(value, transform);
             _isSetGift = true;
         }
         else
         {
-            _gift = _giftsPool.GenerateForCanvas(value, transform, cell);
+            _gift = _giftsPool.GenerateForCanvas(value, transform);
             _isSetGift = true;
         }
     }

@@ -9,8 +9,8 @@ public class FieldUpdater : MonoBehaviour
     [SerializeField] private GiftsGenerator _giftsPool;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _generateDelay;
+    [SerializeField] private float _detectionDistance = 0.5f;
 
-    private float _detectionDistance = 1;
     private float _threshold = 0.1f;
     private Queue<Cell> _clearCells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);

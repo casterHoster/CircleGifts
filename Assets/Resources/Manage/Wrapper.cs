@@ -8,7 +8,7 @@ public class Wrapper : MonoBehaviour
 
     private List<Cell> _cells;
 
-    public Action<int, Cell> Counted;
+    public Action<int> Counted;
 
     public void Initial()
     {
@@ -59,6 +59,6 @@ public class Wrapper : MonoBehaviour
             }
         }
 
-        Counted?.Invoke(value, cell);
+        Counted?.Invoke(value);
     }
 }

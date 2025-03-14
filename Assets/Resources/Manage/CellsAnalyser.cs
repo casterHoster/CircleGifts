@@ -7,8 +7,8 @@ public class CellsAnalyser : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldUpdater _fieldOperator;
+    [SerializeField] private float _detectionDistance = 0.5f;
 
-    private float _detectionDistance = 1;
     private WaitForSeconds _analyseDelay = new WaitForSeconds(2f);
     private List<Cell> _cells = new List<Cell>();
     private HightestGiftValueSearcher _giftValueSearcher = new HightestGiftValueSearcher();

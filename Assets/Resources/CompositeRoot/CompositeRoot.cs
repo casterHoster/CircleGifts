@@ -21,6 +21,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private VolumeSettings _volumeSettings;
     [SerializeField] private PathPointer _pathPointer;
     [SerializeField] private Leaderboard _leaderboard;
+    [SerializeField] private TaskRegulator _taskRegulator;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class CompositeRoot : MonoBehaviour
         _operator.Initial();
         _cellsAnalyser.Initial();
         _cellsColliderToggle.Initial();
+        _taskRegulator.Initial();
         _cellsCreator.Initial();
         _lightningBuilder.Initial();
         _gameFinisher.Initial();

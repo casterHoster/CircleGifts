@@ -18,14 +18,14 @@ public class EffectsSoundsRegulator : MonoBehaviour
         _audioSource.pitch = _startedPitch;
         _extractor.CellAdded += IncreasePitch;
         _extractor.CellRemoved += TakeAwayPitch;
-        _extractor.Scored += UseExtractSound;
+        _extractor.ListIsDefined += UseExtractSound;
     }
 
     private void OnDisable()
     {
         _extractor.CellAdded -= IncreasePitch;
         _extractor.CellRemoved -= TakeAwayPitch;
-        _extractor.Scored -= UseExtractSound;
+        _extractor.ListIsDefined -= UseExtractSound;
     }
 
     private void UseWrapeSound()

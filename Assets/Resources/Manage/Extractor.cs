@@ -14,7 +14,7 @@ public class Extractor : MonoBehaviour
 
     public Action<Cell> Extracted;
     public Action<Cell, int> EndCellDifined;
-    public Action<List<Cell>> Scored;
+    public Action<List<Cell>> ListIsDefined;
     public Action<Cell> PutOuted;
     public Action<Cell> CellAdded;
     public Action CellRemoved;
@@ -82,7 +82,7 @@ public class Extractor : MonoBehaviour
     {
         if (_chainedCells.Count > 1)
         {
-            Scored?.Invoke(_chainedCells);
+            ListIsDefined?.Invoke(_chainedCells);
             Cell lastCell = _chainedCells[_chainedCells.Count - 1];
             EndCellDifined?.Invoke(lastCell, _chainedCells.Count);
             _chainedCells.Remove(lastCell);

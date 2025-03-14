@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameFinisher : MonoBehaviour
 {
     [SerializeField] CellsAnalyser _cellsAnalyser;
+    [SerializeField] TaskRegulator _taskRegulator;
     [SerializeField] GameObject _gameOverBoard;
 
     public Action GameIsOver;
@@ -12,6 +13,7 @@ public class GameFinisher : MonoBehaviour
     public void Initial()
     {
         _cellsAnalyser.MovedInpossible += EndTheGame;
+        _taskRegulator.MovesEnded += EndTheGame;
     }
 
     private void OnDisable()
