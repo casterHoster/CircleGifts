@@ -41,7 +41,7 @@ public class TaskCreator
             }
         }
 
-        else if (step < 0)
+        else if (step <= 0)
         {
             for (int i = 0; i > step; i--)
             {
@@ -49,11 +49,12 @@ public class TaskCreator
             }
         }
 
-        if (_targetValue > _maxValue)
-            _targetValue = _maxValue;
+        if (_targetValue > _maxValue || _targetValue < _minValue)
+        {
+            FormTargetValue();
+        }
 
-        if (_targetValue < _minValue)
-            _targetValue = _minValue;
+
     }
 
     private void FormGiftCount()

@@ -7,6 +7,7 @@ public class CellsColliderToggle : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private PauseRegulator _pauseRegulator;
+    [SerializeField] private GameFinisher _gameFinisher;
 
     private List<Cell> _cells;
 
@@ -16,6 +17,7 @@ public class CellsColliderToggle : MonoBehaviour
         _cellsCreator.AllCellsCreated += AssignCellsList;
         _pauseRegulator.Paused += DisableCellsColliders;
         _pauseRegulator.Resumed += EnableCellsColliders;
+        _gameFinisher.GameIsOver += DisableCellsColliders;
     }
 
     private void OnDisable()
@@ -23,6 +25,7 @@ public class CellsColliderToggle : MonoBehaviour
         _cellsCreator.AllCellsCreated -= AssignCellsList;
         _pauseRegulator.Paused -= DisableCellsColliders;
         _pauseRegulator.Resumed -= EnableCellsColliders;
+        _gameFinisher.GameIsOver -= DisableCellsColliders;
     }
 
     private void AssignCellsList(List<Cell> cells)

@@ -11,6 +11,11 @@ public class Leaderboard : MonoBehaviour
         _gameFinisher.GameIsOver += RecordResult;
     }
 
+    private void OnDisable()
+    {
+        _gameFinisher.GameIsOver -= RecordResult;
+    }
+
     private void RecordResult()
     {
         YandexGame.NewLeaderboardScores("Leaderboard", _scoreCounter.Score);

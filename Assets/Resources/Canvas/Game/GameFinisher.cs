@@ -6,6 +6,7 @@ public class GameFinisher : MonoBehaviour
 {
     [SerializeField] CellsAnalyser _cellsAnalyser;
     [SerializeField] TaskRegulator _taskRegulator;
+    [SerializeField] GameObject _leaderboard;
     [SerializeField] GameObject _gameOverBoard;
 
     public Action GameIsOver;
@@ -29,6 +30,16 @@ public class GameFinisher : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OpenLeaderboard()
+    {
+        _leaderboard.SetActive(true);
+    }
+
+    public void CloseLeaderboard()
+    {
+        _leaderboard.SetActive(false);
     }
 
     private void EndTheGame()
