@@ -11,10 +11,12 @@ public class GiftsGenerator : MonoBehaviour
     [SerializeField] private Extractor _extractor;
     [SerializeField] private WrapperViewer _wrapperViewer;
     [SerializeField] private FieldUpdater _fieldUpdater;
+    [SerializeField] private Reward _reward;
 
     private ObjectPool<Gift> _giftPool;
     private float _collerationScalingCell = 4;
     private float _collerationScalingWrapper = 10;
+    private List<Cell> _cells;
 
     public Action StartedGiftsGenerated;
 
@@ -28,28 +30,46 @@ public class GiftsGenerator : MonoBehaviour
             );
 
         _extractor.Extracted += ReleaseFromCell;
-        _cellsCreator.AllCellsCreated += GenerateStartedGiftsForCells;
+        _cellsCreator.AllCellsCreated += AssignCellsList;
         _giftFabric.Maximised += ReleaseFromCell;
         _wrapperViewer.ValueChanged += RealeseFromUI;
         _fieldUpdater.NeededCellUpdate += GenerateGift;
+        _reward.Rewarded += RegenerateGiftsForCells;
     }
 
     private void OnDisable()
     {
-        _cellsCreator.AllCellsCreated -= GenerateStartedGiftsForCells;
+        _cellsCreator.AllCellsCreated -= AssignCellsList;
         _extractor.Extracted -= ReleaseFromCell;
         _giftFabric.Maximised -= ReleaseFromCell;
-        _wrapperViewer.ValueChanged += RealeseFromUI;
+        _wrapperViewer.ValueChanged -= RealeseFromUI;
+        _fieldUpdater.NeededCellUpdate -= GenerateGift;
+        _reward.Rewarded -= RegenerateGiftsForCells;
     }
 
-    private void GenerateStartedGiftsForCells(List<Cell> cells)
+    private void AssignCellsList(List<Cell> cells)
     {
-        foreach (Cell cell in cells)
+        _cells = cells;
+        GenerateStartedGiftsForCells();
+    }
+
+    private void GenerateStartedGiftsForCells()
+    {
+        foreach (Cell cell in _cells)
         {
             GenerateGift(cell);
         }
 
         StartedGiftsGenerated?.Invoke();
+    }
+
+    private void RegenerateGiftsForCells()
+    {
+        foreach (Cell cell in _cells)
+        {
+            _giftPool.Release(cell.Gift);
+            GenerateGift(cell);
+        }
     }
 
     private void GenerateGift(Cell cell)

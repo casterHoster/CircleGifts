@@ -22,6 +22,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private PathPointer _pathPointer;
     [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TaskRegulator _taskRegulator;
+    [SerializeField] private Reward _reward;
 
     private void Start()
     {
@@ -45,5 +46,6 @@ public class CompositeRoot : MonoBehaviour
         _effectsSoundsRegulator.Initial();
         _volumeSettings.Initial();
         _leaderboard.Initial();
+        _reward.Initial();
     }
 }

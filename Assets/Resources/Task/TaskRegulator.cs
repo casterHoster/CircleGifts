@@ -6,13 +6,14 @@ public class TaskRegulator : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private Extractor _extractor;
+    [SerializeField] private Reward _reward;
 
     private List<Cell> _cells;
     private TaskCreator taskCreator;
     private Task _currentTask;
-    private int _taskGiftValue;
     private int _taskGiftsCount;
     private int _taskMoves;
+    private int _initialMovesCount;
 
     public Action<Task> TaskSet;
     public Action<int, int> Compared;
@@ -22,6 +23,14 @@ public class TaskRegulator : MonoBehaviour
     {
         _cellsCreator.AllCellsCreated += AssignCellsList;
         _extractor.ListIsDefined += CompareTargetValues;
+        _reward.Rewarded += ResetMoves;
+    }
+
+    private void OnDisable()
+    {
+        _cellsCreator.AllCellsCreated -= AssignCellsList;
+        _extractor.ListIsDefined -= CompareTargetValues;
+        _reward.Rewarded -= ResetMoves;
     }
 
     private void AssignCellsList(List<Cell> cells)
@@ -36,6 +45,7 @@ public class TaskRegulator : MonoBehaviour
         _currentTask = taskCreator.GetTask();
         _taskGiftsCount = _currentTask.GiftsCount;
         _taskMoves = _currentTask.Moves;
+        _initialMovesCount = _currentTask.Moves;
 
         TaskSet?.Invoke(_currentTask);
     }
@@ -62,5 +72,11 @@ public class TaskRegulator : MonoBehaviour
         {
             MovesEnded?.Invoke();
         }
+    }
+
+    private void ResetMoves()
+    {
+        _taskMoves = _initialMovesCount;
+        Compared?.Invoke(_taskGiftsCount, _taskMoves);
     }
 }

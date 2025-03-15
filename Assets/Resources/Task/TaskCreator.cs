@@ -11,7 +11,7 @@ public class TaskCreator
     private int _minGiftsValueSpread = -2;
     private int _maxGiftsValueSpread = 2;
     private int _minGiftsCount = 5;
-    private int _maxGiftsCount = 20;
+    private int _maxGiftsCount = 15;
     private List<Cell> _cells;
 
     public TaskCreator(List<Cell> cells)

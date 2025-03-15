@@ -13,11 +13,11 @@ public class CellsColliderToggle : MonoBehaviour
 
     public void Initial()
     {
-        _cells = new List<Cell>();
         _cellsCreator.AllCellsCreated += AssignCellsList;
         _pauseRegulator.Paused += DisableCellsColliders;
         _pauseRegulator.Resumed += EnableCellsColliders;
         _gameFinisher.GameIsOver += DisableCellsColliders;
+        _gameFinisher.GameIsContinued += EnableCellsColliders;
     }
 
     private void OnDisable()
@@ -26,6 +26,7 @@ public class CellsColliderToggle : MonoBehaviour
         _pauseRegulator.Paused -= DisableCellsColliders;
         _pauseRegulator.Resumed -= EnableCellsColliders;
         _gameFinisher.GameIsOver -= DisableCellsColliders;
+        _gameFinisher.GameIsContinued -= EnableCellsColliders;
     }
 
     private void AssignCellsList(List<Cell> cells)
