@@ -50,11 +50,13 @@ public class PauseRegulator : MonoBehaviour
 
     public void OpenLeaderboard()
     {
+        _pause.SetActive(false);
         _leaderboard.SetActive(true);
     }
 
     public void CloseLeaderboard()
     {
-        _leaderboard.SetActive(false); 
+        _leaderboard.SetActive(false);
+        _pause.SetActive(true);
     }
 }

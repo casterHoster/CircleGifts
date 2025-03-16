@@ -18,14 +18,14 @@ public class Reward : MonoBehaviour
         YandexGame.RewardVideoEvent -= GiveReward;
     }
 
+    public void OpenRewardAd()
+    {
+        YandexGame.RewVideoShow(continueRewardIndex);
+    }
+
     private void GiveReward(int id)
     {
         if (id == 1)
             Rewarded?.Invoke();
-    }
-
-    public void OpenRewardAd()
-    {
-        YandexGame.RewVideoShow(continueRewardIndex);
     }
 }

@@ -5,11 +5,12 @@ using YG;
 
 public class GameFinisher : MonoBehaviour
 {
-    [SerializeField] CellsAnalyser _cellsAnalyser;
+    [SerializeField] CellsSearcher _cellsAnalyser;
     [SerializeField] TaskRegulator _taskRegulator;
     [SerializeField] Reward _reward;
     [SerializeField] GameObject _leaderboard;
     [SerializeField] GameObject _gameOverBoard;
+    [SerializeField] GameObject _rewardButton;
 
     public Action GameIsOver;
     public Action GameIsContinued;
@@ -19,6 +20,7 @@ public class GameFinisher : MonoBehaviour
         _cellsAnalyser.MovedInpossible += EndTheGame;
         _taskRegulator.MovesEnded += EndTheGame;
         _reward.Rewarded += ContinueTheGame;
+        _reward.Rewarded += TurnOffRewardButton;
     }
 
     private void OnDisable()
@@ -26,6 +28,7 @@ public class GameFinisher : MonoBehaviour
         _cellsAnalyser.MovedInpossible -= EndTheGame;
         _taskRegulator.MovesEnded -= EndTheGame;
         _reward.Rewarded -= ContinueTheGame;
+        _reward.Rewarded -= TurnOffRewardButton;
     }
 
     public void LoadMainMenu()
@@ -59,5 +62,10 @@ public class GameFinisher : MonoBehaviour
     {
         _gameOverBoard.SetActive(false);
         GameIsContinued?.Invoke();
+    }
+
+    private void TurnOffRewardButton()
+    {
+        _rewardButton.SetActive(false);
     }
 }

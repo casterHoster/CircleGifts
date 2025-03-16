@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellsAnalyser : MonoBehaviour
+public class CellsSearcher : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldUpdater _fieldOperator;

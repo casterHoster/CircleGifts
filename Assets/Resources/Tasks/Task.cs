@@ -1,4 +1,3 @@
-
 public class Task
 {
     public int GiftValue { get; private set; }

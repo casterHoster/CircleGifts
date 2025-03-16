@@ -47,6 +47,16 @@ public class GiftsGenerator : MonoBehaviour
         _reward.Rewarded -= RegenerateGiftsForCells;
     }
 
+    public Gift GenerateForCanvas(int value, Transform transform)
+    {
+        var gift = _giftPool.Get();
+        _giftFabric.TargetingCharacterize(gift, value);
+        gift.transform.localScale = transform.localScale / _collerationScalingWrapper;
+        gift.gameObject.SetActive(true);
+        gift.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
+        return gift;
+    }
+
     private void AssignCellsList(List<Cell> cells)
     {
         _cells = cells;
@@ -83,20 +93,10 @@ public class GiftsGenerator : MonoBehaviour
             new Vector3(cell.transform.position.x, cell.transform.position.y, gift.transform.position.z);
     }
 
-    public Gift GenerateForCanvas(int value, Transform transform)
-    {
-        var gift = _giftPool.Get();
-        _giftFabric.TargetingCharacterize(gift, value);
-        gift.transform.localScale = transform.localScale / _collerationScalingWrapper;
-        gift.gameObject.SetActive(true);
-        gift.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
-        return gift;
-    }
-
     private void ReleaseFromCell(Cell cell)
     {
         _giftPool.Release(cell.Gift);
-        cell.Clear();
+        cell.ClearGift();
     }
 
     private void RealeseFromUI(Gift gift)

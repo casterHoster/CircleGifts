@@ -18,7 +18,7 @@ public class Cell : MonoBehaviour
         }
     }
 
-    public void Clear()
+    public void ClearGift()
     {
         Gift = null;
         Cleared?.Invoke(this);

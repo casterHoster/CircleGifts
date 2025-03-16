@@ -8,7 +8,7 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private Extractor _extractor;
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private FieldUpdater _operator;
-    [SerializeField] private CellsAnalyser _cellsAnalyser;
+    [SerializeField] private CellsSearcher _cellsSearcher;
     [SerializeField] private LightningBuilder _lightningBuilder;
     [SerializeField] private GameFinisher _gameFinisher;
     [SerializeField] private CellsLighter _lighterCells;
@@ -33,7 +33,7 @@ public class CompositeRoot : MonoBehaviour
         _lighterCells.Initial();
         _giftsPool.Initial();
         _operator.Initial();
-        _cellsAnalyser.Initial();
+        _cellsSearcher.Initial();
         _cellsColliderToggle.Initial();
         _taskRegulator.Initial();
         _cellsCreator.Initial();

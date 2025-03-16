@@ -83,7 +83,7 @@ public class FieldUpdater : MonoBehaviour
             if (hitUp.collider.TryGetComponent(out Cell upCell) && !_clearCells.Contains(upCell) && upCell.Gift != null && cell.Gift == null)
             {
                 cell.Fill(upCell.Gift);
-                upCell.Clear();
+                upCell.ClearGift();
                 StartCoroutine(MoveGifts(cell.Gift, cell));
             }
             else

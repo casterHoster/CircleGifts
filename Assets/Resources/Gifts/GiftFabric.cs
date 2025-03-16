@@ -7,7 +7,7 @@ public class GiftsFabric : MonoBehaviour
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Gift _giftPrefab;
     [SerializeField] private Extractor _extractor;
-    [SerializeField] private CellsAnalyser _cellAnalyser;
+    [SerializeField] private CellsSearcher _cellAnalyser;
     [SerializeField] private List<GiftCharacteristics> _giftCharacteristics;
     [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3; 
 
