@@ -2829,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameFinisher: {fileID: 114038044}
   _scoreCounter: {fileID: 2121152371}
+  _leaderboardYG: {fileID: 1899995652}
 --- !u!4 &1253248029
 Transform:
   m_ObjectHideFlags: 0
@@ -3710,6 +3711,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1899995652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4618294224202896244, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
+  m_PrefabInstance: {fileID: 5391882465387418846}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423e13a42d313f948a13bcedae13febe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1931527548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,6 +4517,10 @@ PrefabInstance:
     - target: {fileID: 2590427814030069232, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000022888184
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899158178377784039, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3019930884087172044, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
       propertyPath: m_Maskable

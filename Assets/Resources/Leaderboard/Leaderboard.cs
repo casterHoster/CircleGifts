@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using YG;
 
 public class Leaderboard : MonoBehaviour
 {
-    [SerializeField] GameFinisher _gameFinisher;
-    [SerializeField] ScoreCounter _scoreCounter;
+    [SerializeField] private GameFinisher _gameFinisher;
+    [SerializeField] private ScoreCounter _scoreCounter;
+    [SerializeField] private LeaderboardYG _leaderboardYG;
 
     public void Initial()
     {
@@ -19,5 +21,6 @@ public class Leaderboard : MonoBehaviour
     private void RecordResult()
     {
         YandexGame.NewLeaderboardScores("Leaderboard", _scoreCounter.Score);
+        _leaderboardYG.UpdateLB();
     }
 }
