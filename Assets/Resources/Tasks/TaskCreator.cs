@@ -19,12 +19,12 @@ public class TaskCreator
         _cells = cells;
     }
 
-    public Task GetTask()
+    public TargetTask GetTask()
     {
         FormTargetValue();
         FormGiftCount();
         FormMovesCount();
-        Task task = new Task(_targetValue, _targetGiftsCount, _targetMovesCount);
+        TargetTask task = new TargetTask(_targetValue, _targetGiftsCount, _targetMovesCount);
         return task;
     }
 

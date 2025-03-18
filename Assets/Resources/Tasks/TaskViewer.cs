@@ -20,7 +20,7 @@ public class TaskViewer : MonoBehaviour
         _taskRegulator.Compared += ChangeTaskValues;
     }
 
-    private void DrawTask(Task task)
+    private void DrawTask(TargetTask task)
     {
         if (_currentGift == null)
         { 

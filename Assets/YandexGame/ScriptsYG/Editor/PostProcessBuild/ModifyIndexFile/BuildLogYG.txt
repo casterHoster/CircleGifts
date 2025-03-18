@@ -1,2 +1,0 @@
-Build path: E:/Gift Game
-Build number: 12

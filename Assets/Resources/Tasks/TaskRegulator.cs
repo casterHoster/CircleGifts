@@ -10,12 +10,12 @@ public class TaskRegulator : MonoBehaviour
 
     private List<Cell> _cells;
     private TaskCreator taskCreator;
-    private Task _currentTask;
+    private TargetTask _currentTask;
     private int _taskGiftsCount;
     private int _taskMoves;
     private int _initialMovesCount;
 
-    public Action<Task> TaskSet;
+    public Action<TargetTask> TaskSet;
     public Action<int, int> Compared;
     public Action MovesEnded;
 
