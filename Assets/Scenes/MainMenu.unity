@@ -1613,7 +1613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618294224202896244, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
       propertyPath: updateLBMethod
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5093023681966823308, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

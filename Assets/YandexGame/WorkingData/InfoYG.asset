@@ -24,7 +24,7 @@ MonoBehaviour:
     photo: https://justplaygames.ru/public/icon_player.png
     payingStatus: paying
     serverTime: 1721201231000
-  AdWhenLoadingScene: 1
+  AdWhenLoadingScene: 0
   showFirstAd: 1
   rewardedAfterClosing: 1
   adDisplayCalls: 0
@@ -44,16 +44,16 @@ MonoBehaviour:
   saveScoreAnonymousPlayers: 1
   leaderboardSimulation:
   - technoName: Leaderboard
-    entries: '
+    entries: 'Test LeaderBoard
 
       Name: advanced
 
       1. anonymous: 10
 
-      2. Ivan: 15
+      2.
+      Ivan: 15
 
-      3.
-      Tanya: 23'
+      3. Tanya: 23'
     isDefault: 0
     isInvertSortOrder: 0
     decimalOffset: 0
