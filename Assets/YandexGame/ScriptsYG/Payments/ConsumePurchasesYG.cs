@@ -2,26 +2,16 @@
 
 namespace YG
 {
-    [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#10e7dfffefdc42ec93b39be0c78e77cb")]
     public class ConsumePurchasesYG : MonoBehaviour
     {
-        private void OnEnable() => YandexGame.GetDataEvent += ConsumePurchases;
-        private void OnDisable() => YandexGame.GetDataEvent -= ConsumePurchases;
-
-        private static bool consume;
+        private static bool consumed;
 
         private void Start()
         {
-            if (YandexGame.SDKEnabled)
-                ConsumePurchases();
-        }
-
-        private void ConsumePurchases()
-        {
-            if (!consume)
+            if (!consumed)
             {
-                consume = true;
-                YandexGame.ConsumePurchases();
+                consumed = true;
+                YG2.ConsumePurchases();
             }
         }
     }

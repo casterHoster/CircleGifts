@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
+    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
+    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -488,7 +488,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
+    m_Font: {fileID: 12800000, guid: 4b10251d8d1a40c4d97edcf51fc6b4ea, type: 3}
     m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
@@ -602,7 +602,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5084866556690222575}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -614,10 +614,10 @@ RectTransform:
   - {fileID: 811181072950961992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 192.26, y: 43.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &612924433705394478
 CanvasRenderer:
@@ -640,14 +640,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageLoad: {fileID: 5349556098815484122}
-  topPlayerActivityComponents: []
-  thisPlayerActivityComponents:
-  - {fileID: 1715417485980951102}
-  - {fileID: 3241086033290098678}
   textLegasy:
     rank: {fileID: 4901366931999625967}
     name: {fileID: 3316103166568300279}
     score: {fileID: 4118804233035114061}
+  textMP:
+    rank: {fileID: 0}
+    name: {fileID: 0}
+    score: {fileID: 0}
+  topPlayerActivityComponents: []
+  currentPlayerActivityComponents:
+  - {fileID: 1715417485980951102}
+  - {fileID: 3241086033290098678}
 --- !u!1 &6951171253743094658
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,11 +742,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLoad: 0
+  urlImage: 
   rawImage: {fileID: 1684779888923632569}
   spriteImage: {fileID: 0}
-  urlImage: 
   loadAnimObj: {fileID: 0}
-  debug: 0
+  log: 0
 --- !u!1 &7313040081222012198
 GameObject:
   m_ObjectHideFlags: 0

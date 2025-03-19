@@ -1,20 +1,38 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using YG.Insides;
 
 namespace YG
 {
     public class PaymentsCatalogYG : MonoBehaviour
     {
-        public bool spawnPurchases = true;
+#if UNITY_EDITOR
+        [Tooltip(Langs.t_rootSpawnPurchases)]
+#endif
         public Transform rootSpawnPurchases;
+#if UNITY_EDITOR
+        [Tooltip(Langs.t_purchasePrefab)]
+#endif
         public GameObject purchasePrefab;
-        public enum UpdateListMethod { OnEnable, Start, DoNotUpdate };
-        public UpdateListMethod updateListMethod;
 
-        public PurchaseYG[] purchases = new PurchaseYG[0];
+        private void OnEnable() => YG2.onGetPayments += UpdatePurchasesList;
+        private void OnDisable() => YG2.onGetPayments -= UpdatePurchasesList;
+        private void Start() => UpdatePurchasesList();
 
-        public Action onUpdatePurchasesList;
+        public void UpdatePurchasesList()
+        {
+            // Clear catalog
+            int childCount = rootSpawnPurchases.childCount;
+            for (int i = childCount - 1; i >= 0; i--)
+                Destroy(rootSpawnPurchases.GetChild(i).gameObject);
 
-        public void BuyPurchase(string id) { }
+            // Spawn catalog
+            for (int i = 0; i < YG2.purchases.Length; i++)
+            {
+                GameObject purchaseObj = Instantiate(purchasePrefab, rootSpawnPurchases);
+                purchaseObj.GetComponent<PurchaseYG>().id = YG2.purchases[i].id;
+            }
+        }
+
+        public void BuyPurchase(string id) => YG2.BuyPayments(id);
     }
 }

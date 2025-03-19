@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+#if TMP_YG2
+using TMPro;
+#endif
 
-namespace YG
+namespace YG.LanguageLegacy
 {
     public class LangYGAdditionalText : MonoBehaviour
     {
@@ -17,10 +20,43 @@ namespace YG
             }
         }
 
-        public string _additionalText;
+        [SerializeField] private string _additionalText;
+        private LanguageYG langYG;
 
-        public void AssignAdditionalText(LanguageYG languageYG) { }
+        public void AssignAdditionalText(LanguageYG languageYG)
+        {
+            langYG = languageYG;
+            DoAssignAdditionalText();
+        }
 
-        public void AssignAdditionalText() { }
+        public void AssignAdditionalText()
+        {
+            if (langYG)
+                DoAssignAdditionalText();
+        }
+
+        private void DoAssignAdditionalText()
+        {
+            langYG.AssignTranslate();
+
+            if (side == Side.Left)
+            {
+                if (langYG.textLComponent)
+                    langYG.textLComponent.text = _additionalText + langYG.textLComponent.text;
+#if TMP_YG2
+                else if (langYG.textMPComponent)
+                    langYG.textMPComponent.text = _additionalText + langYG.textMPComponent.text;
+#endif
+            }
+            else if (side == Side.Right)
+            {
+                if (langYG.textLComponent)
+                    langYG.textLComponent.text += _additionalText;
+#if TMP_YG2
+                else if (langYG.textMPComponent)
+                    langYG.textMPComponent.text += _additionalText;
+#endif
+            }
+        }
     }
 }
