@@ -15,9 +15,9 @@ public class FieldUpdater : MonoBehaviour
     private Queue<Cell> _clearCells;
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
+    private Action<Cell> _cellClearedHandler;
     public Action Reformed;
     public Action<Cell> NeededCellUpdate;
-    private Action<Cell> _cellClearedHandler;
 
     public void Initial()
     {

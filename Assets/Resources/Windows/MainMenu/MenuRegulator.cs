@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using YG;
 
 public class MenuRegulator : MonoBehaviour
 {

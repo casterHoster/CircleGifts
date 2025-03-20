@@ -11,7 +11,6 @@ public class ScoreViewer : MonoBehaviour
     private void OnEnable()
     {
         _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        ChangeScoreView(_scoreCounter.Score);
         _scoreCounter.ScoreChanged += ChangeScoreView;
     }
 

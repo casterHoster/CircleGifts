@@ -6,9 +6,9 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] Extractor _extractor;
 
-    public int Score {  get; private set; }
-
     public Action<int> ScoreChanged;
+
+    public int Score {  get; private set; }
 
     public void Initial()
     {

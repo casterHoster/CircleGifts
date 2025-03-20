@@ -8,7 +8,6 @@ public class WrapperViewer : MonoBehaviour
 
     private Gift _gift;
     private bool _isSetGift;
-    private RectTransform _rectTransform;
 
     public Action<Gift> ValueChanged;
 

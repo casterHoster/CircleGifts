@@ -9,7 +9,7 @@ public class CellsSearcher : MonoBehaviour
     [SerializeField] private FieldUpdater _fieldOperator;
     [SerializeField] private float _detectionDistance = 0.5f;
 
-    private WaitForSeconds _analyseDelay = new WaitForSeconds(2f);
+    private WaitForSeconds _analyseDelay = new WaitForSeconds(3f);
     private List<Cell> _cells = new List<Cell>();
     private HightestGiftValueSearcher _giftValueSearcher = new HightestGiftValueSearcher();
 

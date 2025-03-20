@@ -1,31 +1,35 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using YG;
 
 public class Reward : MonoBehaviour
 {
-    private int continueRewardIndex = 1;
+    [SerializeField] EventSystem _eventSystem;
+
+    private string rewardID = "1";
 
     public Action Rewarded;
 
     public void Initial()
     {
-        YandexGame.RewardVideoEvent += GiveReward;
-    }
-
-    private void OnDisable()
-    {
-        YandexGame.RewardVideoEvent -= GiveReward;
+        YG2.onCloseRewardedAdv += EnableEventSystem;
     }
 
     public void OpenRewardAd()
     {
-        YandexGame.RewVideoShow(continueRewardIndex);
+        YG2.RewardedAdvShow(rewardID, () =>
+        {
+            if (rewardID == "1")
+                Rewarded?.Invoke();
+
+            EventSystem eventSystem = FindObjectOfType<EventSystem>();
+            eventSystem.enabled = true;
+        });
     }
 
-    private void GiveReward(int id)
+    private void EnableEventSystem()
     {
-        if (id == 1)
-            Rewarded?.Invoke();
+        _eventSystem.enabled = true;
     }
 }

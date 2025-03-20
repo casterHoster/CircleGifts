@@ -46,6 +46,6 @@ public class CompositeRoot : MonoBehaviour
         _effectsSoundsRegulator.Initial();
         _volumeSettings.Initial();
         _leaderboard.Initial();
-        _reward.Initial();
+        //_reward.Initial();
     }
 }
