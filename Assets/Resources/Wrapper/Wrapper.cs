@@ -49,7 +49,7 @@ public class Wrapper : MonoBehaviour
     {
         int value = 0;
 
-        if (_cells.Count > 0)
+        if (_cells.Count > 0 && _cells[_cells.Count - 1].Gift != null)
         {
             value = _cells[_cells.Count - 1].Gift.Value;
 

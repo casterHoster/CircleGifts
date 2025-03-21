@@ -110,7 +110,8 @@ public class Extractor : MonoBehaviour
     {
         if (_isPressed)
         {
-            if (cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
+            if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift &&
+                cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
                 _neighbourCells = _searcher.NeighboursCells;
         }
     }
@@ -121,7 +122,8 @@ public class Extractor : MonoBehaviour
         {
             if (neighbourCell != null)
             {
-                if (_chainedCells[_chainedCells.Count - 1].Gift.Value == cell.Gift.Value && cell.gameObject == neighbourCell.gameObject)
+                if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift &&
+                    _chainedCells[_chainedCells.Count - 1].Gift.Value == cell.Gift.Value && cell.gameObject == neighbourCell.gameObject)
                 {
                     return true;
                 }

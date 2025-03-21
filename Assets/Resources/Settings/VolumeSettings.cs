@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class VolumeSettings : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class VolumeSettings : MonoBehaviour
         _effectsVolume = PlayerPrefs.GetFloat(EffectsName, _defaultVolume);
         _musicSource.volume = _musicVolume;
         _effectsSource.volume = _effectsVolume;
+        YG2.onShowWindowGame += TurnOnVolume;
+        YG2.onHideWindowGame += TurnOffVolume;
     }
 
     private void OnDisable()
@@ -33,6 +36,9 @@ public class VolumeSettings : MonoBehaviour
         {
             slider.OnValueChanged -= SetVolume;
         }
+
+        YG2.onShowWindowGame -= TurnOnVolume;
+        YG2.onHideWindowGame -= TurnOffVolume;
     }
 
     public void SetVolume(string type, float volume)
@@ -51,5 +57,17 @@ public class VolumeSettings : MonoBehaviour
                 _effectsSource.volume = _effectsVolume;
                 break;
         }
+    }
+
+    private void TurnOnVolume()
+    {
+        _musicSource.enabled = true;
+        _effectsSource.enabled = true;
+    }
+
+    private void TurnOffVolume()
+    {
+        _musicSource.enabled = false;
+        _effectsSource.enabled = false;
     }
 }

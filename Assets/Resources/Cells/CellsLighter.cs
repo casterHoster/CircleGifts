@@ -36,6 +36,7 @@ public class CellsLighter : MonoBehaviour
     {
         cell.GetComponent<Image>().enabled = false;
     }
+
     private void DisableSprite(Cell cell, int count)
     {
         cell.GetComponent<Image>().enabled = false;

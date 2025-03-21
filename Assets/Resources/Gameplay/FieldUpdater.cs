@@ -117,6 +117,7 @@ public class FieldUpdater : MonoBehaviour
 
     private IEnumerator MoveGifts(Gift gift, Cell cell)
     {
+        cell.gameObject.SetActive(false);
         float targetPosX = cell.transform.position.x;
         float targetPosY = cell.transform.position.y;
         float targetPosZ = gift.transform.position.z;
@@ -132,5 +133,6 @@ public class FieldUpdater : MonoBehaviour
         }
 
         gift.transform.position = targetPosition;
+        cell.gameObject.SetActive(true);
     }
 }
