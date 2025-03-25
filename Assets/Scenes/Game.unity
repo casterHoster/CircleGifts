@@ -3239,7 +3239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cellPrefab: {fileID: 5433142274185783904, guid: 52bca857353bdd8468174db1200a0d38, type: 3}
-  _board: {fileID: 1717228393}
+  _background: {fileID: 1717228393}
   _rows: 5
   _columns: 5
 --- !u!4 &1288871466
@@ -3573,7 +3573,7 @@ GameObject:
   - component: {fileID: 1717228394}
   - component: {fileID: 1717228393}
   m_Layer: 0
-  m_Name: Board
+  m_Name: MainBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3607,7 +3607,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717228391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230774ba85487c049a3338cd49eb6f91, type: 3}
+  m_Script: {fileID: 11500000, guid: f96b67a6d4b3ced4b9278d8774dd03b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1717228394
