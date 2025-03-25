@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class TaskViewer : MonoBehaviour
 {
-    [SerializeField] TaskRegulator _taskRegulator;
-    [SerializeField] GiftsGenerator _giftsGenerator;
-    [SerializeField] GiftsFabric _giftsFabric;
-    [SerializeField] TextMeshProUGUI _giftsCountText;
-    [SerializeField] TextMeshProUGUI _movesCountText;
+    [SerializeField] private TaskRegulator _taskRegulator;
+    [SerializeField] private GiftsGenerator _giftsGenerator;
+    [SerializeField] private GiftFabric _giftsFabric;
+    [SerializeField] private TextMeshProUGUI _giftsCountText;
+    [SerializeField] private TextMeshProUGUI _movesCountText;
 
     private Gift _currentGift;
-
-    public Action<Gift> ValueChanged;
 
     private void OnEnable()
     {
@@ -23,7 +21,7 @@ public class TaskViewer : MonoBehaviour
     private void DrawTask(TargetTask task)
     {
         if (_currentGift == null)
-        { 
+        {
             _currentGift = _giftsGenerator.GenerateForCanvas(task.GiftValue, transform);
         }
         else

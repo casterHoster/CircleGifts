@@ -4,12 +4,12 @@ using YG;
 
 public class VolumeSettings : MonoBehaviour
 {
-    [SerializeField] AudioSource _musicSource;
-    [SerializeField] AudioSource _effectsSource;
-    [SerializeField] List<VolumeSlider> _sliders;
+    private const string MusicName = "Music";
+    private const string EffectsName = "Effects";
 
-    const string MusicName = "Music";
-    const string EffectsName = "Effects";
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioSource _effectsSource;
+    [SerializeField] private List<VolumeSlider> _sliders;
 
     private float _musicVolume;
     private float _effectsVolume;

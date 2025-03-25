@@ -15,9 +15,9 @@ public class TaskRegulator : MonoBehaviour
     private int _taskMoves;
     private int _initialMovesCount;
 
-    public Action<TargetTask> TaskSet;
-    public Action<int, int> Compared;
-    public Action MovesEnded;
+    public event Action<TargetTask> TaskSet;
+    public event Action<int, int> Compared;
+    public event Action MovesEnded;
 
     public void Initial()
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent (typeof(LineRenderer))]
+[RequireComponent(typeof(LineRenderer))]
 public class Lightning : MonoBehaviour
 {
     [SerializeField] private int _segments;
@@ -9,7 +9,7 @@ public class Lightning : MonoBehaviour
 
     private LineRenderer _lineRenderer;
 
-    public Vector3 Target {  get; private set; }
+    public Vector3 Target {get; private set; }
 
     private void OnEnable()
     {

@@ -6,16 +6,16 @@ using YG;
 
 public class GameFinisher : MonoBehaviour
 {
-    [SerializeField] CellsSearcher _cellsSearcher;
-    [SerializeField] TaskRegulator _taskRegulator;
-    [SerializeField] Reward _reward;
-    [SerializeField] GameObject _leaderboard;
-    [SerializeField] GameObject _gameOverBoard;
-    [SerializeField] GameObject _rewardButton;
-    [SerializeField] EventSystem _eventSystem;
+    [SerializeField] private CellsSearcher _cellsSearcher;
+    [SerializeField] private TaskRegulator _taskRegulator;
+    [SerializeField] private Reward _reward;
+    [SerializeField] private GameObject _leaderboard;
+    [SerializeField] private GameObject _gameOverBoard;
+    [SerializeField] private GameObject _rewardButton;
+    [SerializeField] private EventSystem _eventSystem;
 
-    public Action GameIsOver;
-    public Action GameIsContinued;
+    public event Action GameIsOver;
+    public event Action GameIsContinued;
 
     public void Initial()
     {

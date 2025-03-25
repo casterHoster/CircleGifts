@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 public class GiftsGenerator : MonoBehaviour
 {
     [SerializeField] private Board _board;
-    [SerializeField] private GiftsFabric _giftFabric;
+    [SerializeField] private GiftFabric _giftFabric;
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private WrapperViewer _wrapperViewer;
@@ -18,16 +18,14 @@ public class GiftsGenerator : MonoBehaviour
     private float _collerationScalingWrapper = 10;
     private List<Cell> _cells;
 
-    public Action StartedGiftsGenerated;
+    public event Action StartedGiftsGenerated;
 
     public void Initial()
     {
-        _giftPool = new ObjectPool<Gift>
-            (
+        _giftPool = new ObjectPool<Gift>(
             createFunc: () => _giftFabric.InstantiateRandomGift(_board.RectTransform),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
-            defaultCapacity: 25
-            );
+            defaultCapacity: 25);
 
         _extractor.Extracted += ReleaseFromCell;
         _cellsCreator.AllCellsCreated += AssignCellsList;

@@ -8,8 +8,8 @@ public class PauseRegulator : MonoBehaviour
     [SerializeField] private GameObject _settings;
     [SerializeField] private GameObject _leaderboard;
 
-    public Action Paused;
-    public Action Resumed;
+    public event Action Paused;
+    public event Action Resumed;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class PauseRegulator : MonoBehaviour
         Time.timeScale = 1f;
         Resumed?.Invoke();
     }
-    
+
     public void OpenPause()
     {
         Time.timeScale = 0f;
@@ -31,7 +31,7 @@ public class PauseRegulator : MonoBehaviour
     }
 
     public void LoadMainMenu()
-    { 
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }

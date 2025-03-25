@@ -40,7 +40,6 @@ public class TaskCreator
                 _targetValue *= 2;
             }
         }
-
         else if (step <= 0)
         {
             for (int i = 0; i > step; i--)
@@ -53,8 +52,6 @@ public class TaskCreator
         {
             FormTargetValue();
         }
-
-
     }
 
     private void FormGiftCount()

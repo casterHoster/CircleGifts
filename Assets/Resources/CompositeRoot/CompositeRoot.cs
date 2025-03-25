@@ -3,7 +3,7 @@ using UnityEngine;
 public class CompositeRoot : MonoBehaviour
 {
     [SerializeField] private GiftsGenerator _giftsPool;
-    [SerializeField] private GiftsFabric _giftsFabric;
+    [SerializeField] private GiftFabric _giftsFabric;
     [SerializeField] private NeighboursSearcher _neighboursSearcher;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private CellsCreator _cellsCreator;
@@ -46,6 +46,5 @@ public class CompositeRoot : MonoBehaviour
         _effectsSoundsRegulator.Initial();
         _volumeSettings.Initial();
         _leaderboard.Initial();
-        //_reward.Initial();
     }
 }

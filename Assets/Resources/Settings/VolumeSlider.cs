@@ -10,7 +10,7 @@ public class VolumeSlider : MonoBehaviour
     private Slider _slider;
     private float _defalutValue = 0.5f;
 
-    public Action<string, float> OnValueChanged;
+    public event Action<string, float> OnValueChanged;
 
     private void Start()
     {

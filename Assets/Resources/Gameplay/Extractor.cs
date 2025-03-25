@@ -110,9 +110,11 @@ public class Extractor : MonoBehaviour
     {
         if (_isPressed)
         {
-            if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift &&
+            if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift != null &&
                 cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
+            {
                 _neighbourCells = _searcher.NeighboursCells;
+            }
         }
     }
 

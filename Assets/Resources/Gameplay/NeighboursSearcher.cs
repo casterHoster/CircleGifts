@@ -5,11 +5,11 @@ public class NeighboursSearcher : MonoBehaviour
 {
     [SerializeField] private CellsCreator _cellsCreator;
     [SerializeField] private float _detectionDistance = 0.5f;
-    
+
     private AttentionMonitor _attentionMonitor;
     private List<Cell> _neighboursCells;
 
-    public List<Cell> NeighboursCells { get { return new List<Cell>(_neighboursCells); } }
+    public List<Cell> NeighboursCells {get { return new List<Cell>(_neighboursCells); } }
 
     public virtual void Initial()
     {

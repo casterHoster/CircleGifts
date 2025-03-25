@@ -9,7 +9,7 @@ public class WrapperViewer : MonoBehaviour
     private Gift _gift;
     private bool _isSetGift;
 
-    public Action<Gift> ValueChanged;
+    public event Action<Gift> ValueChanged;
 
     private void OnEnable()
     {

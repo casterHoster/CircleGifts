@@ -16,8 +16,8 @@ public class FieldUpdater : MonoBehaviour
     private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
     private Action<Cell> _cellClearedHandler;
-    public Action Reformed;
-    public Action<Cell> NeededCellUpdate;
+    public event Action Reformed;
+    public event Action<Cell> NeededCellUpdate;
 
     public void Initial()
     {
@@ -117,11 +117,9 @@ public class FieldUpdater : MonoBehaviour
 
     private IEnumerator MoveGifts(Gift gift, Cell cell)
     {
-        cell.gameObject.SetActive(false);
         float targetPosX = cell.transform.position.x;
         float targetPosY = cell.transform.position.y;
         float targetPosZ = gift.transform.position.z;
-
 
         Vector3 finishPosittion = cell.transform.position;
         Vector3 targetPosition = new Vector3(targetPosX, targetPosY, targetPosZ);
@@ -133,6 +131,5 @@ public class FieldUpdater : MonoBehaviour
         }
 
         gift.transform.position = targetPosition;
-        cell.gameObject.SetActive(true);
     }
 }

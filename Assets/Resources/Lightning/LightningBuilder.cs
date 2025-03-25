@@ -13,13 +13,11 @@ public class LightningBuilder : MonoBehaviour
 
     public void Initial()
     {
-        _lightningPool = new ObjectPool<Lightning>
-            (
+        _lightningPool = new ObjectPool<Lightning>(
             createFunc: () => Instantiate(_lightningPrefab),
-            actionOnGet: (obj) => obj.gameObject.SetActive(true), 
+            actionOnGet: (obj) => obj.gameObject.SetActive(true),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
-            defaultCapacity: 25
-            );
+            defaultCapacity: 25);
 
         _points = new List<Vector3>();
         _lightnings = new List<Lightning>();

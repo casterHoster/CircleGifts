@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GiftsFabric : MonoBehaviour
+public class GiftFabric : MonoBehaviour
 {
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Gift _giftPrefab;
     [SerializeField] private Extractor _extractor;
     [SerializeField] private CellsSearcher _cellAnalyser;
     [SerializeField] private List<GiftCharacteristics> _giftCharacteristics;
-    [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3; 
+    [SerializeField] private int _strartedGeneratingCharacteristicsCount = 3;
 
     private List<GiftCharacteristics> _generatingCharacteristics;
 
-    public Action<Cell> Maximised;
+    public event Action<Cell> Maximised;
 
     public void Initial()
     {
@@ -64,7 +64,7 @@ public class GiftsFabric : MonoBehaviour
 
         if (_strartedGeneratingCharacteristicsCount > 0 && _strartedGeneratingCharacteristicsCount < _giftCharacteristics.Count)
         {
-            for (int i = 0; i < _strartedGeneratingCharacteristicsCount; i++) 
+            for (int i = 0; i < _strartedGeneratingCharacteristicsCount; i++)
             {
                 _generatingCharacteristics.Add(_giftCharacteristics[i]);
             }
@@ -101,7 +101,7 @@ public class GiftsFabric : MonoBehaviour
 
         GiftCharacteristics characteristic = SearchCharacteristic(value);
 
-        if (characteristic != null) 
+        if (characteristic != null)
         {
             cell.Gift.SetValue(characteristic.Value);
             cell.Gift.SetSprite(characteristic.Sprite);

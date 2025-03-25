@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ScoreCounter : MonoBehaviour
 {
-    [SerializeField] Extractor _extractor;
+    [SerializeField] private Extractor _extractor;
 
-    public Action<int> ScoreChanged;
+    public event Action<int> ScoreChanged;
 
-    public int Score {  get; private set; }
+    public int Score {get; private set; }
 
     public void Initial()
     {
@@ -22,7 +22,7 @@ public class ScoreCounter : MonoBehaviour
 
     private void IncreaseScore(List<Cell> cells)
     {
-        foreach (Cell cell in cells) 
+        foreach (Cell cell in cells)
         {
             Score += cell.Gift.Value;
         }

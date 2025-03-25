@@ -5,11 +5,11 @@ using YG;
 
 public class Reward : MonoBehaviour
 {
-    [SerializeField] EventSystem _eventSystem;
+    [SerializeField] private EventSystem _eventSystem;
 
     private string rewardID = "1";
 
-    public Action Rewarded;
+    public event Action Rewarded;
 
     public void Initial()
     {

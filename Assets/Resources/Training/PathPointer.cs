@@ -16,8 +16,8 @@ public class PathPointer : MonoBehaviour
     private float _threshold = 0.1f;
     private bool _isEnabled;
 
-    public Action<Cell> CellReached;
-    public Action<Cell> CircleOvered;
+    public event Action<Cell> CellReached;
+    public event Action<Cell> CircleOvered;
 
     public void Initial()
     {
@@ -55,7 +55,7 @@ public class PathPointer : MonoBehaviour
 
         while (_isEnabled)
         {
-            _pointer.gameObject.SetActive(true);
+            _pointer.SetActive(true);
             _pointer.transform.position = _chainCells[0].transform.position;
 
             foreach (Cell cell in _chainCells)
@@ -67,8 +67,7 @@ public class PathPointer : MonoBehaviour
                         CircleOvered?.Invoke(theCell);
                     }
 
-                    _pointer.gameObject.SetActive(false);
-
+                    _pointer.SetActive(false);
                     yield break;
                 }
 
@@ -92,7 +91,7 @@ public class PathPointer : MonoBehaviour
                 CircleOvered?.Invoke(cell);
             }
 
-            _pointer.gameObject.SetActive(false);
+            _pointer.SetActive(false);
         }
     }
 

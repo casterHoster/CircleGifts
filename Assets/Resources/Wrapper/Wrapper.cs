@@ -8,7 +8,7 @@ public class Wrapper : MonoBehaviour
 
     private List<Cell> _cells;
 
-    public Action<int> Counted;
+    public event Action<int> Counted;
 
     public void Initial()
     {
