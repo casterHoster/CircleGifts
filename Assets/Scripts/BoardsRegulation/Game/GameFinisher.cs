@@ -6,6 +6,7 @@ using YG;
 using Cells;
 using Monetization;
 using Tasks;
+using NaughtyAttributes;
 
 namespace BoardsRegulation
 {
@@ -18,6 +19,11 @@ namespace BoardsRegulation
         [SerializeField] private GameObject _gameOverBoard;
         [SerializeField] private GameObject _rewardButton;
         [SerializeField] private EventSystem _eventSystem;
+
+        [Scene]
+        [SerializeField] private string _sceneGame;
+        [Scene]
+        [SerializeField] private string _sceneMainMenu;
 
         public event Action GameIsOver;
         public event Action GameIsContinued;
@@ -42,12 +48,12 @@ namespace BoardsRegulation
 
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(_sceneMainMenu);
         }
 
         public void RestartGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(_sceneGame);
         }
 
         public void OpenLeaderboard()

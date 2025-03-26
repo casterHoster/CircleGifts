@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace BoardsRegulation
 {
@@ -9,6 +10,9 @@ namespace BoardsRegulation
         [SerializeField] private GameObject _pause;
         [SerializeField] private GameObject _settings;
         [SerializeField] private GameObject _leaderboard;
+        
+        [Scene]
+        [SerializeField] private string _sceneMainMenu;
 
         public event Action Paused;
         public event Action Resumed;
@@ -35,7 +39,7 @@ namespace BoardsRegulation
         public void LoadMainMenu()
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            SceneManager.LoadScene(_sceneMainMenu);
         }
 
         public void OpenSettings()

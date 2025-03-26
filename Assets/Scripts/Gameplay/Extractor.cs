@@ -16,12 +16,13 @@ namespace Gameplay
         private List<Cell> _neighbourCells;
         private bool _isPressed;
 
-        public Action<Cell> Extracted;
-        public Action<Cell, int> EndCellDifined;
-        public Action<List<Cell>> ListIsDefined;
-        public Action<Cell> PutOuted;
-        public Action<Cell> CellAdded;
-        public Action CellRemoved;
+        public event Action<Cell> Extracted;
+        public event Action<Cell, int> EndCellDifined;
+        public event Action<Cell> EndCellPutOuted;
+        public event Action<List<Cell>> ListIsDefined;
+        public event Action<Cell> PutOuted;
+        public event Action<Cell> CellAdded;
+        public event Action CellRemoved;
 
         public void Initial()
         {
@@ -89,6 +90,7 @@ namespace Gameplay
                 ListIsDefined?.Invoke(_chainedCells);
                 Cell lastCell = _chainedCells[_chainedCells.Count - 1];
                 EndCellDifined?.Invoke(lastCell, _chainedCells.Count);
+                EndCellPutOuted?.Invoke(lastCell);
                 _chainedCells.Remove(lastCell);
 
                 foreach (var cell in _chainedCells)

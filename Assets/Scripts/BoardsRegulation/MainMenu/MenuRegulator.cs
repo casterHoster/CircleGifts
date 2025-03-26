@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ namespace BoardsRegulation
         [SerializeField] private GameObject _mainMenu;
         [SerializeField] private GameObject _settings;
         [SerializeField] private GameObject _leaderboard;
+
+        [Scene]
+        [SerializeField] private string _sceneGame;
 
         public void OpenSettings()
         {

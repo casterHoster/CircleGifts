@@ -713,6 +713,7 @@ MonoBehaviour:
   _mainMenu: {fileID: 359318403}
   _settings: {fileID: 170287460}
   _leaderboard: {fileID: 1889662079}
+  _sceneGame: Game
 --- !u!4 &515666823
 Transform:
   m_ObjectHideFlags: 0

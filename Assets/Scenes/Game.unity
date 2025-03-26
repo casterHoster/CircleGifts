@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5996f314f1ae7242accf0cd04086834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _board: {fileID: 1717228393}
+  _background: {fileID: 1717228393}
   _giftFabric: {fileID: 1190074719}
   _cellsCreator: {fileID: 1288871465}
   _extractor: {fileID: 280937291}
@@ -1807,6 +1807,7 @@ MonoBehaviour:
   _pause: {fileID: 2131850079}
   _settings: {fileID: 1155208622}
   _leaderboard: {fileID: 397546085}
+  _sceneMainMenu: MainMenu
 --- !u!4 &546067207
 Transform:
   m_ObjectHideFlags: 0

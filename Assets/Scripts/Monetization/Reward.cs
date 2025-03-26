@@ -13,11 +13,6 @@ namespace Monetization
 
         public event Action Rewarded;
 
-        public void Initial()
-        {
-            YG2.onCloseRewardedAdv += EnableEventSystem;
-        }
-
         public void OpenRewardAd()
         {
             YG2.RewardedAdvShow(rewardID, () =>
@@ -28,11 +23,6 @@ namespace Monetization
                 EventSystem eventSystem = FindObjectOfType<EventSystem>();
                 eventSystem.enabled = true;
             });
-        }
-
-        private void EnableEventSystem()
-        {
-            _eventSystem.enabled = true;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Effects
             _extractor.CellAdded += GiveDirection;
             _extractor.Extracted += Realize;
             _extractor.PutOuted += Realize;
-            _extractor.EndCellDifined += Realize;
+            _extractor.EndCellPutOuted += Realize;
         }
 
         private void OnDisable()
@@ -36,7 +36,7 @@ namespace Effects
             _extractor.CellAdded -= GiveDirection;
             _extractor.Extracted -= Realize;
             _extractor.PutOuted -= Realize;
-            _extractor.EndCellDifined -= Realize;
+            _extractor.EndCellPutOuted -= Realize;
         }
 
         private void GiveDirection(Cell cell)
@@ -52,19 +52,6 @@ namespace Effects
         }
 
         private void Realize(Cell cell)
-        {
-            foreach (var lightning in _lightnings)
-            {
-                if (lightning.Target == cell.transform.position && lightning.gameObject.activeSelf == true)
-                {
-                    _lightningPool.Release(lightning);
-                }
-            }
-
-            _points.Remove(cell.transform.position);
-        }
-
-        private void Realize(Cell cell, int count)
         {
             foreach (var lightning in _lightnings)
             {
