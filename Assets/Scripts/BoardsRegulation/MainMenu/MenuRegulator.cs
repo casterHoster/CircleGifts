@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,30 +7,20 @@ namespace BoardsRegulation
 {
     public class MenuRegulator : MonoBehaviour
     {
-        [SerializeField] private GameObject _mainMenu;
-        [SerializeField] private GameObject _settings;
-        [SerializeField] private GameObject _leaderboard;
+        public event Action MenuOpened;
+        public event Action SettingsOpened;
 
         [Scene]
         [SerializeField] private string _sceneGame;
 
         public void OpenSettings()
         {
-            _settings.SetActive(true);
-            _mainMenu.SetActive(false);
+            SettingsOpened?.Invoke();
         }
 
         public void OpenMenu()
         {
-            _settings.SetActive(false);
-            _leaderboard.SetActive(false);
-            _mainMenu.SetActive(true);
-        }
-
-        public void OpenLeaderboard()
-        {
-            _leaderboard.SetActive(true);
-            _mainMenu.SetActive(false);
+            MenuOpened?.Invoke();
         }
 
         public void PlayGame()

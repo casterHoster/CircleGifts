@@ -15,7 +15,6 @@ namespace BoardsRegulation
         [SerializeField] private CellsSearcher _cellsSearcher;
         [SerializeField] private TaskRegulator _taskRegulator;
         [SerializeField] private Reward _reward;
-        [SerializeField] private GameObject _leaderboard;
         [SerializeField] private GameObject _gameOverBoard;
         [SerializeField] private GameObject _rewardButton;
         [SerializeField] private EventSystem _eventSystem;
@@ -56,20 +55,9 @@ namespace BoardsRegulation
             SceneManager.LoadScene(_sceneGame);
         }
 
-        public void OpenLeaderboard()
-        {
-            _leaderboard.SetActive(true);
-        }
-
-        public void CloseLeaderboard()
-        {
-            _leaderboard.SetActive(false);
-        }
-
         private void EndTheGame()
         {
             YG2.InterstitialAdvShow();
-            _gameOverBoard.SetActive(true);
             GameIsOver?.Invoke();
         }
 
@@ -80,7 +68,6 @@ namespace BoardsRegulation
 
         private void ContinueTheGame()
         {
-            _gameOverBoard.SetActive(false);
             GameIsContinued?.Invoke();
             Time.timeScale = 1f;
         }

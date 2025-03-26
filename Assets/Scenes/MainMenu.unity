@@ -710,9 +710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01336633fc0308c4db330306fd9087be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenu: {fileID: 359318403}
-  _settings: {fileID: 170287460}
-  _leaderboard: {fileID: 1889662079}
   _sceneGame: Game
 --- !u!4 &515666823
 Transform:
@@ -1437,6 +1434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _backgroundSoundsRegulator: {fileID: 667776355}
   _volumeSettings: {fileID: 176681259}
+  _menuBoardsRegulator: {fileID: 1048546065}
 --- !u!4 &744247626
 Transform:
   m_ObjectHideFlags: 0
@@ -1539,6 +1537,53 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1048546064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048546066}
+  - component: {fileID: 1048546065}
+  m_Layer: 0
+  m_Name: MenuBoardsRegulator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1048546065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048546064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9239e3566cc8cf4fa9447097ee01eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingsBoard: {fileID: 170287460}
+  _mainMenuBoard: {fileID: 359318403}
+  _menuRegulator: {fileID: 515666822}
+--- !u!4 &1048546066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048546064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.777023, y: 0.641786, z: -4.057993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2635,11 +2680,6 @@ MonoBehaviour:
   processTranslateLabel: 3/3 completed
   componentTextField: 1
   countLang: 3
---- !u!1 &1889662079 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3551487530540725705, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
-  m_PrefabInstance: {fileID: 1330549361}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1889662080 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9086055758568188267, guid: 9808846a604bcda4d9fac2c27e3918b1, type: 3}
@@ -3040,3 +3080,4 @@ SceneRoots:
   - {fileID: 515666823}
   - {fileID: 744247626}
   - {fileID: 73222358}
+  - {fileID: 1048546066}

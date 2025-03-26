@@ -4,7 +4,6 @@ using Cells;
 using Effects;
 using Gameplay;
 using Gifts;
-using Monetization;
 using Score;
 using Settings;
 using Sounds;
@@ -32,8 +31,8 @@ public class CompositeRoot : MonoBehaviour
     [SerializeField] private EffectsSoundsRegulator _effectsSoundsRegulator;
     [SerializeField] private VolumeSettings _volumeSettings;
     [SerializeField] private PathPointer _pathPointer;
-    [SerializeField] private Leaderboard _leaderboard;
     [SerializeField] private TaskRegulator _taskRegulator;
+    [SerializeField] private GameBoardsRegulator _boardsRegulator;
 
     private void Start()
     {
@@ -56,6 +55,6 @@ public class CompositeRoot : MonoBehaviour
         _backgroundSoundsRegulator.Initial();
         _effectsSoundsRegulator.Initial();
         _volumeSettings.Initial();
-        _leaderboard.Initial();
+        _boardsRegulator.Initial();
     }
 }
