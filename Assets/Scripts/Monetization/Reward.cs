@@ -9,15 +9,15 @@ namespace Monetization
     {
         [SerializeField] private EventSystem _eventSystem;
 
-        private string rewardID = "1";
+        private string _rewardID = "1";
 
         public event Action Rewarded;
 
         public void OpenRewardAd()
         {
-            YG2.RewardedAdvShow(rewardID, () =>
+            YG2.RewardedAdvShow(_rewardID, () =>
             {
-                if (rewardID == "1")
+                if (_rewardID == "1")
                     Rewarded?.Invoke();
 
                 EventSystem eventSystem = FindObjectOfType<EventSystem>();

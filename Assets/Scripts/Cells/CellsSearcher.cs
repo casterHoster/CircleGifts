@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Gameplay;
+using ModelPattern;
 
 namespace Cells
 {
@@ -16,8 +17,8 @@ namespace Cells
         private List<Cell> _cells = new List<Cell>();
         private HightestGiftValueSearcher _giftValueSearcher = new HightestGiftValueSearcher();
 
-        public Action MovedInpossible;
-        public Action<int> HightestValueFound;
+        public event Action InpossibleMoving;
+        public event Action<int> HightestValueFouned;
 
         public void Initial()
         {
@@ -44,7 +45,7 @@ namespace Cells
 
             if (TryFindPerspectiveCells() == false)
             {
-                MovedInpossible?.Invoke();
+                InpossibleMoving?.Invoke();
             }
         }
 
@@ -82,7 +83,7 @@ namespace Cells
         {
             int value = _giftValueSearcher.Search(_cells);
 
-            HightestValueFound?.Invoke(value);
+            HightestValueFouned?.Invoke(value);
         }
     }
 }

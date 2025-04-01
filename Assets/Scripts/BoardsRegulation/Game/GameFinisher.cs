@@ -24,12 +24,12 @@ namespace BoardsRegulation
         [Scene]
         [SerializeField] private string _sceneMainMenu;
 
-        public event Action GameIsOver;
+        public event Action GameIsOvered;
         public event Action GameIsContinued;
 
         public void Initial()
         {
-            _cellsSearcher.MovedInpossible += EndTheGame;
+            _cellsSearcher.InpossibleMoving += EndTheGame;
             _taskRegulator.MovesEnded += EndTheGame;
             _reward.Rewarded += ContinueTheGame;
             _reward.Rewarded += TurnOffRewardButton;
@@ -38,7 +38,7 @@ namespace BoardsRegulation
 
         private void OnDisable()
         {
-            _cellsSearcher.MovedInpossible -= EndTheGame;
+            _cellsSearcher.InpossibleMoving -= EndTheGame;
             _taskRegulator.MovesEnded -= EndTheGame;
             _reward.Rewarded -= ContinueTheGame;
             _reward.Rewarded -= TurnOffRewardButton;
@@ -58,7 +58,7 @@ namespace BoardsRegulation
         private void EndTheGame()
         {
             YG2.InterstitialAdvShow();
-            GameIsOver?.Invoke();
+            GameIsOvered?.Invoke();
         }
 
         private void EnableEventSystem()

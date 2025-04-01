@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cells;
 using Gifts;
+using ModelPattern;
 
 namespace Gameplay
 {
@@ -19,9 +20,9 @@ namespace Gameplay
         private Queue<Cell> _clearCells;
         private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
 
-        private Action<Cell> _cellClearedHandler;
+        private event Action<Cell> _cellHandlerCleared;
         public event Action Reformed;
-        public event Action<Cell> NeededCellUpdate;
+        public event Action<Cell> CellUpdateNeeding;
 
         public void Initial()
         {
@@ -36,11 +37,11 @@ namespace Gameplay
         {
             _cellsCreator.AllCellsCreated -= SignUpClearing;
 
-            if (_cellClearedHandler != null)
+            if (_cellHandlerCleared != null)
             {
                 foreach (var cell in _clearCells)
                 {
-                    cell.Cleared -= _cellClearedHandler;
+                    cell.Cleared -= _cellHandlerCleared;
                 }
             }
         }
@@ -49,7 +50,7 @@ namespace Gameplay
         {
             foreach (var cell in cells)
             {
-                _cellClearedHandler = AddCellQueue;
+                _cellHandlerCleared = AddCellQueue;
                 cell.Cleared += AddCellQueue;
             }
         }
@@ -84,7 +85,8 @@ namespace Gameplay
 
             if (hitUp.collider != null)
             {
-                if (hitUp.collider.TryGetComponent(out Cell upCell) && !_clearCells.Contains(upCell) && upCell.Gift != null && cell.Gift == null)
+                if (hitUp.collider.TryGetComponent(out Cell upCell) && 
+                    !_clearCells.Contains(upCell) && upCell.Gift != null && cell.Gift == null)
                 {
                     cell.Fill(upCell.Gift);
                     upCell.ClearGift();
@@ -113,9 +115,9 @@ namespace Gameplay
         {
             yield return new WaitForSeconds(_generateDelay);
 
-            NeededCellUpdate?.Invoke(cell);
-            cell.Gift.transform.position =
-                new Vector3(cell.Gift.gameObject.transform.position.x, cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
+            CellUpdateNeeding?.Invoke(cell);
+            cell.Gift.transform.position = new Vector3(cell.Gift.gameObject.transform.position.x,
+                cell.Gift.gameObject.transform.position.y + 1, cell.Gift.gameObject.transform.position.z);
             StartCoroutine(MoveGifts(cell.Gift, cell));
         }
 
@@ -130,7 +132,8 @@ namespace Gameplay
 
             while (Vector3.Distance(gift.transform.position, finishPosittion) > _threshold)
             {
-                gift.transform.position = Vector3.MoveTowards(gift.transform.position, targetPosition, _moveSpeed * Time.deltaTime);
+                gift.transform.position = 
+                    Vector3.MoveTowards(gift.transform.position, targetPosition, _moveSpeed * Time.deltaTime);
                 yield return null;
             }
 

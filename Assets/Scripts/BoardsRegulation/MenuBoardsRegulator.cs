@@ -28,12 +28,12 @@ namespace BoardsRegulation
             _menuRegulator.SettingsOpened -= UseSettings;
         }
 
-        public void UseSettings()
+        private void UseSettings()
         {
             _stateMachine.SetState<StateSettings>();
         }
 
-        public void UseMainMenu()
+        private void UseMainMenu()
         {
             _stateMachine.SetState<StateMainMenu>();
         }

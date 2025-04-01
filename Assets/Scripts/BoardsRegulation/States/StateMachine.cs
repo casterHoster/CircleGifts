@@ -29,10 +29,5 @@ namespace BoardsRegulation
 
             }
         }
-
-        public void Update()
-        {
-            _currentState?.Update();
-        }
     }
 }

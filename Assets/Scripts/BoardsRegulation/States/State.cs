@@ -4,7 +4,7 @@ namespace BoardsRegulation
 {
     public abstract class State : BoardState
     {
-        protected GameObject _board;
+        private GameObject _board;
 
         public State(StateMachine stateMachine, GameObject board) : base(stateMachine)
         {

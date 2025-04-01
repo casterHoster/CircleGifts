@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using BoardsRegulation;
+using ModelPattern;
 
 namespace Cells
 {
@@ -60,7 +61,8 @@ namespace Cells
             for (int i = 0; i < _cellPositions.Count; i++)
             {
                 Cell cell = Instantiate(_cellPrefab, _background.RectTransform);
-                cell.transform.localScale = new Vector3(_cellScaling * _prefabCellSize.x, _cellScaling * _prefabCellSize.y, _cellScaling * _prefabCellSize.z);
+                cell.transform.localScale = new Vector3(_cellScaling * 
+                    _prefabCellSize.x, _cellScaling * _prefabCellSize.y, _cellScaling * _prefabCellSize.z);
                 RectTransform rectTransform = cell.gameObject.GetComponent<RectTransform>();
                 rectTransform.anchoredPosition = _cellPositions[i];
                 _generatedCells.Add(cell);

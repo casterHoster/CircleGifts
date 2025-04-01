@@ -5,6 +5,7 @@ using UnityEngine;
 using Cells;
 using Gameplay;
 using Gifts;
+using ModelPattern;
 
 namespace Training
 {
@@ -83,7 +84,8 @@ namespace Training
 
                     while (Vector2.Distance(_pointer.transform.position, targetPosition) > _threshold)
                     {
-                        _pointer.transform.position = Vector3.MoveTowards(_pointer.transform.position, targetPosition, _speed * Time.deltaTime);
+                        _pointer.transform.position = Vector3.MoveTowards(
+                            _pointer.transform.position, targetPosition, _speed * Time.deltaTime);
                         yield return null;
                     }
 

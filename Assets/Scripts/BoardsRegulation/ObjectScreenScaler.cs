@@ -1,4 +1,5 @@
 using UnityEngine;
+using ModelPattern;
 
 namespace BoardsRegulation
 {
@@ -10,7 +11,8 @@ namespace BoardsRegulation
         {
             Scaler scaler = new Scaler();
             _rectTransform = GetComponent<RectTransform>();
-            _rectTransform.localScale = new Vector3(_rectTransform.localScale.x * scaler.Scaling, _rectTransform.localScale.y * scaler.Scaling);
+            _rectTransform.localScale = new Vector3(
+                _rectTransform.localScale.x * scaler.Scaling, _rectTransform.localScale.y * scaler.Scaling);
         }
     }
 }

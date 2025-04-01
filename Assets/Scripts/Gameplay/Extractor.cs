@@ -36,7 +36,7 @@ namespace Gameplay
             _attentionMonitor.IsPressed -= AddPressed;
             _attentionMonitor.IsRealized -= ExtractCells;
             _attentionMonitor.IsUnhovered -= SaveNeighboursByUnvovering;
-            _attentionMonitor.IsHovered -= TryAddHovered;
+            _attentionMonitor.IsHovered -= AddHovered;
         }
 
         private void SignUpMonitors(List<Cell> cells)
@@ -47,7 +47,7 @@ namespace Gameplay
                 _attentionMonitor.IsPressed += AddPressed;
                 _attentionMonitor.IsRealized += ExtractCells;
                 _attentionMonitor.IsUnhovered += SaveNeighboursByUnvovering;
-                _attentionMonitor.IsHovered += TryAddHovered;
+                _attentionMonitor.IsHovered += AddHovered;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Gameplay
             }
         }
 
-        private void TryAddHovered(Cell cell)
+        private void AddHovered(Cell cell)
         {
             if (_isPressed && cell.Gift != null)
             {
@@ -117,7 +117,8 @@ namespace Gameplay
             if (_isPressed)
             {
                 if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift != null &&
-                    cell.Gift.Value == _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
+                    cell.Gift.Value == 
+                    _chainedCells[_chainedCells.Count - 1].Gift.Value && _neighbourCells.Contains(cell))
                 {
                     _neighbourCells = _searcher.NeighboursCells;
                 }
@@ -131,7 +132,8 @@ namespace Gameplay
                 if (neighbourCell != null)
                 {
                     if (cell.Gift != null && _chainedCells[_chainedCells.Count - 1].Gift &&
-                        _chainedCells[_chainedCells.Count - 1].Gift.Value == cell.Gift.Value && cell.gameObject == neighbourCell.gameObject)
+                        _chainedCells[_chainedCells.Count - 1].Gift.Value == 
+                        cell.Gift.Value && cell.gameObject == neighbourCell.gameObject)
                     {
                         return true;
                     }

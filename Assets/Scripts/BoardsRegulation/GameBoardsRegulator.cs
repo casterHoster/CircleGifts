@@ -7,10 +7,8 @@ namespace BoardsRegulation
         [SerializeField] private GameObject _settingsBoard;
         [SerializeField] private GameObject _gameFinisherBoard;
         [SerializeField] private GameObject _pauseBoard;
-
-        [SerializeField] private GameFinisher gameFinisher;
+        [SerializeField] private GameFinisher _gameFinisher;
         [SerializeField] private PauseRegulator _pauseRegulator;
-
 
         private StateMachine _stateMachine;
 
@@ -22,38 +20,38 @@ namespace BoardsRegulation
             _stateMachine.AddState(new StatePause(_stateMachine, _pauseBoard));
             _stateMachine.AddState(new StatePlayGame(_stateMachine, _gameFinisherBoard));
 
-            gameFinisher.GameIsOver += UseGameFinisher;
-            gameFinisher.GameIsContinued += UsePlayGame;
+            _gameFinisher.GameIsOvered += UseGameFinisher;
+            _gameFinisher.GameIsContinued += UsePlayGame;
             _pauseRegulator.Paused += UsePause;
             _pauseRegulator.Resumed += UsePlayGame;
             _pauseRegulator.SettingsOpened += UseSettings;
         }
 
-        public void OnDisable()
+        private void OnDisable()
         {
-            gameFinisher.GameIsOver -= UseGameFinisher;
-            gameFinisher.GameIsContinued -= UsePlayGame;
+            _gameFinisher.GameIsOvered -= UseGameFinisher;
+            _gameFinisher.GameIsContinued -= UsePlayGame;
             _pauseRegulator.Paused -= UsePause;
             _pauseRegulator.Resumed -= UsePlayGame;
             _pauseRegulator.SettingsOpened -= UseSettings;
         }
 
-        public void UseSettings()
+        private void UseSettings()
         {
             _stateMachine.SetState<StateSettings>();
         }
 
-        public void UseGameFinisher()
+        private void UseGameFinisher()
         {
             _stateMachine.SetState<StateGameFinisher>();
         }
 
-        public void UsePause()
+        private void UsePause()
         {
             _stateMachine.SetState<StatePause>();
         }
 
-        public void UsePlayGame()
+        private void UsePlayGame()
         {
             _stateMachine.SetState<StatePlayGame>();
         }

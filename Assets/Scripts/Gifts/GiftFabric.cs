@@ -23,13 +23,13 @@ namespace Gifts
         {
             InitStartedGiftChahcteristics();
             _extractor.EndCellDifined += ImproveGift;
-            _cellAnalyser.HightestValueFound += AddCharacteristic;
+            _cellAnalyser.HightestValueFouned += AddCharacteristic;
         }
 
         private void OnDisable()
         {
             _extractor.EndCellDifined -= ImproveGift;
-            _cellAnalyser.HightestValueFound -= AddCharacteristic;
+            _cellAnalyser.HightestValueFouned -= AddCharacteristic;
         }
 
         public void RandomCharacterize(Gift gift)

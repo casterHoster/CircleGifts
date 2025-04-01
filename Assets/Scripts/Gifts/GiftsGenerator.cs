@@ -38,7 +38,7 @@ namespace Gifts
             _cellsCreator.AllCellsCreated += AssignCellsList;
             _giftFabric.Maximised += ReleaseFromCell;
             _wrapperViewer.ValueChanged += RealeseFromUI;
-            _fieldUpdater.NeededCellUpdate += GenerateGift;
+            _fieldUpdater.CellUpdateNeeding += GenerateGift;
             _reward.Rewarded += RegenerateGiftsForCells;
         }
 
@@ -48,7 +48,7 @@ namespace Gifts
             _extractor.Extracted -= ReleaseFromCell;
             _giftFabric.Maximised -= ReleaseFromCell;
             _wrapperViewer.ValueChanged -= RealeseFromUI;
-            _fieldUpdater.NeededCellUpdate -= GenerateGift;
+            _fieldUpdater.CellUpdateNeeding -= GenerateGift;
             _reward.Rewarded -= RegenerateGiftsForCells;
         }
 
@@ -58,7 +58,8 @@ namespace Gifts
             _giftFabric.TargetingCharacterize(gift, value);
             gift.transform.localScale = transform.localScale / _collerationScalingWrapper;
             gift.gameObject.SetActive(true);
-            gift.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
+            gift.gameObject.transform.position = new Vector3(
+                transform.position.x, transform.position.y, gift.gameObject.transform.position.z);
             return gift;
         }
 

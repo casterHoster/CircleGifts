@@ -17,7 +17,7 @@ namespace Cells
             _cellsCreator.AllCellsCreated += AssignCellsList;
             _pauseRegulator.Paused += DisableCellsColliders;
             _pauseRegulator.Resumed += EnableCellsColliders;
-            _gameFinisher.GameIsOver += DisableCellsColliders;
+            _gameFinisher.GameIsOvered += DisableCellsColliders;
             _gameFinisher.GameIsContinued += EnableCellsColliders;
         }
 
@@ -26,7 +26,7 @@ namespace Cells
             _cellsCreator.AllCellsCreated -= AssignCellsList;
             _pauseRegulator.Paused -= DisableCellsColliders;
             _pauseRegulator.Resumed -= EnableCellsColliders;
-            _gameFinisher.GameIsOver -= DisableCellsColliders;
+            _gameFinisher.GameIsOvered -= DisableCellsColliders;
             _gameFinisher.GameIsContinued -= EnableCellsColliders;
         }
 

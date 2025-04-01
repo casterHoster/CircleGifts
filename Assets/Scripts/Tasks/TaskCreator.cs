@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cells;
+using ModelPattern;
 
 namespace Tasks
 {

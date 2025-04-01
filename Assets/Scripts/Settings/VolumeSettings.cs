@@ -43,7 +43,7 @@ namespace Settings
             YG2.onHideWindowGame -= TurnOffVolume;
         }
 
-        public void SetVolume(string type, float volume)
+        private void SetVolume(string type, float volume)
         {
             switch (type)
             {

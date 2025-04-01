@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cells;
 using Gifts;
+using ModelPattern;
 
 namespace Gameplay
 {
