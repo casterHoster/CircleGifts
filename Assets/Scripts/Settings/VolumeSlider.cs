@@ -13,7 +13,7 @@ namespace Settings
         private Slider _slider;
         private float _defalutValue = 0.5f;
 
-        public event Action<string, float> OnValueChanged;
+        public event Action<string, float> ValueChanged;
 
         private void Start()
         {
@@ -23,7 +23,7 @@ namespace Settings
 
         public void ChangeVolumeValue()
         {
-            OnValueChanged?.Invoke(_soundType.Type, _slider.value);
+            ValueChanged?.Invoke(_soundType.Type, _slider.value);
         }
     }
 }

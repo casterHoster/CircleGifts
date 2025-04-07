@@ -20,8 +20,7 @@ namespace Monetization
                 if (_rewardID == "1")
                     Rewarded?.Invoke();
 
-                EventSystem eventSystem = FindObjectOfType<EventSystem>();
-                eventSystem.enabled = true;
+                _eventSystem.enabled = true;
             });
         }
     }

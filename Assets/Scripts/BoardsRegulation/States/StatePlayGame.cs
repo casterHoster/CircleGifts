@@ -4,7 +4,7 @@ namespace BoardsRegulation
 {
     public class StatePlayGame : State
     {
-        public StatePlayGame(StateMachine stateMachine, GameObject board) : base(stateMachine, board)
+        public StatePlayGame(GameObject board) : base(board)
         {
         }
 

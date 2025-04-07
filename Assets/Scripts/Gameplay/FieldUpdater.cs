@@ -19,8 +19,8 @@ namespace Gameplay
         private float _threshold = 0.1f;
         private Queue<Cell> _clearCells;
         private WaitForSeconds _cooldownChecking = new WaitForSeconds(0.1f);
+        private List<Cell> _cells;
 
-        private event Action<Cell> _cellHandlerCleared;
         public event Action Reformed;
         public event Action<Cell> CellUpdateNeeding;
 
@@ -28,29 +28,31 @@ namespace Gameplay
         {
             _clearCells = new Queue<Cell>();
             StartCoroutine(CheckQueueCells());
-            _cellsCreator.AllCellsCreated += SignUpClearing;
+            _cellsCreator.AllCellsCreated += SignUpCellsClearing;
             Scaler scaler = new Scaler();
             _detectionDistance = _detectionDistance / scaler.Scaling;
         }
 
         private void OnDisable()
         {
-            _cellsCreator.AllCellsCreated -= SignUpClearing;
+            _cellsCreator.AllCellsCreated -= SignUpCellsClearing;
 
-            if (_cellHandlerCleared != null)
+        }
+
+        private void ClearSubscriptionsHandler()
+        {
+            foreach (var cell in _cells)
             {
-                foreach (var cell in _clearCells)
-                {
-                    cell.Cleared -= _cellHandlerCleared;
-                }
+                cell.Cleared -= AddCellQueue;
             }
         }
 
-        private void SignUpClearing(List<Cell> cells)
+        private void SignUpCellsClearing(List<Cell> cells)
         {
+            _cells = cells;
+
             foreach (var cell in cells)
             {
-                _cellHandlerCleared = AddCellQueue;
                 cell.Cleared += AddCellQueue;
             }
         }

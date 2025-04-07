@@ -6,7 +6,7 @@ namespace BoardsRegulation
     {
         private GameObject _board;
 
-        public State(StateMachine stateMachine, GameObject board) : base(stateMachine)
+        public State(GameObject board)
         {
             _board = board;
         }

@@ -7,11 +7,11 @@ namespace BoardsRegulation
 {
     public class MenuRegulator : MonoBehaviour
     {
-        public event Action MenuOpened;
-        public event Action SettingsOpened;
-
         [Scene]
         [SerializeField] private string _sceneGame;
+
+        public event Action MenuOpened;
+        public event Action SettingsOpened;
 
         public void OpenSettings()
         {

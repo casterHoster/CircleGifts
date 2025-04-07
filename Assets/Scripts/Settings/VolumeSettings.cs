@@ -6,8 +6,8 @@ namespace Settings
 {
     public class VolumeSettings : MonoBehaviour
     {
-        public const string MusicName = "Music";
-        public const string EffectsName = "Effects";
+        private const string MusicName = "Music";
+        private const string EffectsName = "Effects";
 
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _effectsSource;
@@ -21,7 +21,7 @@ namespace Settings
         {
             foreach (VolumeSlider slider in _sliders)
             {
-                slider.OnValueChanged += SetVolume;
+                slider.ValueChanged += SetVolume;
             }
 
             _musicVolume = PlayerPrefs.GetFloat(MusicName, _defaultVolume);
@@ -36,7 +36,7 @@ namespace Settings
         {
             foreach (VolumeSlider slider in _sliders)
             {
-                slider.OnValueChanged -= SetVolume;
+                slider.ValueChanged -= SetVolume;
             }
 
             YG2.onShowWindowGame -= TurnOnVolume;

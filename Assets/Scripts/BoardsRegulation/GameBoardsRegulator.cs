@@ -15,10 +15,10 @@ namespace BoardsRegulation
         public void Initial()
         {
             _stateMachine = new StateMachine();
-            _stateMachine.AddState(new StateSettings(_stateMachine, _settingsBoard));
-            _stateMachine.AddState(new StateGameFinisher(_stateMachine, _gameFinisherBoard));
-            _stateMachine.AddState(new StatePause(_stateMachine, _pauseBoard));
-            _stateMachine.AddState(new StatePlayGame(_stateMachine, _gameFinisherBoard));
+            _stateMachine.AddState(new StateSettings(_settingsBoard));
+            _stateMachine.AddState(new StateGameFinisher(_gameFinisherBoard));
+            _stateMachine.AddState(new StatePause(_pauseBoard));
+            _stateMachine.AddState(new StatePlayGame(_gameFinisherBoard));
 
             _gameFinisher.GameIsOvered += UseGameFinisher;
             _gameFinisher.GameIsContinued += UsePlayGame;

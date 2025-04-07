@@ -14,8 +14,8 @@ namespace BoardsRegulation
         public void Initial()
         {
             _stateMachine = new StateMachine();
-            _stateMachine.AddState(new StateSettings(_stateMachine, _settingsBoard));
-            _stateMachine.AddState(new StateMainMenu(_stateMachine, _mainMenuBoard));
+            _stateMachine.AddState(new StateSettings(_settingsBoard));
+            _stateMachine.AddState(new StateMainMenu(_mainMenuBoard));
             _stateMachine.SetState<StateMainMenu>();
 
             _menuRegulator.MenuOpened += UseMainMenu;

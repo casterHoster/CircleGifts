@@ -7,7 +7,7 @@ namespace ModelPattern
         private float _screenWidth;
         private float _screenHeight;
 
-        public float Scaling;
+        public float Scaling { get; private set;}
 
         public Scaler()
         {

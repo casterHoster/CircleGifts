@@ -21,7 +21,7 @@ namespace Cells
         private Vector3 _prefabCellSize;
         private float _countEmptySpaceInCells = 2;
 
-        public Action<List<Cell>> AllCellsCreated;
+        public event Action<List<Cell>> AllCellsCreated;
 
         public void Initial()
         {
